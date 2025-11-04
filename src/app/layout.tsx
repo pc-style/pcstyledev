@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { CursorFollower } from "@/components/CursorFollower";
+import { PageIntro } from "@/components/PageIntro";
 import "./globals.css";
 
 const pcstyleSans = Space_Grotesk({
@@ -65,6 +67,8 @@ export default function RootLayout({
       <body
         className={`${pcstyleSans.variable} ${pcstyleMono.variable} antialiased`}
       >
+        <PageIntro />
+        <CursorFollower />
         {children}
       </body>
     </html>

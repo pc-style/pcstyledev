@@ -10,10 +10,10 @@ const containerVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      when: "beforeChildren",
+      when: "beforeChildren" as const,
       staggerChildren: 0.1,
       delayChildren: 0.2,
-      type: "spring",
+      type: "spring" as const,
       stiffness: 120,
       damping: 16,
     },

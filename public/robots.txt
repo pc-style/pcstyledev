@@ -1,0 +1,7 @@
+# pcstyle.dev robots.txt
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://pcstyle.dev/sitemap.xml
+

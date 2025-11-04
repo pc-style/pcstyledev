@@ -27,7 +27,7 @@ export default function OgImage() {
         <div style={{ fontSize: 42, letterSpacing: "0.35em", textTransform: "uppercase" }}>
           pcstyle.dev
         </div>
-        <div style={{ display: "grid", gap: 24 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div
             style={{
               fontSize: 120,

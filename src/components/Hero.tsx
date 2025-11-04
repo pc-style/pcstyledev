@@ -2,18 +2,30 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import { ContactModal } from "@/components/ContactModal";
+import { motion, useMotionValue, useTransform, AnimatePresence } from "framer-motion";
+import { MagneticButton } from "@/components/MagneticButton";
+import {
+  Github,
+  Mail,
+  Sparkles,
+  Zap,
+  Code2,
+  Brain,
+  Palette,
+  MessageCircle,
+  Facebook,
+} from "lucide-react";
 
 type HeroFact = {
   label: string;
   value: string;
+  icon: React.ComponentType<{ className?: string }>;
 };
 
 const heroFacts: HeroFact[] = [
-  { label: "wiek", value: "18" },
-  { label: "kierunek", value: "Sztuczna Inteligencja @ PCz" },
-  { label: "mix", value: "AI × design × code" },
+  { label: "wiek", value: "18", icon: Sparkles },
+  { label: "kierunek", value: "Sztuczna Inteligencja @ PCz", icon: Brain },
+  { label: "mix", value: "AI × design × code", icon: Palette },
 ];
 
 function drawBanner(text: string) {
@@ -31,7 +43,15 @@ export function Hero() {
 
   const pulse = useMotionValue(0);
   const shadow = useTransform(pulse, (val) => `drop-shadow(10px 10px 0 rgba(0,0,0,${val}))`);
-  const [contactOpen, setContactOpen] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+
+  // copy discord username
+  const handleDiscordClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigator.clipboard.writeText("Add me on Discord: @pcstyle");
+    setShowNotification(true);
+    setTimeout(() => setShowNotification(false), 3000);
+  };
 
   useEffect(() => {
     // quick sanity ping — hej, działa
@@ -96,17 +116,23 @@ export function Hero() {
           },
         }}
       >
-        {heroFacts.map((fact) => (
-          <motion.li
-            key={fact.label}
-            className="relative z-10 brutal-border brutal-shadow bg-[var(--color-paper)] px-4 py-3 font-semibold uppercase tracking-[0.2em] text-[color:var(--color-ink)]"
-            variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
-            whileHover={{ rotate: 2.5, scale: 1.05 }}
-          >
-            <span className="block text-[0.65em] opacity-60">{fact.label}</span>
-            <span className="block">{fact.value}</span>
-          </motion.li>
-        ))}
+        {heroFacts.map((fact) => {
+          const Icon = fact.icon;
+          return (
+            <motion.li
+              key={fact.label}
+              className="relative z-10 flex items-start gap-3 brutal-border brutal-shadow bg-[var(--color-paper)] px-4 py-3 font-semibold uppercase tracking-[0.2em] text-[color:var(--color-ink)]"
+              variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
+              whileHover={{ rotate: 2.5, scale: 1.05 }}
+            >
+              <Icon className="h-5 w-5 text-[var(--color-magenta)]" />
+              <div>
+                <span className="block text-[0.65em] opacity-60">{fact.label}</span>
+                <span className="block">{fact.value}</span>
+              </div>
+            </motion.li>
+          );
+        })}
       </motion.ul>
 
       <div className="flex flex-col gap-6 sm:flex-row sm:flex-wrap sm:items-center">
@@ -126,39 +152,114 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.5 }}
         >
+          <MagneticButton
+            className="brutal-border brutal-shadow bg-[var(--color-paper)] px-6 py-3 font-semibold uppercase tracking-[0.2em] hover:text-[color:var(--color-magenta)] flex items-center gap-2"
+            strength={0.2}
+          >
+            <Code2 className="h-4 w-4" />
+            <Link href="#projects">zobacz projekty</Link>
+          </MagneticButton>
+        </motion.div>
+
+        {/* social links z ikonami — actual working links */}
+        <motion.div
+          className="flex flex-wrap gap-3"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, duration: 0.4 }}
+        >
           <Link
-            href="#projects"
-            className="brutal-border brutal-shadow bg-[var(--color-paper)] px-6 py-3 font-semibold uppercase tracking-[0.2em] transition-transform hover:-translate-y-1 hover:-rotate-2 hover:text-[color:var(--color-magenta)]"
+            href="https://github.com/pc-style"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
           >
-            zobacz projekty
+            <MagneticButton
+              className="brutal-border brutal-shadow bg-[var(--color-paper)] p-3 hover:bg-[var(--color-ink)] hover:text-white transition-colors"
+              strength={0.3}
+            >
+              <Github className="h-5 w-5" />
+            </MagneticButton>
           </Link>
-          <button
-            onClick={() => setContactOpen(true)}
-            className="brutal-border brutal-shadow bg-[var(--color-paper)] px-6 py-3 font-semibold uppercase tracking-[0.2em] text-[color:var(--color-ink)] transition-transform hover:translate-y-1 hover:rotate-1 hover:text-[color:var(--color-cyan)]"
+          <Link
+            href="https://www.facebook.com/adam.krupa.771/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
           >
-            napisz hejka
-          </button>
+            <MagneticButton
+              className="brutal-border brutal-shadow bg-[var(--color-paper)] p-3 hover:bg-[#1877F2] hover:text-white transition-colors"
+              strength={0.3}
+            >
+              <Facebook className="h-5 w-5" />
+            </MagneticButton>
+          </Link>
+          <div onClick={handleDiscordClick} className="cursor-pointer">
+            <MagneticButton
+              className="brutal-border brutal-shadow bg-[var(--color-paper)] p-3 hover:bg-[#5865F2] hover:text-white transition-colors"
+              strength={0.3}
+            >
+              <MessageCircle className="h-5 w-5" />
+            </MagneticButton>
+          </div>
+          <Link
+            href="mailto:adamkrupa@tuta.io"
+            aria-label="Email"
+          >
+            <MagneticButton
+              className="brutal-border brutal-shadow bg-[var(--color-paper)] p-3 hover:bg-[var(--color-magenta)] hover:text-white transition-colors"
+              strength={0.3}
+            >
+              <Mail className="h-5 w-5" />
+            </MagneticButton>
+          </Link>
         </motion.div>
       </div>
 
       <motion.div
-        className="pointer-events-none absolute -right-16 -top-20 hidden aspect-square w-48 rotate-6 border-4 border-[var(--color-ink)] bg-[var(--color-cyan)] brutal-shadow md:block"
+        className="pointer-events-none absolute -right-16 -top-20 hidden aspect-square w-48 rotate-6 border-4 border-[var(--color-ink)] bg-[var(--color-cyan)] brutal-shadow md:block grid place-items-center"
         initial={{ scale: 0, rotate: -40 }}
         animate={{ scale: 1, rotate: 6 }}
         transition={{ delay: 0.4, type: "spring", stiffness: 160 }}
-      />
+      >
+        <Sparkles className="h-20 w-20 text-[var(--color-ink)] opacity-30" />
+      </motion.div>
 
       <motion.div
-        className="pointer-events-none absolute -bottom-16 left-8 hidden h-32 w-32 -rotate-3 border-4 border-[var(--color-ink)] bg-[var(--color-yellow)] brutal-shadow sm:block"
+        className="pointer-events-none absolute -bottom-16 left-8 hidden h-32 w-32 -rotate-3 border-4 border-[var(--color-ink)] bg-[var(--color-yellow)] brutal-shadow sm:block grid place-items-center"
         initial={{ y: 120, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.55, type: "spring", stiffness: 140 }}
         style={{ filter: shadow }}
         onMouseEnter={() => pulse.set(0.4)}
         onMouseLeave={() => pulse.set(0)}
-      />
+      >
+        <Zap className="h-16 w-16 text-[var(--color-ink)] opacity-30" />
+      </motion.div>
 
-      <ContactModal isOpen={contactOpen} onClose={() => setContactOpen(false)} />
+      {/* notification popup dla discord copy */}
+      <AnimatePresence>
+        {showNotification && (
+          <motion.div
+            className="fixed bottom-8 right-8 z-50 brutal-border brutal-shadow bg-[var(--color-paper)] px-6 py-4 text-sm font-semibold uppercase tracking-wider"
+            initial={{ opacity: 0, y: 50, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            <div className="flex items-center gap-3">
+              <motion.div
+                className="h-3 w-3 rounded-full bg-[var(--color-magenta)]"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 0.5, repeat: Infinity }}
+              />
+              <span className="text-[var(--color-ink)]">
+                Discord copied to clipboard!
+              </span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.section>
   );
 }

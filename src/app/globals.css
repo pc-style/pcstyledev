@@ -126,6 +126,42 @@ body {
   }
 }
 
+@keyframes glitch1 {
+  0% {
+    transform: translate(-2px, -2px);
+  }
+  25% {
+    transform: translate(-3px, 2px);
+  }
+  50% {
+    transform: translate(2px, -3px);
+  }
+  75% {
+    transform: translate(-2px, 3px);
+  }
+  100% {
+    transform: translate(-2px, -2px);
+  }
+}
+
+@keyframes glitch2 {
+  0% {
+    transform: translate(2px, 2px);
+  }
+  25% {
+    transform: translate(3px, -2px);
+  }
+  50% {
+    transform: translate(-2px, 3px);
+  }
+  75% {
+    transform: translate(2px, -3px);
+  }
+  100% {
+    transform: translate(2px, 2px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .neo-pulse,
   .flux-line {

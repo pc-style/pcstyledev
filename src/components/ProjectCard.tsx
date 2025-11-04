@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import { useRef } from "react";
 import type { ProjectInfo } from "@/types/project";
 
-const hoverTransition = { type: "spring", stiffness: 220, damping: 14 };
+const hoverTransition = { type: "spring" as const, stiffness: 220, damping: 14 };
 
 function accentColor(project: ProjectInfo) {
   // jak nie podasz accentu, dostajesz magentę by default
@@ -40,22 +41,64 @@ export function ProjectCard({
   className?: string;
 }) {
   const accent = accentColor(project);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // 3D tilt effect based on mouse position
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useTransform(mouseY, [-0.5, 0.5], [8, -8]);
+  const rotateY = useTransform(mouseX, [-0.5, 0.5], [-8, 8]);
+
+  // spotlight effect coordinates
+  const spotlightX = useTransform(mouseX, [-0.5, 0.5], ["0%", "100%"]);
+  const spotlightY = useTransform(mouseY, [-0.5, 0.5], ["0%", "100%"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
 
   return (
     <motion.article
+      ref={cardRef}
       className={`group relative flex min-h-[420px] flex-col justify-between overflow-hidden rounded-[var(--radius-card)] border-4 border-[var(--color-ink)] bg-[var(--color-paper)] p-8 brutal-shadow ${className ?? ""}`.trim()}
-      style={{ color: "var(--color-ink)" }}
+      style={{
+        color: "var(--color-ink)",
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
       initial={{ opacity: 0, y: 60, rotate: index % 2 ? -3 : 3 }}
       whileInView={{ opacity: 1, y: 0, rotate: index % 2 ? -1.5 : 1.5 }}
       viewport={{ once: true, amount: 0.4 }}
       transition={{ delay: 0.08 * index, type: "spring", stiffness: 160, damping: 18 }}
       whileHover={{
-        rotate: index % 2 ? -4.5 : 4.5,
         scale: 1.04,
         translateY: -6,
         boxShadow: `16px 16px 0 ${accent}`,
       }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
+      {/* spotlight effect that follows mouse */}
+      <motion.div
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background: `radial-gradient(circle 300px at ${spotlightX.get()} ${spotlightY.get()}, ${accent}22, transparent)`,
+        }}
+      />
       <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
         <div
           className="absolute inset-x-0 top-0 h-2"
