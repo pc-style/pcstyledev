@@ -26,9 +26,25 @@
     "tailwindcss": "^4",
     "typescript": "^5"
   },
-  "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).",
+  "description": "pcstyle.dev — Portfolio of Adam Krupa (pcstyle). AI Developer & Creative Coder creating neo-brutalist web experiences.",
   "main": "index.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "pcstyle",
+    "adam krupa",
+    "portfolio",
+    "creative coding",
+    "neo brutalism",
+    "ai developer",
+    "web development",
+    "nextjs",
+    "react",
+    "typescript"
+  ],
+  "author": "Adam Krupa <pcstyle@pcstyle.dev>",
+  "license": "MIT",
+  "homepage": "https://pcstyle.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pcstyle/pcstyledev"
+  }
 }

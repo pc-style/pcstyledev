@@ -1,0 +1,32 @@
+/* TEAM */
+Developer: Adam Krupa (pcstyle)
+Site: https://pcstyle.dev
+Email: pcstyle@pcstyle.dev
+Twitter: @pcstyle
+GitHub: @pcstyle
+Location: Częstochowa, Poland
+
+/* SITE */
+Last update: 2025/11/04
+Standards: HTML5, CSS3, ES2024
+Components: React, Next.js, TypeScript
+Design: Neo-brutalism
+Fonts: Space Grotesk, JetBrains Mono
+Hosting: Vercel
+IDE: Cursor
+
+/* PROJECTS */
+Clock Gallery: https://clock.pcstyle.dev
+AimDrift: https://driftfield.pcstyle.dev
+PoliCalc: https://kalkulator.pcstyle.dev
+PixelForge: https://pixlab.pcstyle.dev
+
+/* THANKS */
+Coffee, late nights, and good vibes.
+Built by a student who loves to experiment.
+
+/* META */
+Keywords: pcstyle, Adam Krupa, AI developer, creative coding, neo brutalism, web development
+Target: Portfolio & experimental hub
+Philosophy: Code should feel human, not synthetic
+

@@ -1,36 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# pcstyle.dev — Portfolio of Adam Krupa
 
-## Getting Started
+**Neo-brutalist playground blending AI, design, and creative code.**
 
-First, run the development server:
+> 18-letni student Sztucznej Inteligencji na Politechnice Częstochowskiej  
+> AI Developer • Creative Coder • Design Experimenter
+
+[![Website](https://img.shields.io/badge/website-pcstyle.dev-black?style=for-the-badge)](https://pcstyle.dev)
+[![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
+
+---
+
+## 🎯 O projekcie
+
+pcstyle.dev to moje osobiste portfolio i hub eksperymentów — miejsce gdzie łączę technologię ze sztuką.
+Neo-brutalistyczny design, smooth animations, i trochę chaosu. Tak jak lubię.
+
+**Żywa wersja:** [pcstyle.dev](https://pcstyle.dev)
+
+---
+
+## 🚀 Projekty
+
+### [Clock Gallery](https://clock.pcstyle.dev)
+Kreatywna galeria animowanych zegarów — doodle, mycelium, particle clouds, neon effects.  
+Interactive art timepieces.
+
+### [AimDrift](https://driftfield.pcstyle.dev)
+Interaktywny trener precyzji + flow aim testing rhythm, accuracy, reflex.  
+Stats, multiple modes, evolving visual styles.
+
+### [PoliCalc](https://kalkulator.pcstyle.dev)
+Kalkulator ocen dla Politechniki Częstochowskiej: PP, ALG, PAM i więcej.  
+Open source, po polsku.
+
+### [PixelForge](https://pixlab.pcstyle.dev)
+AI-powered image studio: point-and-edit, style transfer, smart retouching.  
+Pro tools in a modern web interface.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 16 (App Router + React Compiler)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Animation:** Framer Motion
+- **Icons:** Lucide React
+- **Fonts:** Space Grotesk + JetBrains Mono
+- **Hosting:** Vercel
+
+### Performance Features
+- React Compiler dla automatycznej optymalizacji
+- Image optimization (AVIF/WebP)
+- Optimized package imports
+- Compression i caching headers
+- Responsive design dla wszystkich urządzeń
+
+---
+
+## 💻 Local Development
 
 ```bash
+# instalacja
+npm install
+
+# dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# build production
+npm run build
+
+# start production
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Otwórz [http://localhost:3000](http://localhost:3000) — live reload działa out of the box.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📂 Struktura
 
-## Learn More
+```
+src/
+├── app/                 # Next.js App Router
+│   ├── layout.tsx      # Root layout z metadata
+│   ├── page.tsx        # Home page
+│   └── sitemap.ts      # XML sitemap
+├── components/         # React components
+│   ├── Hero.tsx        # Main hero section
+│   ├── ProjectsGrid.tsx
+│   ├── CursorFollower.tsx
+│   └── ...
+├── lib/                # Utilities
+└── types/              # TypeScript types
 
-To learn more about Next.js, take a look at the following resources:
+data/
+└── projects.json       # Projekty content
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎨 Design Philosophy
 
-## Deploy on Vercel
+**Neo-brutalizm z duszą.**  
+Bold colors, thick borders, strong shadows, experimental layouts.  
+Looks slightly chaotic but feels alive — like code written by a real human at 2AM.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Inspiration: Swiss design + punk aesthetics + terminal vibes.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📈 SEO & Performance
+
+- ✅ Structured data (Schema.org JSON-LD)
+- ✅ Open Graph + Twitter Cards
+- ✅ Dynamic sitemap.xml
+- ✅ robots.txt optimization
+- ✅ Semantic HTML
+- ✅ Mobile-first responsive
+- ✅ Fast loading (Vercel Edge)
+- ✅ Accessibility (ARIA, sr-only content)
+
+**Target keywords:**  
+pcstyle, Adam Krupa, AI developer, creative coding, neo brutalism, Politechnika Częstochowska
+
+---
+
+## 🤝 Contact
+
+**Adam Krupa (pcstyle)**  
+📧 Email: pcstyle@pcstyle.dev  
+🌐 Web: [pcstyle.dev](https://pcstyle.dev)  
+🐦 Twitter: [@pcstyle](https://twitter.com/pcstyle)  
+💻 GitHub: [@pcstyle](https://github.com/pcstyle)
+
+---
+
+## 📄 License
+
+MIT © 2025 Adam Krupa (pcstyle)
+
+---
+
+**Built with ❤️ (and lots of coffee) by pcstyle**
