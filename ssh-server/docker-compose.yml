@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  ssh-contact-form:
+    build: .
+    container_name: pcstyle-ssh-contact
+    ports:
+      - "2222:22"  # Map container port 22 to host port 2222
+    environment:
+      - API_URL=${API_URL:-http://host.docker.internal:3000/api/contact}
+      - SSH_PORT=22
+      - SSH_HOST=0.0.0.0
+      - SSH_PASSWORD=${SSH_PASSWORD:-}
+    volumes:
+      # Persist host key across restarts
+      - ./host.key:/app/host.key:ro
+    restart: unless-stopped
+    networks:
+      - contact-network
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "22"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+networks:
+  contact-network:
+    driver: bridge
