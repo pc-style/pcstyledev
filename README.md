@@ -10,7 +10,7 @@
 
 ---
 
-## 🎯 O projekcie
+## O projekcie
 
 pcstyle.dev to moje osobiste portfolio i hub eksperymentów — miejsce gdzie łączę technologię ze sztuką.
 Neo-brutalistyczny design, smooth animations, i trochę chaosu. Tak jak lubię.
@@ -19,7 +19,7 @@ Neo-brutalistyczny design, smooth animations, i trochę chaosu. Tak jak lubię.
 
 ---
 
-## 🚀 Projekty
+## Projekty
 
 ### [Clock Gallery](https://clock.pcstyle.dev)
 Kreatywna galeria animowanych zegarów — doodle, mycelium, particle clouds, neon effects.  
@@ -39,7 +39,7 @@ Pro tools in a modern web interface.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework:** Next.js 16 (App Router + React Compiler)
 - **Language:** TypeScript
@@ -58,7 +58,7 @@ Pro tools in a modern web interface.
 
 ---
 
-## 💻 Local Development
+## Local Development
 
 ```bash
 # instalacja
@@ -78,7 +78,7 @@ Otwórz [http://localhost:3000](http://localhost:3000) — live reload działa o
 
 ---
 
-## 📂 Struktura
+## Struktura
 
 ```
 src/
@@ -100,7 +100,7 @@ data/
 
 ---
 
-## 🎨 Design Philosophy
+## Design Philosophy
 
 **Neo-brutalizm z duszą.**  
 Bold colors, thick borders, strong shadows, experimental layouts.  
@@ -110,7 +110,7 @@ Inspiration: Swiss design + punk aesthetics + terminal vibes.
 
 ---
 
-## 📈 SEO & Performance
+## SEO & Performance
 
 - ✅ Structured data (Schema.org JSON-LD)
 - ✅ Open Graph + Twitter Cards
@@ -126,20 +126,20 @@ pcstyle, Adam Krupa, AI developer, creative coding, neo brutalism, Politechnika 
 
 ---
 
-## 🤝 Contact
+## Contact
 
 **Adam Krupa (pcstyle)**  
-📧 Email: pcstyle@pcstyle.dev  
-🌐 Web: [pcstyle.dev](https://pcstyle.dev)  
-🐦 Twitter: [@pcstyle](https://twitter.com/pcstyle)  
-💻 GitHub: [@pcstyle](https://github.com/pcstyle)
+Email: pcstyle@pcstyle.dev  
+Web: [pcstyle.dev](https://pcstyle.dev)  
+Twitter: [@pcstyle](https://twitter.com/pcstyle)  
+GitHub: [@pcstyle](https://github.com/pcstyle)
 
 ---
 
-## 📄 License
+## License
 
 MIT © 2025 Adam Krupa (pcstyle)
 
 ---
 
-**Built with ❤️ (and lots of coffee) by pcstyle**
+**Built with lots of coffee by pcstyle**

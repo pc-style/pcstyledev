@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 
-// Validation schema
+// validation schema - zod się ogarnia za resztę
 const contactSchema = z.object({
   message: z.string().min(1, 'Message is required').max(2000, 'Message too long'),
   name: z.string().max(100).optional(),
@@ -14,9 +14,9 @@ const contactSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
-// Rate limiting (simple in-memory store)
+// rate limiting - proste w pamięci, dla większego ruchu pewnie redis ale na razie wystarczy
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
-const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
+const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minuta
 const MAX_REQUESTS = 5;
 
 function checkRateLimit(identifier: string): boolean {
@@ -44,23 +44,23 @@ async function sendToDiscord(data: ContactFormData): Promise<boolean> {
     return false;
   }
 
-  // Build contact methods array
+  // build contact methods array - nie pytaj czemu to działa, działa i tyle
   const contactMethods: string[] = [];
-  if (data.email) contactMethods.push(`📧 **Email:** ${data.email}`);
-  if (data.discord) contactMethods.push(`💬 **Discord:** ${data.discord}`);
-  if (data.phone) contactMethods.push(`📱 **Phone:** ${data.phone}`);
-  if (data.facebook) contactMethods.push(`👤 **Facebook:** ${data.facebook}`);
+  if (data.email) contactMethods.push(`**Email:** ${data.email}`);
+  if (data.discord) contactMethods.push(`**Discord:** ${data.discord}`);
+  if (data.phone) contactMethods.push(`**Phone:** ${data.phone}`);
+  if (data.facebook) contactMethods.push(`**Facebook:** ${data.facebook}`);
 
-  // Format embed
+  // format embed dla discorda
   const embed = {
-    title: '📬 New Contact Form Submission',
+    title: 'New Contact Form Submission',
     description: data.message,
-    color: data.source === 'ssh' ? 0x00e5ff : 0xe6007e, // cyan for SSH, magenta for web
+    color: data.source === 'ssh' ? 0x00e5ff : 0xe6007e, // cyan dla ssh, magenta dla web
     fields: [
-      ...(data.name ? [{ name: '👤 Name', value: data.name, inline: true }] : []),
-      { name: '📍 Source', value: data.source.toUpperCase(), inline: true },
+      ...(data.name ? [{ name: 'Name', value: data.name, inline: true }] : []),
+      { name: 'Source', value: data.source.toUpperCase(), inline: true },
       ...(contactMethods.length > 0
-        ? [{ name: '📞 Contact Methods', value: contactMethods.join('\n'), inline: false }]
+        ? [{ name: 'Contact Methods', value: contactMethods.join('\n'), inline: false }]
         : []
       ),
     ],
@@ -86,12 +86,12 @@ async function sendToDiscord(data: ContactFormData): Promise<boolean> {
 
 export async function POST(request: NextRequest) {
   try {
-    // Get client IP for rate limiting
+    // pobierz ip klienta dla rate limitingu - vercel proxy dodaje te headery
     const ip = request.headers.get('x-forwarded-for') ||
                request.headers.get('x-real-ip') ||
                'unknown';
 
-    // Check rate limit
+    // sprawdź rate limit - bruh jak ktoś spamuje to cofnij się i poczekaj
     if (!checkRateLimit(ip)) {
       return NextResponse.json(
         { error: 'Too many requests. Please try again later.' },
@@ -99,11 +99,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Parse and validate request body
+    // parsuj i waliduj body - zod się ogarnia
     const body = await request.json();
     const validatedData = contactSchema.parse(body);
 
-    // Send to Discord
+    // wyślij do discorda
     const success = await sendToDiscord(validatedData);
 
     if (!success) {
@@ -137,7 +137,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Optional: GET endpoint for health check
+// opcjonalny health check - czasem się przydaje jak coś nie działa
 export async function GET() {
   return NextResponse.json({
     status: 'ok',

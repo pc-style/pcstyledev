@@ -2,21 +2,21 @@
 
 Complete guide for setting up the SSH-accessible terminal contact form for pcstyle.dev.
 
-## 🎯 Overview
+## Overview
 
 This setup consists of two components:
 
 1. **Vercel API** (`/src/app/api/contact/route.ts`) - Handles form submissions and sends to Discord
 2. **SSH Server** (`/ssh-server/`) - Terminal UI that users connect to via SSH
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Node.js 20+ installed
 - Discord webhook URL
 - Vercel account (for API hosting)
 - VPS/cloud server for SSH server (Railway, Fly.io, DigitalOcean, etc.)
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Step 1: Configure Discord Webhook
 
@@ -268,7 +268,7 @@ ssh pcstyle.dev
    - Check Discord channel for the message
    - Should appear as a rich embed with cyan color (SSH source)
 
-## 🔧 Configuration Reference
+## Configuration Reference
 
 ### Environment Variables
 
@@ -297,7 +297,7 @@ SSH_PASSWORD=  # Optional: leave empty for open access
 sudo setcap 'cap_net_bind_service=+ep' $(which node)
 ```
 
-## 🎨 Customization
+## Customization
 
 ### Change Colors
 
@@ -329,7 +329,7 @@ Generate ASCII art: https://patorjk.com/software/taag/
 2. Edit `/ssh-server/server.js` - Update formData object
 3. Edit `/src/app/api/contact/route.ts` - Update validation schema
 
-## 📊 Monitoring
+## Monitoring
 
 ### View SSH Server Logs
 
@@ -356,7 +356,7 @@ Vercel Dashboard → Your Project → Logs
 
 Check your Discord channel for incoming messages!
 
-## 🐛 Common Issues
+## Common Issues
 
 ### "Connection refused" when connecting via SSH
 ```bash
@@ -409,7 +409,7 @@ const MAX_REQUESTS = 5; // requests per window
 7. **Validate input**: Already implemented with Zod
 8. **Environment secrets**: Never commit `.env` files
 
-## 📱 Usage Examples
+## Usage Examples
 
 ### Basic Connection
 ```bash
@@ -431,7 +431,7 @@ ssh -p 2222 ssh.pcstyle.dev
 ssh -o StrictHostKeyChecking=no ssh.pcstyle.dev
 ```
 
-## 🎉 Success!
+##  Success!
 
 Once everything is set up, users can contact you by simply running:
 
@@ -441,7 +441,7 @@ ssh pcstyle.dev
 
 The message will appear in your Discord channel instantly!
 
-## 📞 Support
+## Support
 
 If you encounter issues:
 1. Check the logs
@@ -451,5 +451,5 @@ If you encounter issues:
 
 ---
 
-Made with ❤️ by Adam Krupa
+Made with  by Adam Krupa
 https://pcstyle.dev

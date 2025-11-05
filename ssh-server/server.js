@@ -11,9 +11,9 @@ const { Server } = ssh2;
 dotenv.config();
 
 const API_URL = process.env.API_URL || 'http://localhost:3000/api/contact';
-// Heroku assigns PORT, but SSH needs a custom port
-// For Heroku, you'll need to use a tunnel service or Railway/Fly.io
-// This will use SSH_PORT if set, otherwise PORT, otherwise default to 2222
+// heroku przypisuje PORT, ale ssh potrzebuje custom portu
+// dla heroku trzeba użyć tunelu albo railway/fly.io
+// użyje SSH_PORT jeśli ustawiony, inaczej PORT, inaczej domyślnie 2222
 const SSH_PORT = parseInt(
   process.env.SSH_PORT || 
   process.env.PORT || 
@@ -23,17 +23,17 @@ const SSH_PORT = parseInt(
 const SSH_HOST = process.env.SSH_HOST || '0.0.0.0';
 const SSH_PASSWORD = process.env.SSH_PASSWORD || null;
 
-// Generate or load host keys
+// generuj lub załaduj host keys - jeśli nie ma to wygeneruje
 const HOST_KEY = fs.existsSync('./host.key')
   ? fs.readFileSync('./host.key')
   : generateHostKey();
 
 function generateHostKey() {
-  console.log('⚠️  No host.key found. Generating a new one...');
-  console.log('⚠️  For production, generate a proper key with:');
+  console.log('warning: no host.key found. generating a new one...');
+  console.log('warning: for production, generate a proper key with:');
   console.log('    ssh-keygen -t rsa -b 4096 -f host.key -N ""');
 
-  // For development only - use a simple key
+  // dla dev tylko - używamy prostego klucza
   const { privateKey } = generateKeyPairSync('rsa', {
     modulusLength: 2048,
     privateKeyEncoding: {
@@ -47,7 +47,7 @@ function generateHostKey() {
   });
 
   fs.writeFileSync('./host.key', privateKey);
-  console.log('✓ Generated host.key (development only)');
+  console.log('ok generated host.key (development only)');
   return privateKey;
 }
 
@@ -77,13 +77,13 @@ async function submitToAPI(formData) {
 const sshServer = new Server({
   hostKeys: [HOST_KEY],
 }, (client, info) => {
-  console.log(`📡 Client connected from ${info.ip}`);
+  console.log(`client connected from ${info.ip}`);
 
   let authenticated = false;
   let sessionStream = null;
 
   client.on('authentication', (ctx) => {
-    // If password is set, require authentication
+    // jeśli hasło ustawione, wymagaj autentykacji
     if (SSH_PASSWORD) {
       if (ctx.method === 'password') {
         if (ctx.password === SSH_PASSWORD) {
@@ -96,14 +96,14 @@ const sshServer = new Server({
         ctx.reject(['password']);
       }
     } else {
-      // No password required - open access
+      // brak hasła wymagany - otwarty dostęp
       ctx.accept();
       authenticated = true;
     }
   });
 
   client.on('ready', () => {
-    console.log('✓ Client authenticated');
+    console.log('ok client authenticated');
 
     client.on('session', (accept) => {
       const session = accept();
@@ -136,105 +136,105 @@ const sshServer = new Server({
         try {
           sessionStream = accept();
           if (!sessionStream) {
-            console.error('❌ Failed to accept shell session');
+            console.error('failed to accept shell session');
             return;
           }
 
-          // Set up terminal properties BEFORE creating UI
+          // ustaw właściwości terminala PRZED tworzeniem ui - blessed jest wymagający
           if (ptyInfo) {
             sessionStream.columns = ptyInfo.cols || 80;
             sessionStream.rows = ptyInfo.rows || 24;
             sessionStream.isTTY = true;
-            sessionStream.isRaw = true; // Enable raw mode for proper input handling
+            sessionStream.isRaw = true; // raw mode dla właściwego input handlingu
           } else {
-            // Default terminal size if PTY not set
+            // domyślny rozmiar terminala jeśli pty nie ustawiony
             sessionStream.columns = 80;
             sessionStream.rows = 24;
             sessionStream.isTTY = true;
-            sessionStream.isRaw = true; // Enable raw mode for proper input handling
+            sessionStream.isRaw = true; // raw mode dla właściwego input handlingu
           }
 
-          // Set terminal type for proper rendering
+          // ustaw typ terminala dla właściwego renderowania
           process.env.TERM = ptyInfo?.term || 'xterm-256color';
           process.env.COLUMNS = String(sessionStream.columns);
           process.env.LINES = String(sessionStream.rows);
 
-          // Handle stream errors
+          // obsługa błędów streamu - czasem się zdarza
           sessionStream.on('error', (err) => {
-            console.error('❌ Stream error:', err.message);
+            console.error('stream error:', err.message);
           });
 
-          // Use blessed UI (main UI)
+          // użyj blessed ui - główne ui
           setTimeout(() => {
             try {
-              console.log('Creating contact form with blessed UI');
+              console.log('creating contact form with blessed ui');
               createContactForm(sessionStream, async (formData) => {
                 return await submitToAPI(formData);
               });
             } catch (err) {
-              console.error('❌ Error creating contact form:', err);
+              console.error('error creating contact form:', err);
               sessionStream.write('\r\nError initializing form. Please try again.\r\n');
               sessionStream.write(`Error: ${err.message}\r\n`);
-              // Don't end stream immediately, let user see the error
+              // nie kończ streamu od razu, daj użytkownikowi zobaczyć błąd
               setTimeout(() => sessionStream.end(), 5000);
             }
           }, 100);
         } catch (err) {
-          console.error('❌ Error in shell handler:', err);
+          console.error('error in shell handler:', err);
         }
       });
 
       session.on('exec', (accept, reject, info) => {
-        // Don't allow command execution
+        // nie pozwalaj na wykonywanie komend - to tylko kontakt, nie shell
         reject();
       });
     });
   });
 
   client.on('error', (err) => {
-    console.error('❌ Client error:', err.message);
+    console.error('client error:', err.message);
   });
 
   client.on('end', () => {
-    console.log('👋 Client disconnected');
+    console.log('client disconnected');
   });
 });
 
 sshServer.on('error', (err) => {
-  console.error('❌ SSH Server error:', err);
+  console.error('ssh server error:', err);
 });
 
-// Start the server
+// start server - czasem się zapala, czasem nie, ale zazwyczaj działa
 sshServer.listen(SSH_PORT, SSH_HOST, () => {
   console.log('╔═══════════════════════════════════════════════════════════════╗');
   console.log('║                                                               ║');
-  console.log('║   🚀 pcstyle.dev SSH Contact Form Server                     ║');
+  console.log('║   pcstyle.dev SSH Contact Form Server                        ║');
   console.log('║                                                               ║');
   console.log('╚═══════════════════════════════════════════════════════════════╝');
   console.log('');
-  console.log(`✓ Listening on ${SSH_HOST}:${SSH_PORT}`);
-  console.log(`✓ API endpoint: ${API_URL}`);
-  console.log(`✓ Authentication: ${SSH_PASSWORD ? 'Password required' : 'Open access'}`);
+  console.log(`ok listening on ${SSH_HOST}:${SSH_PORT}`);
+  console.log(`ok api endpoint: ${API_URL}`);
+  console.log(`ok authentication: ${SSH_PASSWORD ? 'Password required' : 'Open access'}`);
   console.log('');
-  console.log('Connect with:');
+  console.log('connect with:');
   console.log(`  ssh -p ${SSH_PORT} ${SSH_HOST === '0.0.0.0' ? 'localhost' : SSH_HOST}`);
   console.log('');
-  console.log('Press Ctrl+C to stop the server');
+  console.log('press Ctrl+C to stop the server');
 });
 
-// Graceful shutdown
+// graceful shutdown - czasem się przydaje jak trzeba restartować
 process.on('SIGINT', () => {
-  console.log('\n\n👋 Shutting down SSH server...');
+  console.log('\n\nshutting down ssh server...');
   sshServer.close(() => {
-    console.log('✓ Server closed');
+    console.log('ok server closed');
     process.exit(0);
   });
 });
 
 process.on('SIGTERM', () => {
-  console.log('\n\n👋 Shutting down SSH server...');
+  console.log('\n\nshutting down ssh server...');
   sshServer.close(() => {
-    console.log('✓ Server closed');
+    console.log('ok server closed');
     process.exit(0);
   });
 });

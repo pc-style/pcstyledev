@@ -2,7 +2,7 @@
 
 SSH-accessible terminal contact form that allows users to send messages directly from their terminal.
 
-## 🚀 Features
+## Features
 
 - **Terminal-based UI** - Beautiful ASCII art interface using blessed
 - **Real-time validation** - Character counter and field validation
@@ -11,13 +11,13 @@ SSH-accessible terminal contact form that allows users to send messages directly
 - **Flexible contact fields** - Message (required) + optional name, email, Discord, phone, Facebook
 - **Source tracking** - Differentiates between SSH and web submissions
 
-## 📦 Installation
+## Installation
 
 ```bash
 npm install
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 Environment variables are pre-configured in `.env` for Railway deployment:
 
@@ -30,7 +30,7 @@ NODE_ENV=production
 
 For local development, copy `.env.example` to `.env.local` and adjust values.
 
-## 🏃 Running Locally
+## Running Locally
 
 ### Development (with auto-reload)
 ```bash
@@ -47,7 +47,7 @@ Connect via SSH:
 ssh -p 2222 localhost
 ```
 
-## 🌐 Railway Deployment
+## Railway Deployment
 
 This repository is configured for Railway deployment:
 
@@ -67,14 +67,14 @@ This repository is configured for Railway deployment:
    - Add A record: `ssh.pcstyle.dev` → Railway IP
    - Or use Railway domain: `ssh.pcstyle.up.railway.app`
 
-## 🔒 Security
+## Security
 
 - Generate SSH host key: `ssh-keygen -t rsa -b 4096 -f host.key -N ""`
 - Host key is auto-generated if missing (development only)
 - Rate limiting: 5 requests per minute per IP
 - Optional password authentication via `SSH_PASSWORD` env var
 
-## 📝 Environment Variables
+## Environment Variables
 
 | Variable | Description | Default |
 |----------|-------------|---------|
@@ -84,7 +84,7 @@ This repository is configured for Railway deployment:
 | `SSH_PASSWORD` | Optional password auth | `null` (open access) |
 | `NODE_ENV` | Environment | `production` |
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### "Connection refused"
 - Check if server is running
@@ -100,11 +100,11 @@ This repository is configured for Railway deployment:
 - Check Discord webhook URL in Vercel environment variables
 - Test API: `curl -X POST https://pcstyle.dev/api/contact -H "Content-Type: application/json" -d '{"message":"test","source":"ssh"}'`
 
-## 📄 License
+## License
 
 MIT © 2025 Adam Krupa
 
 ---
 
-Made with ❤️ by pcstyle  
+Made by pcstyle  
 https://pcstyle.dev

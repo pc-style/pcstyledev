@@ -1,6 +1,6 @@
 # SSH Terminal Contact Form - Project Summary
 
-## 🎯 What Was Built
+## What Was Built
 
 A complete SSH-accessible terminal contact form system that allows users to submit contact messages directly from their terminal using `ssh pcstyle.dev`.
 
@@ -21,19 +21,19 @@ A complete SSH-accessible terminal contact form system that allows users to subm
                                                   └─────────────┘
 ```
 
-## 📦 Components Created
+## Components Created
 
 ### 1. Vercel API Backend
 **Location:** `/src/app/api/contact/route.ts`
 
 **Features:**
-- ✅ POST endpoint for contact submissions
-- ✅ Input validation using Zod
-- ✅ Rate limiting (5 requests/minute per IP)
-- ✅ Discord webhook integration with rich embeds
-- ✅ Source tracking (web vs SSH)
-- ✅ Comprehensive error handling
-- ✅ Health check GET endpoint
+-  POST endpoint for contact submissions
+-  Input validation using Zod
+-  Rate limiting (5 requests/minute per IP)
+-  Discord webhook integration with rich embeds
+-  Source tracking (web vs SSH)
+-  Comprehensive error handling
+-  Health check GET endpoint
 
 **Fields Accepted:**
 - `message` (required, 1-2000 chars)
@@ -59,16 +59,16 @@ A complete SSH-accessible terminal contact form system that allows users to subm
 - `.gitignore` - Git exclusions
 
 **Features:**
-- ✅ Beautiful ASCII art header with neo-brutalist design
-- ✅ Interactive terminal form with:
+-  Beautiful ASCII art header with neo-brutalist design
+-  Interactive terminal form with:
   - Real-time character counter for message
   - Tab/Arrow key navigation
   - Form validation
   - Color-coded feedback (green=success, red=error)
-- ✅ Optional password authentication
-- ✅ Graceful shutdown handling
-- ✅ Connection logging
-- ✅ Automatic host key generation
+-  Optional password authentication
+-  Graceful shutdown handling
+-  Connection logging
+-  Automatic host key generation
 
 ### 3. Documentation
 - `SSH_SETUP.md` - Complete deployment guide
@@ -76,7 +76,7 @@ A complete SSH-accessible terminal contact form system that allows users to subm
 - `.env.local.example` - Environment variables template
 - `PROJECT_SUMMARY.md` - This file
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Backend API (Vercel)
 - **Framework:** Next.js 16 App Router
@@ -91,7 +91,7 @@ A complete SSH-accessible terminal contact form system that allows users to subm
 - **HTTP Client:** axios (v1.7.7)
 - **Config:** dotenv (v16.4.7)
 
-## 🚀 Deployment Options
+## Deployment Options
 
 ### Vercel API (Main Project)
 Already deployed to Vercel. Just need to:
@@ -102,14 +102,14 @@ Already deployed to Vercel. Just need to:
 
 | Platform | Cost | Setup Time | Difficulty |
 |----------|------|------------|------------|
-| Railway.app | $5/month | 10 min | Easy ⭐ |
-| Fly.io | Free tier | 15 min | Medium ⭐⭐ |
-| DigitalOcean | $6/month | 30 min | Hard ⭐⭐⭐ |
-| AWS Lightsail | $3.50/month | 30 min | Hard ⭐⭐⭐ |
+| Railway.app | $5/month | 10 min | Easy |
+| Fly.io | Free tier | 15 min | Medium |
+| DigitalOcean | $6/month | 30 min | Hard |
+| AWS Lightsail | $3.50/month | 30 min | Hard |
 
 **Recommended:** Railway.app (easiest setup with good documentation)
 
-## 📋 Setup Checklist
+## Setup Checklist
 
 ### Prerequisites
 - [ ] Discord webhook URL obtained
@@ -143,18 +143,18 @@ Already deployed to Vercel. Just need to:
 - [ ] Enable password auth (optional)
 - [ ] Configure automatic restarts
 
-## 🔒 Security Features
+## Security Features
 
 ### Implemented
-- ✅ Input validation (Zod schemas)
-- ✅ Rate limiting (5 req/min)
-- ✅ SQL injection protection (no database)
-- ✅ XSS prevention (server-side only)
-- ✅ Environment variable security
-- ✅ SSH host key authentication
-- ✅ Optional password authentication
-- ✅ Connection logging
-- ✅ Error message sanitization
+-  Input validation (Zod schemas)
+-  Rate limiting (5 req/min)
+-  SQL injection protection (no database)
+-  XSS prevention (server-side only)
+-  Environment variable security
+-  SSH host key authentication
+-  Optional password authentication
+-  Connection logging
+-  Error message sanitization
 
 ### Recommended for Production
 - [ ] Enable SSH password authentication
@@ -165,7 +165,7 @@ Already deployed to Vercel. Just need to:
 - [ ] Regular security updates
 - [ ] Backup host keys securely
 
-## 📊 Expected Costs
+## Expected Costs
 
 ### Development (Free)
 - Vercel: Free tier
@@ -182,7 +182,7 @@ Already deployed to Vercel. Just need to:
 - **DigitalOcean:** $6/month (more control)
 - **AWS Lightsail:** $3.50/month (cheapest)
 
-## 🎨 Design Philosophy
+## Design Philosophy
 
 The terminal UI follows the neo-brutalist design system used in your website:
 
@@ -191,7 +191,7 @@ The terminal UI follows the neo-brutalist design system used in your website:
 - **Interaction:** Clear, direct, no ambiguity
 - **Feedback:** Immediate visual feedback for all actions
 
-## 📈 Future Enhancements (Optional)
+## Future Enhancements (Optional)
 
 ### Possible Features
 - [ ] Add support for file attachments (ASCII art, logs)
@@ -213,7 +213,7 @@ The terminal UI follows the neo-brutalist design system used in your website:
 - [ ] Add CI/CD pipeline
 - [ ] Container orchestration (Kubernetes)
 
-## 🧪 Testing Instructions
+## Testing Instructions
 
 ### Local Testing (Quick Start)
 
@@ -267,7 +267,7 @@ curl -X POST "YOUR_DISCORD_WEBHOOK_URL" \
   }'
 ```
 
-## 📞 Troubleshooting Guide
+## Troubleshooting Guide
 
 ### Common Issues
 
@@ -289,7 +289,7 @@ curl -X POST "YOUR_DISCORD_WEBHOOK_URL" \
 - Wait 60 seconds
 - Increase limits in API route if needed
 
-## 📚 Documentation Files
+## Documentation Files
 
 1. **`SSH_SETUP.md`** - Complete deployment and configuration guide
 2. **`ssh-server/README.md`** - SSH server specific documentation
@@ -297,19 +297,19 @@ curl -X POST "YOUR_DISCORD_WEBHOOK_URL" \
 4. **`ssh-server/.env.example`** - SSH server config template
 5. **`PROJECT_SUMMARY.md`** - This overview document
 
-## ✅ What's Complete
+## What's Complete
 
-- ✅ Fully functional API endpoint with Discord integration
-- ✅ Complete SSH server with terminal UI
-- ✅ Input validation and rate limiting
-- ✅ Comprehensive documentation
-- ✅ Docker support
-- ✅ Local testing scripts
-- ✅ Deployment guides for multiple platforms
-- ✅ Security best practices implemented
-- ✅ Error handling and logging
+-  Fully functional API endpoint with Discord integration
+-  Complete SSH server with terminal UI
+-  Input validation and rate limiting
+-  Comprehensive documentation
+-  Docker support
+-  Local testing scripts
+-  Deployment guides for multiple platforms
+-  Security best practices implemented
+-  Error handling and logging
 
-## 🚦 Next Steps (Your Action Items)
+## Next Steps (Your Action Items)
 
 1. **Get Discord Webhook URL**
    - Discord → Server Settings → Integrations → Webhooks → New Webhook
@@ -334,7 +334,7 @@ curl -X POST "YOUR_DISCORD_WEBHOOK_URL" \
    - Add to your website: "Contact me via SSH: `ssh ssh.pcstyle.dev`"
    - Share on social media (this is genuinely cool!)
 
-## 🎉 Success Criteria
+##  Success Criteria
 
 When complete, users will be able to:
 1. Run `ssh ssh.pcstyle.dev` (or your chosen domain)
@@ -345,7 +345,7 @@ When complete, users will be able to:
 
 ---
 
-## 📝 Notes
+## Notes
 
 - All code is production-ready
 - Security best practices followed
@@ -354,7 +354,7 @@ When complete, users will be able to:
 - Well-documented for maintenance
 - Easily extensible for future features
 
-## 🤝 Credits
+## Credits
 
 **Built by:** Claude Code (Anthropic AI)
 **For:** Adam Krupa (pcstyle.dev)
@@ -371,4 +371,4 @@ When complete, users will be able to:
 
 ---
 
-Made with ❤️ for the terminal nerds 🚀
+Made with  for the terminal nerds 

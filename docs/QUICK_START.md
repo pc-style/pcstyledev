@@ -2,7 +2,7 @@
 
 Ultra-condensed guide to get your SSH contact form live ASAP.
 
-## ⚡ 5-Minute Local Test
+## 5-Minute Local Test
 
 ```bash
 # 1. Get Discord webhook URL (Discord → Server Settings → Integrations → Webhooks)
@@ -22,7 +22,7 @@ ssh -p 2222 localhost
 # 5. Fill form, check Discord!
 ```
 
-## 🚀 Deploy to Production (Railway - Easiest)
+## Deploy to Production (Railway - Easiest)
 
 ### Step 1: Deploy API to Vercel
 ```bash
@@ -73,20 +73,20 @@ TTL: 3600
 ssh ssh.pcstyle.dev
 ```
 
-## 🎯 That's It!
+## That's It!
 
 Your terminal contact form is live. Share it everywhere:
 - GitHub README: `Contact: ssh ssh.pcstyle.dev`
 - Website: Add a terminal icon with the SSH command
 - Social media: Post a demo video
 
-## 📚 Full Documentation
+## Full Documentation
 
 - **Complete setup guide:** `SSH_SETUP.md`
 - **Project overview:** `PROJECT_SUMMARY.md`
 - **SSH server docs:** `ssh-server/README.md`
 
-## 🔧 Environment Variables
+## Environment Variables
 
 ### Vercel (.env.local)
 ```env
@@ -100,7 +100,7 @@ SSH_PORT=22
 SSH_HOST=0.0.0.0
 ```
 
-## 🐛 Quick Troubleshooting
+## Quick Troubleshooting
 
 **Can't connect?**
 ```bash
@@ -131,13 +131,13 @@ curl -X POST "YOUR_WEBHOOK_URL" \
   -d '{"content":"Test"}'
 ```
 
-## 💰 Cost
+## Cost
 
 - **Vercel:** Free
 - **Railway:** ~$5/month
 - **Total:** ~$5/month
 
-## 🎉 Success!
+##  Success!
 
 When someone runs `ssh ssh.pcstyle.dev`, they'll see your beautiful terminal UI and can send you a message instantly!
 

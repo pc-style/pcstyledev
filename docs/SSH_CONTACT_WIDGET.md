@@ -157,7 +157,7 @@ export default function ContactPage() {
           {/* Traditional Methods */}
           <div className="brutal-border p-6">
             <h2 className="text-2xl font-bold mb-4">
-              📱 Traditional Methods
+              Traditional Methods
             </h2>
             <div className="space-y-4">
               <div>
@@ -195,7 +195,7 @@ export default function ContactPage() {
 When you launch, share it with this template:
 
 ```markdown
-🚀 I just built something cool!
+ I just built something cool!
 
 You can now contact me directly from your terminal:
 

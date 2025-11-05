@@ -1,6 +1,6 @@
 # Setup Guide for Railway Deployment
 
-## 🚀 Quick Start
+## Quick Start
 
 This repository is ready to deploy on Railway. Follow these steps:
 
@@ -84,7 +84,7 @@ ssh ssh.pcstyle.dev
 
 You should see the contact form!
 
-## 🔧 Updating Environment Variables
+## Updating Environment Variables
 
 If you need to change environment variables:
 
@@ -106,7 +106,7 @@ git push
 Or manually set in Railway dashboard:
 - Service → Variables → Add/Edit variables
 
-## 📝 Files Included
+## Files Included
 
 - `.env` - Production environment variables (included in private repo)
 - `.env.example` - Template for environment variables
@@ -116,14 +116,14 @@ Or manually set in Railway dashboard:
 - `app.json` - Railway app configuration
 - `README.md` - Full documentation
 
-## 🔒 Security Notes
+## Security Notes
 
 - `.env` is included because this is a **private repository**
 - SSH host keys (`host.key`) are NOT committed (auto-generated on deploy)
 - Never commit sensitive keys/tokens to public repos
 - Railway secrets are more secure than `.env` for production - consider using Railway Variables instead
 
-## 🆘 Troubleshooting
+## Troubleshooting
 
 **Railway can't find the repo:**
 - Make sure Railway is connected to your GitHub account
@@ -140,7 +140,7 @@ Or manually set in Railway dashboard:
 
 ---
 
-Ready to deploy! 🚀
+Ready to deploy!
 
 
 

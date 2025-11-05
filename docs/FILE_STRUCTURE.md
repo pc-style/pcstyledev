@@ -49,7 +49,7 @@ pcstyledev/
     └── ...
 ```
 
-## 📄 New Files Details
+## New Files Details
 
 ### API Backend
 
@@ -269,7 +269,7 @@ DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
 
 ---
 
-## 📊 Statistics
+## Statistics
 
 ### Lines of Code
 
@@ -299,7 +299,7 @@ DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
 - `axios` (HTTP client)
 - `dotenv` (config)
 
-## 🎯 Entry Points
+## Entry Points
 
 ### For Users
 ```bash
@@ -320,7 +320,7 @@ npm run dev
 cd ssh-server && npm start
 ```
 
-## 🔗 Dependencies Flow
+## Dependencies Flow
 
 ```
 User Terminal
@@ -340,7 +340,7 @@ Discord Webhook
 Your Discord Channel
 ```
 
-## 📦 Deployment Structure
+## Deployment Structure
 
 ### Vercel (Main Project)
 ```
@@ -365,12 +365,12 @@ ssh-server/
 ## 🔍 What Goes Where
 
 ### Git Repository
-- ✅ All source code
-- ✅ Configuration examples
-- ✅ Documentation
-- ❌ `.env` files (gitignored)
-- ❌ `host.key` files (gitignored)
-- ❌ `node_modules/` (gitignored)
+- All source code
+- Configuration examples
+- Documentation
+- `.env` files (gitignored)
+- `host.key` files (gitignored)
+- `node_modules/` (gitignored)
 
 ### Vercel Deployment
 - Environment variable: `DISCORD_WEBHOOK_URL`
@@ -383,7 +383,7 @@ ssh-server/
 
 ---
 
-## 📝 Quick Reference
+## Quick Reference
 
 **Want to modify the terminal UI?**
 → Edit `ssh-server/ui.js`
@@ -405,4 +405,4 @@ ssh-server/
 
 ---
 
-Made with ❤️ for the terminal enthusiasts
+Made with  for the terminal enthusiasts

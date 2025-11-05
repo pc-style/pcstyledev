@@ -1,9 +1,9 @@
 # Fix SSH Connection Issue
 
 ## Problem
-- ✅ DNS works: `ssh.pcstyle.dev` → `66.33.22.95` (wxvnwyub.up.railway.app)
-- ✅ Ping works: Can reach the server
-- ❌ SSH port 22: **Connection timeout**
+- DNS works: `ssh.pcstyle.dev` → `66.33.22.95` (wxvnwyub.up.railway.app)
+- Ping works: Can reach the server
+- SSH port 22: **Connection timeout**
 
 ## Root Cause
 Railway doesn't have TCP proxy configured on port 22, or Railway assigned a different port.

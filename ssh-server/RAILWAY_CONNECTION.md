@@ -1,6 +1,6 @@
 # Railway SSH Connection Guide
 
-## 🔌 Setting Up TCP Proxy
+## Setting Up TCP Proxy
 
 Railway gives you an HTTP URL by default (`https://web-production-f171.up.railway.app/`), but SSH needs TCP connection. You need to configure TCP proxy:
 
@@ -26,7 +26,7 @@ After configuring TCP proxy, Railway will give you:
 - **TCP Host**: Something like `tcp-production-xxxx.up.railway.app`
 - **TCP Port**: Usually `22` or a random port
 
-## 🔗 Connecting via SSH
+## Connecting via SSH
 
 Once TCP proxy is configured, connect using:
 
@@ -41,7 +41,7 @@ ssh -p 54321 tcp-production-xxxx.up.railway.app
 ssh ssh.pcstyle.dev
 ```
 
-## 🎯 Alternative: Use Railway's HTTP URL (if your server supports HTTP)
+## Alternative: Use Railway's HTTP URL (if your server supports HTTP)
 
 If Railway only shows HTTP URL and you can't configure TCP:
 
@@ -49,14 +49,14 @@ If Railway only shows HTTP URL and you can't configure TCP:
 2. You might need to check Railway's build settings
 3. Or use Railway's **Private Networking** feature
 
-## 📝 Quick Check
+## Quick Check
 
 To see your TCP endpoints:
 1. Railway Dashboard → Your Service → Settings → Networking
 2. Look for **Public Ports** or **TCP Proxy** section
 3. Copy the TCP hostname and port
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 **"Connection refused"**
 - Verify TCP proxy is enabled

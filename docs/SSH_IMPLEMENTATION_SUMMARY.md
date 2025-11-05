@@ -1,6 +1,6 @@
 # SSH Contact Implementation Summary
 
-## ✅ Co zostało zrobione
+## Co zostało zrobione
 
 ### 1. Komponent SSH Contact Modal
 - **Plik:** `src/components/SSHContactModal.tsx`
@@ -21,7 +21,7 @@
 - **Pliki:**
   - `ssh-server/Procfile` - Heroku process definition
   - `ssh-server/app.json` - Heroku app configuration
-- **Status:** ⚠️ Heroku nie obsługuje SSH bezpośrednio (tylko HTTP/HTTPS)
+- **Status:** Heroku nie obsługuje SSH bezpośrednio (tylko HTTP/HTTPS)
 
 ### 4. SSH Server Updates
 - **Plik:** `ssh-server/server.js`
@@ -38,25 +38,25 @@
   - Instrukcje dla DigitalOcean
   - Troubleshooting guide
 
-## 📋 Weryfikacja implementacji (Context7)
+## Weryfikacja implementacji (Context7)
 
-### SSH2 Library Verification ✅
+### SSH2 Library Verification
 Zgodnie z dokumentacją `/mscdex/ssh2`:
-- ✅ Server creation: `new Server({ hostKeys: [...] }, callback)` - POPRAWNE
-- ✅ Authentication handler: `client.on('authentication', ...)` - POPRAWNE
-- ✅ Ready handler: `client.on('ready', ...)` - POPRAWNE
-- ✅ Session handling: `client.on('session', ...)` - POPRAWNE
-- ✅ PTY handling: `session.on('pty', ...)` - POPRAWNE
-- ✅ Shell handling: `session.on('shell', ...)` - POPRAWNE
-- ✅ Server listening: `sshServer.listen(port, host, ...)` - POPRAWNE
+- Server creation: `new Server({ hostKeys: [...] }, callback)` - POPRAWNE
+- Authentication handler: `client.on('authentication', ...)` - POPRAWNE
+- Ready handler: `client.on('ready', ...)` - POPRAWNE
+- Session handling: `client.on('session', ...)` - POPRAWNE
+- PTY handling: `session.on('pty', ...)` - POPRAWNE
+- Shell handling: `session.on('shell', ...)` - POPRAWNE
+- Server listening: `sshServer.listen(port, host, ...)` - POPRAWNE
 
-### Heroku CLI Verification ✅
+### Heroku CLI Verification
 Zgodnie z dokumentacją `/heroku/cli`:
-- ✅ Procfile format: `web: node server.js` - POPRAWNE
-- ✅ app.json structure - POPRAWNE
-- ⚠️ **UWAGA:** Heroku nie routuje TCP (SSH), tylko HTTP/HTTPS
+- Procfile format: `web: node server.js` - POPRAWNE
+- app.json structure - POPRAWNE
+- **UWAGA:** Heroku nie routuje TCP (SSH), tylko HTTP/HTTPS
 
-## 🚀 Następne kroki
+## Następne kroki
 
 ### 1. Deploy SSH Servera (wybierz jedną opcję):
 
@@ -111,7 +111,7 @@ ssh -p 2222 localhost
 ssh ssh.pcstyle.dev
 ```
 
-## 📝 Zmienne środowiskowe
+## Zmienne środowiskowe
 
 Upewnij się że masz ustawione na serwerze:
 
@@ -125,13 +125,13 @@ NODE_ENV=production
 
 ## 🔍 Co działa
 
-✅ SSH server implementation zgodna z SSH2 library  
-✅ React modal component z kopiowaniem komendy  
-✅ Przycisk w Hero component  
-✅ Heroku deployment files (ale Heroku nie obsługuje SSH)  
-✅ Dokumentacja deploymentu  
+SSH server implementation zgodna z SSH2 library  
+React modal component z kopiowaniem komendy  
+Przycisk w Hero component  
+Heroku deployment files (ale Heroku nie obsługuje SSH)  
+Dokumentacja deploymentu  
 
-## ⚠️ Ograniczenia Heroku
+## Ograniczenia Heroku
 
 **Heroku NIE obsługuje SSH serwerów bezpośrednio** ponieważ:
 - Heroku routuje tylko HTTP/HTTPS traffic
@@ -144,7 +144,7 @@ NODE_ENV=production
 3. Użyj DigitalOcean/VPS (pełna kontrola)
 4. Użyj tunelu (Cloudflare Tunnel, ngrok) - ale to dodatkowa warstwa
 
-## 🎨 UI Changes
+## UI Changes
 
 **Przed:**
 ```
@@ -164,7 +164,7 @@ Modal pokazuje:
 
 ---
 
-**Gotowe do deploy!** 🚀
+**Gotowe do deploy!** 
 
 Wybierz platformę (Railway/Fly.io/DigitalOcean) i follow the guide w `HEROKU_DEPLOYMENT.md`.
 

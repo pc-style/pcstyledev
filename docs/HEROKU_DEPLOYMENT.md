@@ -1,17 +1,17 @@
 # Heroku Deployment Guide for SSH Contact Server
 
-⚠️ **WAŻNE:** Heroku ma ograniczenia - nie obsługuje bezpośrednio serwerów SSH (TCP), tylko HTTP/HTTPS. 
+**WAŻNE:** Heroku ma ograniczenia - nie obsługuje bezpośrednio serwerów SSH (TCP), tylko HTTP/HTTPS. 
 
 ## Opcje Deploy SSH Servera
 
-### ❌ Heroku - NIE DZIAŁA dla SSH
+### Heroku - NIE DZIAŁA dla SSH
 Heroku routuje tylko HTTP/HTTPS. SSH to protokół TCP, więc Heroku nie może routować połączeń SSH bezpośrednio.
 
 **Jeśli chcesz użyć Heroku:**
 - Musisz użyć tunelu (np. Cloudflare Tunnel, ngrok)
 - Albo użyj alternatywnej platformy (Railway, Fly.io)
 
-### ✅ Railway.app (RECOMMENDED)
+### Railway.app (RECOMMENDED)
 Railway obsługuje SSH serwery bezpośrednio i jest łatwy w użyciu.
 
 #### Kroki:
@@ -74,7 +74,7 @@ railway up
    - Dodaj A record dla `ssh.pcstyle.dev` → IP z Railway
    - Albo użyj Railway domain (np. `ssh.pcstyle.up.railway.app`)
 
-### ✅ Fly.io (Alternatywa)
+### Fly.io (Alternatywa)
 Fly.io też obsługuje SSH serwery.
 
 #### Kroki:
@@ -118,7 +118,7 @@ fly deploy
 fly certs add ssh.pcstyle.dev
 ```
 
-### ✅ DigitalOcean Droplet (Najbardziej kontrolowane)
+### DigitalOcean Droplet (Najbardziej kontrolowane)
 
 1. **Stwórz droplet ($6/miesiąc)**
 2. **SSH do serwera:**
@@ -243,5 +243,5 @@ sudo journalctl -u ssh-contact -f
 
 ---
 
-**Rekomendacja:** Użyj Railway.app - najłatwiejsze i działa od razu! 🚀
+**Rekomendacja:** Użyj Railway.app - najłatwiejsze i działa od razu! 
 

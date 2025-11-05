@@ -1,14 +1,14 @@
-# 🚀 Deployment Checklist dla pcstyle.dev
+#  Deployment Checklist dla pcstyle.dev
 
 ## Pre-Deploy Verification
 
-### ✅ Code Quality
+### Code Quality
 - [x] Build passes (`npm run build`) ✓
 - [x] No TypeScript errors ✓
 - [x] No linting errors ✓
 - [x] All SEO metadata in place ✓
 
-### ✅ SEO Files Present
+### SEO Files Present
 - [x] `/public/robots.txt` ✓
 - [x] `/public/humans.txt` ✓
 - [x] `/src/app/sitemap.ts` ✓
@@ -42,7 +42,7 @@ Po deploy, sprawdź:
 
 ## Post-Deploy SEO Actions
 
-### Immediate (Day 1) 🔥
+### Immediate (Day 1)
 - [ ] **Submit to Google Search Console**
   - URL: https://search.google.com/search-console
   - Add property: `https://pcstyle.dev`
@@ -60,7 +60,7 @@ Po deploy, sprawdź:
   - Twitter Card Validator: https://cards-dev.twitter.com/validator
   - Paste your URL and check previews
 
-### Week 1 📅
+### Week 1
 - [ ] **Monitor Google Search Console**
   - Check for crawl errors
   - Verify pages are indexed
@@ -78,7 +78,7 @@ Po deploy, sprawdź:
   - Reddit: r/webdev, r/reactjs, r/Portfolio_critique
   - Dev.to / Hashnode if you write
 
-### Month 1 🌱
+### Month 1
 - [ ] **Content Marketing**
   - Write blog post about one of your projects
   - Share on social media
@@ -94,7 +94,7 @@ Po deploy, sprawdź:
   - Target: 90+ on all metrics
   - Fix any issues
 
-### Ongoing 🔄
+### Ongoing
 - [ ] **Weekly GSC Check**
   - Monitor ranking progress
   - Check for new keywords
@@ -214,7 +214,7 @@ When you're ready to go harder:
 
 ## Final Notes
 
-✅ **Your site is now SEO-optimized!**
+**Your site is now SEO-optimized!**
 
 Co zrobiłeś:
 - 30+ keywords w metadata
@@ -227,16 +227,16 @@ Co zrobiłeś:
 - humans.txt dla human touch
 
 **Teraz trzeba:**
-1. Deploy na Vercel ✓
-2. Submit do Google Search Console 🔥
-3. Share na social media 📱
-4. Monitor & iterate 📊
+1. Deploy na Vercel
+2. Submit do Google Search Console
+3. Share na social media
+4. Monitor & iterate
 
 **Pamiętaj:** SEO to maraton. Consistent effort > one-time optimization.
 
 ---
 
-**Good luck! 🚀 Za kilka tygodni zobaczysz efekty.**
+**Good luck!  Za kilka tygodni zobaczysz efekty.**
 
-*Built with 💪 by pcstyle*
+*Built by pcstyle*
 

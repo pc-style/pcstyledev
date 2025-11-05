@@ -1,43 +1,43 @@
-# 🎯 SEO Setup Guide dla pcstyle.dev
+# SEO Setup Guide dla pcstyle.dev
 
-## ✅ Co już jest zrobione (Automated SEO)
+## Co już jest zrobione (Automated SEO)
 
 ### 1. **Metadata & Meta Tags**
-- ✅ Kompletny title z template system
-- ✅ Rozbudowany description (160+ znaków)
-- ✅ 30+ dobrze dobranych keywords (pcstyle, Adam Krupa, itp.)
-- ✅ Open Graph tags dla social media
-- ✅ Twitter Cards
-- ✅ Canonical URLs
-- ✅ Author metadata
-- ✅ Language tags (pl/en)
+- Kompletny title z template system
+- Rozbudowany description (160+ znaków)
+- 30+ dobrze dobranych keywords (pcstyle, Adam Krupa, itp.)
+- Open Graph tags dla social media
+- Twitter Cards
+- Canonical URLs
+- Author metadata
+- Language tags (pl/en)
 
 ### 2. **Structured Data (Schema.org)**
-- ✅ Person schema dla Adam Krupa (pcstyle)
-- ✅ ItemList schema dla projektów
-- ✅ CreativeWork & SoftwareApplication schemas
-- ✅ JSON-LD format (preferowany przez Google)
+- Person schema dla Adam Krupa (pcstyle)
+- ItemList schema dla projektów
+- CreativeWork & SoftwareApplication schemas
+- JSON-LD format (preferowany przez Google)
 
 ### 3. **Technical SEO**
-- ✅ Dynamic sitemap.xml
-- ✅ robots.txt optimization
-- ✅ humans.txt dla human-readable info
-- ✅ Semantic HTML (h1, main, section)
-- ✅ SR-only content dla dodatkowego kontekstu
-- ✅ Fast loading (Next.js optimizations)
-- ✅ Mobile-first responsive
-- ✅ Image optimization (AVIF/WebP)
+- Dynamic sitemap.xml
+- robots.txt optimization
+- humans.txt dla human-readable info
+- Semantic HTML (h1, main, section)
+- SR-only content dla dodatkowego kontekstu
+- Fast loading (Next.js optimizations)
+- Mobile-first responsive
+- Image optimization (AVIF/WebP)
 
 ### 4. **Content Optimization**
-- ✅ Keywords w naturalny sposób w content
-- ✅ Nazwy "pcstyle" i "Adam Krupa" wszędzie
-- ✅ Alt texts (jeśli masz images)
-- ✅ Descriptive URLs
-- ✅ Internal linking
+- Keywords w naturalny sposób w content
+- Nazwy "pcstyle" i "Adam Krupa" wszędzie
+- Alt texts (jeśli masz images)
+- Descriptive URLs
+- Internal linking
 
 ---
 
-## 🚀 Następne kroki (Manual Setup Required)
+## Następne kroki (Manual Setup Required)
 
 ### 1. **Google Search Console** (WAŻNE!)
 
@@ -92,10 +92,10 @@ Jeśli chcesz pojawić się w Google Maps jako developer:
 ### 3. **Backlinks & Social Signals**
 
 #### Dodaj linki do profilu na:
-- ✅ GitHub bio: https://github.com/pcstyle
-- ✅ Twitter bio: https://twitter.com/pcstyle
-- ✅ LinkedIn (jeśli masz)
-- ✅ Dev.to / Hashnode (jeśli piszesz blogi)
+- GitHub bio: https://github.com/pcstyle
+- Twitter bio: https://twitter.com/pcstyle
+- LinkedIn (jeśli masz)
+- Dev.to / Hashnode (jeśli piszesz blogi)
 
 #### Zrób content marketing:
 - Napisz blog post o projektach
@@ -146,7 +146,7 @@ Każda strona = więcej keywords = więcej traffic.
 
 ---
 
-## 📊 Monitoring & Tracking
+## Monitoring & Tracking
 
 ### Sprawdzaj co tydzień:
 1. **Google Search Console**
@@ -167,7 +167,7 @@ Każda strona = więcej keywords = więcej traffic.
 
 ---
 
-## 🎯 Expected Timeline
+## Expected Timeline
 
 | Timeline | Co się stanie |
 |----------|---------------|
@@ -181,16 +181,16 @@ Każda strona = więcej keywords = więcej traffic.
 
 ---
 
-## 🔥 Quick Wins (zrób dzisiaj!)
+## Quick Wins (zrób dzisiaj!)
 
-1. ✅ **Submit do Google Search Console** (10 min)
-2. ✅ **Dodaj link do bio na GitHub/Twitter** (5 min)
-3. ✅ **Share portfolio na social media** (5 min)
-4. ✅ **Ask friends to visit & share** (social signals pomogą!)
+1. **Submit do Google Search Console** (10 min)
+2. **Dodaj link do bio na GitHub/Twitter** (5 min)
+3. **Share portfolio na social media** (5 min)
+4. **Ask friends to visit & share** (social signals pomogą!)
 
 ---
 
-## 📚 Resources
+## Resources
 
 - [Google Search Console](https://search.google.com/search-console)
 - [Schema.org Validator](https://validator.schema.org/)
@@ -200,7 +200,7 @@ Każda strona = więcej keywords = więcej traffic.
 
 ---
 
-## 💡 Pro Tips
+## Pro Tips
 
 1. **Content is King** — więcej unique content = wyższy ranking
 2. **Update regularnie** — Google lubi fresh content (dodaj "Last Updated" dates)
@@ -210,7 +210,7 @@ Każda strona = więcej keywords = więcej traffic.
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### "Nie pojawiam się w Google po tygodniu"
 - Sprawdź GSC czy są błędy crawl
@@ -230,7 +230,7 @@ Każda strona = więcej keywords = więcej traffic.
 
 ---
 
-**Good luck, pcstyle! 🚀**
+**Good luck, pcstyle! **
 
 *Pamiętaj: SEO to proces. Pierwsze efekty zobaczysz za tydzień, ale prawdziwa magia dzieje się po 2-3 miesiącach consistent work.*
 
