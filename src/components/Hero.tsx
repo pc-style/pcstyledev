@@ -43,7 +43,7 @@ function clearBuffer() {
 
 function ctaMatrix() {
   // mini helper bo grid mi jeździł jak pijany // serio
-  return "grid w-full gap-4 text-sm min-[520px]:grid-cols-2 xl:grid-cols-4";
+  return "grid w-full gap-3 text-[0.85rem] min-[520px]:grid-cols-2 xl:grid-cols-4 sm:gap-4 sm:text-sm";
 }
 
 export function Hero() {
@@ -77,181 +77,183 @@ export function Hero() {
     console.info("pcstyle intro bootuje się // spoko");
   }, []);
 
-  return (
-    <motion.section
-      id="intro"
-      aria-labelledby="hero-heading"
-      initial={minimizeMotion ? false : { opacity: 0, y: 120, rotateX: -12 }}
-      animate={minimizeMotion ? { opacity: 1 } : { opacity: 1, y: 0, rotateX: 0 }}
-      transition={minimizeMotion ? { duration: 0.2 } : { type: "spring", stiffness: 120, damping: 16 }}
-      className="relative flex w-full flex-col gap-12 overflow-hidden rounded-[var(--radius-card)] bg-[var(--color-paper)] p-12 brutal-border brutal-shadow noisy-paper text-[color:var(--color-ink)]"
-    >
-      <motion.span
-        className="inline-block text-xs uppercase tracking-[0.4em] text-[color:var(--color-magenta)]"
-        initial={minimizeMotion ? false : { y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={
-          minimizeMotion ? { duration: 0.2 } : { delay: 0.2, type: "spring", stiffness: 220, damping: 18 }
-        }
+    return (
+      <motion.section
+        id="intro"
+        aria-labelledby="hero-heading"
+        initial={minimizeMotion ? false : { opacity: 0, y: 120, rotateX: -12 }}
+        animate={minimizeMotion ? { opacity: 1 } : { opacity: 1, y: 0, rotateX: 0 }}
+        transition={minimizeMotion ? { duration: 0.2 } : { type: "spring", stiffness: 120, damping: 16 }}
+        className="relative flex w-full flex-col gap-10 overflow-hidden rounded-[var(--radius-card)] bg-[var(--color-paper)] p-8 sm:gap-12 sm:p-10 lg:p-12 brutal-border brutal-shadow noisy-paper text-[color:var(--color-ink)]"
       >
-        {drawBanner(translations.hero.banner)}
-      </motion.span>
-
-      <div className="flex flex-wrap items-end gap-6">
-        <motion.h1
-          id="hero-heading"
-          className="neo-pulse text-balance text-[clamp(3.8rem,9vw,8.5rem)] font-black uppercase leading-[0.85]"
-          whileHover={minimizeMotion ? undefined : { rotate: -1.5, scale: 1.02 }}
+        <motion.span
+          className="inline-block text-[0.7rem] uppercase tracking-[0.3em] text-[color:var(--color-magenta)] sm:text-xs sm:tracking-[0.4em]"
+          initial={minimizeMotion ? false : { y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={
+            minimizeMotion ? { duration: 0.2 } : { delay: 0.2, type: "spring", stiffness: 220, damping: 18 }
+          }
         >
-          <motion.span
-            className="block text-[color:var(--color-ink)]"
-            whileHover={
-              minimizeMotion
-                ? undefined
-                : { color: "var(--color-magenta)", textShadow: "6px 6px 0 var(--color-magenta)" }
-            }
-            transition={minimizeMotion ? { duration: 0.2 } : { type: "spring", stiffness: 180, damping: 20 }}
+          {drawBanner(translations.hero.banner)}
+        </motion.span>
+
+        <div className="flex flex-col gap-6 sm:flex-row sm:flex-wrap sm:items-end">
+          <motion.h1
+            id="hero-heading"
+            className="neo-pulse text-balance text-[clamp(2.8rem,9vw,7.5rem)] font-black uppercase leading-[0.9]"
+            whileHover={minimizeMotion ? undefined : { rotate: -1.5, scale: 1.02 }}
           >
-            pcstyle
-          </motion.span>
-        </motion.h1>
-        <motion.div
-          className="flex max-w-sm flex-col gap-3 text-sm sm:text-base"
-          initial={minimizeMotion ? false : { opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={minimizeMotion ? { duration: 0.2 } : { delay: 0.25, duration: 0.5 }}
-        >
-          <p className="font-medium uppercase tracking-wide text-[color:var(--color-ink)]">{translations.hero.name}</p>
-          <p className="text-pretty text-[color:var(--color-ink)]/90">
-            {translations.hero.description}
-          </p>
-        </motion.div>
-      </div>
-
-      <motion.ul
-        key={`facts-${language}`}
-        className="flex flex-wrap gap-4 text-xs sm:text-sm"
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: { opacity: 0, y: 12 },
-          visible: {
-            opacity: 1,
-            y: 0,
-            transition: { staggerChildren: 0.08, delayChildren: 0.3 },
-          },
-        }}
-      >
-        {heroFacts.map((fact) => {
-          const Icon = fact.icon;
-          return (
-            <motion.li
-              key={fact.label}
-              className="relative z-10 flex items-start gap-3 brutal-border brutal-shadow bg-[var(--color-paper)] px-4 py-3 font-semibold uppercase tracking-[0.2em] text-[color:var(--color-ink)]"
-              variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
-              whileHover={minimizeMotion ? undefined : { rotate: 2.5, scale: 1.05 }}
+            <motion.span
+              className="block text-[color:var(--color-ink)]"
+              whileHover={
+                minimizeMotion
+                  ? undefined
+                  : { color: "var(--color-magenta)", textShadow: "6px 6px 0 var(--color-magenta)" }
+              }
+              transition={minimizeMotion ? { duration: 0.2 } : { type: "spring", stiffness: 180, damping: 20 }}
             >
-              <Icon className="h-5 w-5 text-[var(--color-magenta)]" />
-              <div>
-                <span className="block text-[0.65em] opacity-60">{fact.label}</span>
-                <span className="block">{fact.value}</span>
-              </div>
-            </motion.li>
-          );
-        })}
-      </motion.ul>
+              pcstyle
+            </motion.span>
+          </motion.h1>
+          <motion.div
+            className="flex w-full max-w-xl flex-col gap-3 text-sm sm:text-base"
+            initial={minimizeMotion ? false : { opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={minimizeMotion ? { duration: 0.2 } : { delay: 0.25, duration: 0.5 }}
+          >
+            <p className="font-medium uppercase tracking-[0.18em] text-[color:var(--color-ink)] sm:tracking-wide">
+              {translations.hero.name}
+            </p>
+            <p className="text-pretty text-[color:var(--color-ink)]/90">
+              {translations.hero.description}
+            </p>
+          </motion.div>
+        </div>
 
-      <div className="flex flex-col gap-6 text-sm">
-        <motion.div
-          className={ctaMatrix()}
-          initial={minimizeMotion ? false : { opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={minimizeMotion ? { duration: 0.2 } : { delay: 0.35, duration: 0.5 }}
+        <motion.ul
+          key={`facts-${language}`}
+          className="flex flex-wrap gap-3 text-[0.75rem] sm:gap-4 sm:text-sm"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0, y: 12 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { staggerChildren: 0.08, delayChildren: 0.3 },
+            },
+          }}
         >
-          <motion.button
-            onClick={() => setShowContactModal(true)}
-            className="relative flex w-full items-center justify-center gap-2 rounded-full border-4 border-[var(--color-ink)] bg-[var(--color-magenta)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white shadow-[6px_6px_0_var(--color-ink)] cursor-pointer transition-all hover:bg-[var(--color-cyan)] hover:text-[color:var(--color-ink)] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-ink)]"
-            whileHover={minimizeMotion ? undefined : { scale: 1.05, rotate: -1 }}
-            whileTap={minimizeMotion ? undefined : { scale: 0.95 }}
-            transition={minimizeMotion ? { duration: 0.1 } : { type: "spring", stiffness: 200 }}
-          >
-            <MessageCircle className="h-4 w-4" />
-            {translations.hero.contactMe}
-          </motion.button>
-          <MagneticButton
-            className="flex w-full items-center justify-center gap-2 rounded-full border-4 border-[var(--color-ink)] bg-[var(--color-paper)] px-6 py-3 font-semibold uppercase tracking-[0.2em] text-[color:var(--color-ink)] shadow-[6px_6px_0_var(--color-ink)] transition-colors hover:bg-[var(--color-paper)] hover:text-[color:var(--color-magenta)] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-magenta)]"
-            strength={0.2}
-            onClick={() => {
-              const section = document.getElementById("projects");
-              section?.scrollIntoView({ behavior: minimizeMotion ? "auto" : "smooth" });
-            }}
-          >
-            <Code2 className="h-4 w-4" />
-            {translations.hero.seeProjects}
-          </MagneticButton>
-          <motion.a
-            href="mailto:adamkrupa@tuta.io?subject=Hello%20from%20pcstyle.dev"
-            className="flex w-full items-center justify-center gap-2 rounded-full border-4 border-[var(--color-ink)] bg-[var(--color-paper)] px-6 py-3 font-semibold uppercase tracking-[0.2em] text-[color:var(--color-ink)] shadow-[6px_6px_0_var(--color-ink)] transition-colors hover:bg-[var(--color-magenta)] hover:text-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-magenta)]"
-            target="_blank"
-            rel="noreferrer noopener"
-            whileHover={minimizeMotion ? undefined : { scale: 1.05, rotate: -1 }}
-            whileTap={minimizeMotion ? undefined : { scale: 0.95 }}
-            aria-label={translations.hero.sendEmail}
-          >
-            <Mail className="h-4 w-4" />
-            {translations.hero.sendEmail}
-          </motion.a>
-          <motion.a
-            href="https://cal.com/pcstyle"
-            className="flex w-full items-center justify-center gap-2 rounded-full border-4 border-[var(--color-ink)] bg-[var(--color-paper)] px-6 py-3 font-semibold uppercase tracking-[0.2em] text-[color:var(--color-ink)] shadow-[6px_6px_0_var(--color-ink)] transition-colors hover:bg-[var(--color-cyan)] hover:text-[color:var(--color-ink)] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-cyan)]"
-            target="_blank"
-            rel="noreferrer noopener"
-            whileHover={minimizeMotion ? undefined : { scale: 1.05, rotate: 1 }}
-            whileTap={minimizeMotion ? undefined : { scale: 0.95 }}
-            aria-label={translations.hero.bookCall}
-          >
-            <CalendarClock className="h-4 w-4" />
-            {translations.hero.bookCall}
-          </motion.a>
-        </motion.div>
+          {heroFacts.map((fact) => {
+            const Icon = fact.icon;
+            return (
+              <motion.li
+                key={fact.label}
+                className="relative z-10 flex w-full items-start gap-3 brutal-border brutal-shadow bg-[var(--color-paper)] px-4 py-3 font-semibold uppercase tracking-[0.18em] text-[color:var(--color-ink)] min-[520px]:w-auto"
+                variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
+                whileHover={minimizeMotion ? undefined : { rotate: 2.5, scale: 1.05 }}
+              >
+                <Icon className="h-5 w-5 text-[var(--color-magenta)]" />
+                <div>
+                  <span className="block text-[0.65em] opacity-60">{fact.label}</span>
+                  <span className="block">{fact.value}</span>
+                </div>
+              </motion.li>
+            );
+          })}
+        </motion.ul>
 
-        {/* social links z ikonami — actual working links */}
-        <motion.div
-          className="flex flex-wrap gap-3"
-          initial={minimizeMotion ? false : { opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={minimizeMotion ? { duration: 0.2 } : { delay: 0.5, duration: 0.4 }}
-        >
-          <motion.a
-            href="https://github.com/pcstyle"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="brutal-border brutal-shadow grid size-12 place-items-center rounded-full bg-[var(--color-paper)] transition-colors hover:bg-[var(--color-ink)] hover:text-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-ink)]"
-            whileHover={minimizeMotion ? undefined : { scale: 1.05, rotate: -1.5 }}
+        <div className="flex flex-col gap-6 text-sm">
+          <motion.div
+            className={ctaMatrix()}
+            initial={minimizeMotion ? false : { opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={minimizeMotion ? { duration: 0.2 } : { delay: 0.35, duration: 0.5 }}
           >
-            <Github className="h-5 w-5" />
-          </motion.a>
-          <motion.a
-            href="https://www.facebook.com/adam.krupa.771/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook"
-            className="brutal-border brutal-shadow grid size-12 place-items-center rounded-full bg-[var(--color-paper)] transition-colors hover:bg-[#1877F2] hover:text-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#1877F2]"
-            whileHover={minimizeMotion ? undefined : { scale: 1.05, rotate: 1.5 }}
+            <motion.button
+              onClick={() => setShowContactModal(true)}
+              className="relative flex w-full items-center justify-center gap-2 rounded-full border-4 border-[var(--color-ink)] bg-[var(--color-magenta)] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-[6px_6px_0_var(--color-ink)] cursor-pointer transition-all hover:bg-[var(--color-cyan)] hover:text-[color:var(--color-ink)] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-ink)] sm:px-6 sm:text-sm"
+              whileHover={minimizeMotion ? undefined : { scale: 1.05, rotate: -1 }}
+              whileTap={minimizeMotion ? undefined : { scale: 0.95 }}
+              transition={minimizeMotion ? { duration: 0.1 } : { type: "spring", stiffness: 200 }}
+            >
+              <MessageCircle className="h-4 w-4" />
+              {translations.hero.contactMe}
+            </motion.button>
+            <MagneticButton
+              className="flex w-full items-center justify-center gap-2 rounded-full border-4 border-[var(--color-ink)] bg-[var(--color-paper)] px-5 py-3 font-semibold uppercase tracking-[0.18em] text-[color:var(--color-ink)] shadow-[6px_6px_0_var(--color-ink)] transition-colors hover:bg-[var(--color-paper)] hover:text-[color:var(--color-magenta)] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-magenta)] sm:px-6"
+              strength={0.2}
+              onClick={() => {
+                const section = document.getElementById("projects");
+                section?.scrollIntoView({ behavior: minimizeMotion ? "auto" : "smooth" });
+              }}
+            >
+              <Code2 className="h-4 w-4" />
+              {translations.hero.seeProjects}
+            </MagneticButton>
+            <motion.a
+              href="mailto:adamkrupa@tuta.io?subject=Hello%20from%20pcstyle.dev"
+              className="flex w-full items-center justify-center gap-2 rounded-full border-4 border-[var(--color-ink)] bg-[var(--color-paper)] px-5 py-3 font-semibold uppercase tracking-[0.18em] text-[color:var(--color-ink)] shadow-[6px_6px_0_var(--color-ink)] transition-colors hover:bg-[var(--color-magenta)] hover:text-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-magenta)] sm:px-6"
+              target="_blank"
+              rel="noreferrer noopener"
+              whileHover={minimizeMotion ? undefined : { scale: 1.05, rotate: -1 }}
+              whileTap={minimizeMotion ? undefined : { scale: 0.95 }}
+              aria-label={translations.hero.sendEmail}
+            >
+              <Mail className="h-4 w-4" />
+              {translations.hero.sendEmail}
+            </motion.a>
+            <motion.a
+              href="https://cal.com/pcstyle"
+              className="flex w-full items-center justify-center gap-2 rounded-full border-4 border-[var(--color-ink)] bg-[var(--color-paper)] px-5 py-3 font-semibold uppercase tracking-[0.18em] text-[color:var(--color-ink)] shadow-[6px_6px_0_var(--color-ink)] transition-colors hover:bg-[var(--color-cyan)] hover:text-[color:var(--color-ink)] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-cyan)] sm:px-6"
+              target="_blank"
+              rel="noreferrer noopener"
+              whileHover={minimizeMotion ? undefined : { scale: 1.05, rotate: 1 }}
+              whileTap={minimizeMotion ? undefined : { scale: 0.95 }}
+              aria-label={translations.hero.bookCall}
+            >
+              <CalendarClock className="h-4 w-4" />
+              {translations.hero.bookCall}
+            </motion.a>
+          </motion.div>
+
+          {/* social links z ikonami — actual working links */}
+          <motion.div
+            className="flex flex-wrap gap-2 sm:gap-3"
+            initial={minimizeMotion ? false : { opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={minimizeMotion ? { duration: 0.2 } : { delay: 0.5, duration: 0.4 }}
           >
-            <Facebook className="h-5 w-5" />
-          </motion.a>
-          <motion.button
-            onClick={handleDiscordClick}
-            aria-label="Copy Discord handle"
-            className="brutal-border brutal-shadow grid size-12 place-items-center rounded-full bg-[var(--color-paper)] transition-colors hover:bg-[#5865F2] hover:text-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#5865F2]"
-            whileHover={minimizeMotion ? undefined : { scale: 1.05, rotate: -1 }}
-          >
-            <MessageCircle className="h-5 w-5" />
-          </motion.button>
-        </motion.div>
-      </div>
+            <motion.a
+              href="https://github.com/pcstyle"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="brutal-border brutal-shadow grid size-11 place-items-center rounded-full bg-[var(--color-paper)] transition-colors hover:bg-[var(--color-ink)] hover:text-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-ink)] sm:size-12"
+              whileHover={minimizeMotion ? undefined : { scale: 1.05, rotate: -1.5 }}
+            >
+              <Github className="h-5 w-5" />
+            </motion.a>
+            <motion.a
+              href="https://www.facebook.com/adam.krupa.771/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="brutal-border brutal-shadow grid size-11 place-items-center rounded-full bg-[var(--color-paper)] transition-colors hover:bg-[#1877F2] hover:text-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#1877F2] sm:size-12"
+              whileHover={minimizeMotion ? undefined : { scale: 1.05, rotate: 1.5 }}
+            >
+              <Facebook className="h-5 w-5" />
+            </motion.a>
+            <motion.button
+              onClick={handleDiscordClick}
+              aria-label="Copy Discord handle"
+              className="brutal-border brutal-shadow grid size-11 place-items-center rounded-full bg-[var(--color-paper)] transition-colors hover:bg-[#5865F2] hover:text-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#5865F2] sm:size-12"
+              whileHover={minimizeMotion ? undefined : { scale: 1.05, rotate: -1 }}
+            >
+              <MessageCircle className="h-5 w-5" />
+            </motion.button>
+          </motion.div>
+        </div>
 
       <motion.div
         className="pointer-events-none absolute -right-16 -top-20 hidden aspect-square w-48 rotate-6 border-4 border-[var(--color-ink)] bg-[var(--color-cyan)] brutal-shadow md:block grid place-items-center"

@@ -39,8 +39,7 @@ function pickLayout(index: number) {
 export function ProjectsGrid({ projects }: ProjectsGridProps) {
   return (
     <motion.section
-      id="projects"
-      className="relative mt-12 grid gap-8 grid-cols-1 md:grid-cols-2"
+      className="relative mt-10 grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"

@@ -85,7 +85,7 @@ export function ProjectCard({
   return (
     <motion.article
       ref={cardRef}
-      className={`group relative flex min-h-[420px] flex-col justify-between overflow-hidden rounded-[var(--radius-card)] border-4 border-[var(--color-ink)] bg-[var(--color-paper)] p-8 brutal-shadow ${className ?? ""}`.trim()}
+      className={`group relative flex min-h-[340px] flex-col justify-between overflow-hidden rounded-[var(--radius-card)] border-4 border-[var(--color-ink)] bg-[var(--color-paper)] p-6 sm:min-h-[380px] sm:p-7 lg:min-h-[420px] lg:p-8 brutal-shadow ${className ?? ""}`.trim()}
       style={{
         color: "var(--color-ink)",
         ...(disableFancyMotion ? {} : { rotateX, rotateY, transformStyle: "preserve-3d" as const }),
@@ -139,27 +139,25 @@ export function ProjectCard({
           {project.id}
         </span>
 
-        <motion.h2
-          className="text-pretty text-[clamp(2.2rem,4vw,3.4rem)] font-black uppercase leading-none"
-          transition={hoverTransition}
-        >
-          {project.title}
-        </motion.h2>
+          <motion.h2
+            className="text-pretty text-[clamp(1.9rem,4vw,3.3rem)] font-black uppercase leading-none"
+            transition={hoverTransition}
+          >
+            {project.title}
+          </motion.h2>
 
-        {projectTagline && (
-          <p className="text-sm font-semibold uppercase tracking-[0.15em] text-[color:var(--color-ink)]/70">
-            {projectTagline}
+          {projectTagline && (
+            <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[color:var(--color-ink)]/70">
+              {projectTagline}
+            </p>
+          )}
+
+          <p className="max-w-[40ch] text-pretty text-sm leading-relaxed text-[color:var(--color-ink)]/90 sm:text-base">
+            {projectDescription}
           </p>
-        )}
+        </div>
 
-        <p className="max-w-[34ch] text-pretty text-sm leading-relaxed text-[color:var(--color-ink)]/90 sm:text-base">
-          {projectDescription}
-        </p>
-      </div>
-
-      <motion.div
-        className="relative z-20 mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
-      >
+        <motion.div className="relative z-20 mt-8 flex flex-col gap-4 sm:mt-10 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3 text-sm font-semibold uppercase">
           <span className="text-[color:var(--color-ink)]/70">{translations.projects.subdomain}</span>
           <span style={{ color: accent }}>{project.url.replace(/^https:\/\//, "")}</span>
@@ -168,7 +166,7 @@ export function ProjectCard({
           href={project.url}
           target="_blank"
           rel="noreferrer noopener"
-          className="group/btn relative z-30 flex w-fit items-center gap-3 rounded-full border-4 px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[color:var(--color-ink)] shadow-[6px_6px_0_var(--color-ink)] transition-all bg-[var(--color-paper)] hover:bg-[var(--color-magenta)] hover:text-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-magenta)]"
+            className="group/btn relative z-30 flex w-fit items-center gap-3 rounded-full border-4 px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-[color:var(--color-ink)] shadow-[6px_6px_0_var(--color-ink)] transition-all bg-[var(--color-paper)] hover:bg-[var(--color-magenta)] hover:text-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-magenta)] sm:px-6 sm:text-sm"
           style={{ 
             borderColor: accent,
             backgroundColor: 'var(--color-paper)',
