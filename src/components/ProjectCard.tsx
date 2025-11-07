@@ -5,6 +5,8 @@ import { motion, useMotionValue, useTransform, useReducedMotion } from "framer-m
 import { useRef } from "react";
 import type { ProjectInfo } from "@/types/project";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { ExternalLink } from "lucide-react";
 
 const hoverTransition = { type: "spring" as const, stiffness: 220, damping: 14 };
 
@@ -41,11 +43,16 @@ export function ProjectCard({
   index: number;
   className?: string;
 }) {
+  const { translations } = useLanguage();
   const accent = accentColor(project);
   const cardRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const isMobile = useIsMobile();
   const disableFancyMotion = prefersReducedMotion || isMobile;
+
+  // get tagline from translations
+  const projectTagline = translations.projectsData[project.id as keyof typeof translations.projectsData]?.tagline || "";
+  const projectDescription = translations.projectsData[project.id as keyof typeof translations.projectsData]?.description || project.description;
 
   // 3D tilt effect based on mouse position
   const mouseX = useMotionValue(0);
@@ -127,7 +134,7 @@ export function ProjectCard({
 
       <div className="relative flex flex-col gap-4">
         <span
-          className="inline-block w-fit border-4 border-[var(--color-ink)] bg-[var(--color-muted)] px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em]"
+          className="inline-block w-fit border-4 border-[var(--color-ink)] bg-[var(--color-paper)] px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em]"
         >
           {project.id}
         </span>
@@ -139,49 +146,55 @@ export function ProjectCard({
           {project.title}
         </motion.h2>
 
-        <p className="max-w-[34ch] text-pretty text-sm leading-relaxed text-[color:var(--color-ink)]/80 sm:text-base">
-          {project.description}
+        {projectTagline && (
+          <p className="text-sm font-semibold uppercase tracking-[0.15em] text-[color:var(--color-ink)]/70">
+            {projectTagline}
+          </p>
+        )}
+
+        <p className="max-w-[34ch] text-pretty text-sm leading-relaxed text-[color:var(--color-ink)]/90 sm:text-base">
+          {projectDescription}
         </p>
       </div>
 
       <motion.div
-        className="mt-10 flex items-center justify-between text-sm font-semibold uppercase"
+        className="relative z-20 mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
       >
-        <div className="flex items-center gap-3">
-          <span className="text-[color:var(--color-ink)]/60">subdomain</span>
+        <div className="flex items-center gap-3 text-sm font-semibold uppercase">
+          <span className="text-[color:var(--color-ink)]/70">{translations.projects.subdomain}</span>
           <span style={{ color: accent }}>{project.url.replace(/^https:\/\//, "")}</span>
         </div>
-        <motion.div
-          className="relative flex items-center gap-2"
-          whileHover={disableFancyMotion ? undefined : { x: 6 }}
-          transition={disableFancyMotion ? undefined : hoverTransition}
+        <motion.a
+          href={project.url}
+          target="_blank"
+          rel="noreferrer noopener"
+          className="group/btn relative z-30 flex w-fit items-center gap-3 rounded-full border-4 px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[color:var(--color-ink)] shadow-[6px_6px_0_var(--color-ink)] transition-all bg-[var(--color-paper)] hover:bg-[var(--color-magenta)] hover:text-white focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-magenta)]"
+          style={{ 
+            borderColor: accent,
+            backgroundColor: 'var(--color-paper)',
+            color: 'var(--color-ink)'
+          }}
+          whileHover={disableFancyMotion ? undefined : { scale: 1.05, rotate: -1 }}
+          whileTap={disableFancyMotion ? undefined : { scale: 0.95 }}
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            window.open(project.url, '_blank', 'noopener,noreferrer');
+          }}
+          aria-label={`${translations.projects.visitProject} ${project.title}`}
         >
-          <span className="hidden text-xs uppercase tracking-[0.3em] sm:inline">wejdź</span>
-          <div
-            className="grid size-10 place-items-center border-4 border-[var(--color-ink)] bg-[var(--color-paper)]"
-            style={{ color: accent }}
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M5 15L15 5" />
-              <path d="M6 5H15V14" />
-            </svg>
-          </div>
-        </motion.div>
+          <span className="whitespace-nowrap">{translations.projects.visitProject}</span>
+          <ExternalLink className="h-4 w-4 shrink-0" aria-hidden="true" />
+        </motion.a>
       </motion.div>
 
       <Link
         href={project.url}
-        className="absolute inset-0"
+        className="absolute inset-0 z-0"
         target="_blank"
         rel="noreferrer noopener"
         aria-label={`Open ${project.title}`}
+        style={{ pointerEvents: 'none' }}
       />
 
       {!disableFancyMotion && (

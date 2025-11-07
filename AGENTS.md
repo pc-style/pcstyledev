@@ -1,7 +1,7 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-Next.js App Router code sits in `src/`. Keep routed entries, metadata, and server actions in `src/app`, shared UI in `src/components`, helpers in `src/lib`, and types in `src/types`. Project data lives in `data/projects.json`, while static imagery and fonts belong in `public/`. Use `docs/` for deep dives or briefs, and treat `ssh-server/` as a separate service—avoid coupling it to the web app runtime.
+Next.js App Router code sits in `src/`. Keep routed entries, metadata, and server actions in `src/app`, shared UI in `src/components`, helpers in `src/lib`, and types in `src/types`. Project data lives in `data/projects.json`, while static imagery and fonts belong in `public/`. Use `docs/` for deep dives or briefs.
 
 ## Build, Test, and Development Commands
 - `npm run dev` — start the local dev server with React Compiler hot refresh.
@@ -19,4 +19,4 @@ No runner ships in the repo today, so add coverage when behaviour exceeds purely
 Commit history mixes Conventional Commits with plain imperatives; adopt the conventional style going forward (`feat:`, `fix:`, `chore:`) to clarify intent. Keep commits scoped, reference related issues, and explain design or SEO adjustments in the body. PRs should outline the change, link demos or screenshots for UI tweaks, list manual test notes, and call out follow-up tasks (metrics, content sync) before requesting review.
 
 ## Deployment & Configuration Notes
-Deployments target Vercel and honour headers, redirects, and caching rules in `vercel.json`. Manage secrets via the Vercel dashboard—do not commit `.env` artifacts. When adjusting performance knobs, update both `next.config.ts` and `vercel.json` to stay in sync. The standalone `ssh-server` experiment depends on external tunnel credentials; coordinate with the maintainer before rotating keys or touching webhooks.
+Deployments target Vercel and honour headers, redirects, and caching rules in `vercel.json`. Manage secrets via the Vercel dashboard—do not commit `.env` artifacts. When adjusting performance knobs, update both `next.config.ts` and `vercel.json` to stay in sync.

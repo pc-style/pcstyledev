@@ -3,15 +3,17 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Terminal, Copy, X, Check } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type SSHContactModalProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
-const SSH_COMMAND = "ssh yamanote.proxy.rlwy.net -p 49358"; // Railway TCP proxy
+const SSH_COMMAND = "ssh ssh.pcstyle.dev";
 
 export function SSHContactModal({ isOpen, onClose }: SSHContactModalProps) {
+  const { translations } = useLanguage();
   const [copied, setCopied] = useState(false);
 
   // zamknij modal przy ESC
@@ -46,6 +48,9 @@ export function SSHContactModal({ isOpen, onClose }: SSHContactModalProps) {
 
           {/* modal */}
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="ssh-modal-title"
             className="fixed left-1/2 top-1/2 z-50 w-[90vw] max-w-2xl max-h-[90vh] overflow-y-auto -translate-x-1/2 -translate-y-1/2"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -57,31 +62,31 @@ export function SSHContactModal({ isOpen, onClose }: SSHContactModalProps) {
               <button
                 onClick={onClose}
                 className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center border-4 border-[var(--color-ink)] bg-[var(--color-background)] text-[color:var(--color-ink)] transition-transform hover:rotate-90 hover:scale-110 hover:bg-[var(--color-magenta)] hover:text-white"
-                aria-label="Zamknij"
+                aria-label={translations.contact.closeModal}
               >
-                <X size={20} strokeWidth={3} />
+                <X size={20} strokeWidth={3} aria-hidden="true" />
               </button>
 
               {/* header */}
               <div className="mb-6">
                 <div className="flex items-center gap-3 mb-2">
-                  <Terminal className="h-8 w-8 text-[var(--color-cyan)]" />
-                  <h2 className="text-3xl font-black uppercase text-[color:var(--color-ink)] sm:text-4xl">
-                    contact via ssh
+                  <Terminal className="h-8 w-8 text-[var(--color-cyan)]" aria-hidden="true" />
+                  <h2 id="ssh-modal-title" className="text-3xl font-black uppercase text-[color:var(--color-ink)] sm:text-4xl">
+                    {translations.contact.sshTitle}
                   </h2>
                 </div>
                 <p className="text-sm uppercase tracking-wide text-[color:var(--color-ink)]/60">
-                  {"// najfajniejszy sposób na kontakt"}
+                  {translations.contact.sshSubtitle}
                 </p>
               </div>
 
               {/* terminal preview */}
-              <div className="mb-6 rounded-lg border-4 border-[var(--color-ink)] bg-black p-6 font-mono">
+              <div className="mb-6 rounded-[var(--radius-card)] border-4 border-[var(--color-ink)] bg-black p-6 font-mono">
                 <div className="mb-4 flex items-center gap-2">
                   <div className="h-3 w-3 rounded-full bg-red-500" />
                   <div className="h-3 w-3 rounded-full bg-yellow-500" />
                   <div className="h-3 w-3 rounded-full bg-green-500" />
-                  <span className="ml-2 text-xs text-white/50">terminal</span>
+                  <span className="ml-2 text-xs text-white/50">{translations.contact.terminal}</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-green-400">$</span>
@@ -105,13 +110,13 @@ export function SSHContactModal({ isOpen, onClose }: SSHContactModalProps) {
               >
                 {copied ? (
                   <>
-                    <Check className="h-5 w-5" />
-                    <span>skopiowano!</span>
+                    <Check className="h-5 w-5" aria-hidden="true" />
+                    <span>{translations.contact.copied}</span>
                   </>
                 ) : (
                   <>
-                    <Copy className="h-5 w-5" />
-                    <span>kopiuj komendę</span>
+                    <Copy className="h-5 w-5" aria-hidden="true" />
+                    <span>{translations.contact.copyCommand}</span>
                   </>
                 )}
               </motion.button>
@@ -119,13 +124,13 @@ export function SSHContactModal({ isOpen, onClose }: SSHContactModalProps) {
               {/* info section */}
               <div className="mt-6 space-y-3 text-sm text-[color:var(--color-ink)]/70">
                 <p className="font-medium uppercase tracking-wide">
-                  jak to działa?
+                  {translations.contact.howItWorks}
                 </p>
                 <ol className="list-decimal list-inside space-y-1 ml-2">
-                  <li>Otwórz terminal</li>
-                  <li>Wklej komendę i naciśnij Enter</li>
-                  <li>Wypełnij formularz kontaktowy</li>
-                  <li>Wyślij wiadomość — dotrze do mnie natychmiast!</li>
+                  <li>{translations.contact.howItWorksSteps.step1}</li>
+                  <li>{translations.contact.howItWorksSteps.step2}</li>
+                  <li>{translations.contact.howItWorksSteps.step3}</li>
+                  <li>{translations.contact.howItWorksSteps.step4}</li>
                 </ol>
               </div>
 

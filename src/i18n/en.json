@@ -1,0 +1,159 @@
+{
+  "nav": {
+    "intro": "intro",
+    "latestDrop": "latest drop",
+    "projects": "projects",
+    "labNotes": "lab notes",
+    "faq": "faq"
+  },
+  "hero": {
+    "banner": "pcstyle.dev",
+    "name": "Adam Krupa // pcstyle",
+    "description": "18 y/o developer from Poland, first-year AI student at Częstochowa University of Technology. Combining AI, creative code, and brutal aesthetics is my favorite chaos.",
+    "contactMe": "contact me",
+    "seeProjects": "see projects",
+    "sendEmail": "send email",
+    "bookCall": "book a call",
+    "discordCopyText": "Add me on Discord: @pcstyle",
+    "discordCopied": "Discord copied to clipboard!",
+    "facts": {
+      "age": {
+        "label": "age",
+        "value": "18"
+      },
+      "major": {
+        "label": "major",
+        "value": "Artificial Intelligence @ PCz"
+      },
+      "mix": {
+        "label": "mix",
+        "value": "AI × design × code"
+      }
+    }
+  },
+  "latestDrop": {
+    "label": "latest drop",
+    "descriptionSuffix": "Latest iteration fine-tunes motion physics, manual shaders, and accessibility mode (high contrast + reduced animations). Want to peek into the sketch and prototype process? Reach out, I'll share raw recordings and experiment repos.",
+    "role": "role",
+    "stack": "stack",
+    "link": "link"
+  },
+  "projects": {
+    "title": "playground of subdomains",
+    "subtitle": "// here's what's happening: live experiments with clocks, aim training, calculators, and AI graphics",
+    "visitProject": "visit",
+    "subdomain": "subdomain"
+  },
+  "explorations": {
+    "title": "What I'm exploring now",
+    "subtitle": "// quick lab notes — experiments I'm gluing together late at night",
+    "items": {
+      "realtimeAI": {
+        "title": "Realtime AI workflows",
+        "description": "Building lightweight agents that turn prompts into ready animations and shader variations on the fly.",
+        "status": "In prototype"
+      },
+      "neoBrutalist": {
+        "title": "Neo-brutalist design system",
+        "description": "Organizing contrasts, spacing, and brutal shadows in tokens so every subdomain has the same energy.",
+        "status": "Tokens already sitting in Tailwind v4"
+      },
+      "sshContact": {
+        "title": "Interactive SSH contact UX",
+        "description": "Polishing smoother onboarding and live logs so leaving messages from the terminal is stress-free.",
+        "status": "Testing WebRTC fallback"
+      }
+    }
+  },
+  "faq": {
+    "title": "Quick answers",
+    "subtitle": "Most common questions from clients and collaborators. Need more details? Reach out via email or book a call.",
+    "items": {
+      "who": {
+        "question": "Who am I?",
+        "answer": "Adam Krupa (pcstyle) — developer from Poland. I combine AI, design, and creative code. Studying Artificial Intelligence at Częstochowa University of Technology."
+      },
+      "projects": {
+        "question": "What projects do I run?",
+        "answer": "Clock Gallery, AimDrift, PoliCalc, and PixelForge showcase the range: interactive experiences, AI tools, and products for students."
+      },
+      "stack": {
+        "question": "What stack do I use?",
+        "answer": "Next.js 16, React 19, TypeScript, Tailwind v4, Framer Motion, WebGL shaders. On the AI side — Python and custom generative pipelines."
+      },
+      "contact": {
+        "question": "How to contact me?",
+        "answer": "Email adamkrupa@tuta.io, catch me on Discord (@pcstyle), or try the SSH modal. For calls, I have a calendar at cal.com/pcstyle."
+      }
+    }
+  },
+  "projectsData": {
+    "clock": {
+      "description": "Creative gallery of animated clocks — doodle, mycelium, particle clouds, neon effects — interactive art timepieces.",
+      "tagline": "Interactive gallery of animated clocks — art in real time"
+    },
+    "driftfield": {
+      "description": "Interactive precision + flow aim trainer testing rhythm, accuracy, reflex — stats, multiple modes, evolving visual styles.",
+      "tagline": "Precision aim trainer — rhythm, accuracy, and reflexes in one"
+    },
+    "kalkulator": {
+      "description": "Grade calculator for Częstochowa University of Technology: PP, ALG, PAM, and more — open source, in Polish.",
+      "tagline": "Grade calculator for CUT students — fast and precise"
+    },
+    "pixlab": {
+      "description": "AI-powered image studio: point-and-edit, style transfer, smart retouching, object vanish, pro tools in a modern web interface.",
+      "tagline": "AI-powered graphics studio — professional-level photo editing"
+    }
+  },
+  "contact": {
+    "closeModal": "Close",
+    "sshTab": "ssh",
+    "webTab": "or do it on the web",
+    "sshTitle": "contact via ssh",
+    "sshSubtitle": "// the coolest way to get in touch",
+    "terminal": "terminal",
+    "copyCommand": "copy command",
+    "copied": "copied!",
+    "howItWorks": "how does it work?",
+    "howItWorksSteps": {
+      "step1": "Open terminal",
+      "step2": "Paste command and press Enter",
+      "step3": "Fill out contact form",
+      "step4": "Send message — it reaches me instantly!"
+    },
+    "webTitle": "write a message",
+    "webSubtitle": "// send me a message directly from your browser",
+    "message": "message",
+    "messageRequired": "Required field",
+    "messagePlaceholder": "Hey! Write something nice...",
+    "name": "name",
+    "email": "email",
+    "discord": "discord",
+    "phone": "phone",
+    "facebook": "facebook",
+    "optional": "optional",
+    "facebookPlaceholder": "https://facebook.com/...",
+    "sendMessage": "send message",
+    "sending": "sending...",
+    "validation": {
+      "messageRequired": "Message is required",
+      "messageTooLong": "Message too long (max 2000 chars)",
+      "nameTooLong": "Name too long (max 100 chars)",
+      "emailTooLong": "Email too long (max 100 chars)",
+      "emailInvalid": "Invalid email format",
+      "discordTooLong": "Discord too long (max 100 chars)",
+      "phoneTooLong": "Phone too long (max 50 chars)",
+      "facebookTooLong": "Facebook URL too long (max 200 chars)",
+      "facebookInvalid": "Invalid URL format"
+    },
+    "errors": {
+      "fixErrors": "Please fix the errors above",
+      "fixValidationErrors": "Please fix the validation errors",
+      "tooManyRequests": "Too many requests. Please try again later.",
+      "failed": "Failed to send message. Please try again.",
+      "networkError": "Network error. Please check your connection and try again."
+    },
+    "success": "Message sent successfully!"
+  }
+}
+

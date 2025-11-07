@@ -4,8 +4,10 @@ import { ProjectsGrid } from "@/components/ProjectsGrid";
 import { loadProjects } from "@/lib/projects";
 import { motion } from "framer-motion";
 import { Rocket, Terminal } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function ProjectsSection() {
+  const { translations } = useLanguage();
   const projects = loadProjects();
 
   return (
@@ -18,9 +20,9 @@ export function ProjectsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <Rocket className="h-10 w-10 text-[var(--color-magenta)]" />
+          <Rocket className="h-10 w-10 text-[var(--color-magenta)]" aria-hidden="true" />
           <h2 className="text-[clamp(2.4rem,5vw,3.6rem)] font-black uppercase text-[color:var(--color-ink)]">
-            playground of subdomains
+            {translations.projects.title}
           </h2>
         </motion.div>
         <motion.div
@@ -30,9 +32,9 @@ export function ProjectsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <Terminal className="h-5 w-5 text-[var(--color-cyan)] mt-1" />
-          <p className="max-w-[60ch] text-sm uppercase tracking-[0.3em] text-[color:var(--color-ink)]/60 sm:text-base">
-            {"// tu się dzieje: żywe eksperymenty z zegarami, aim trainingiem, kalkulatorami i AI grafiką"}
+          <Terminal className="h-5 w-5 text-[var(--color-cyan)] mt-1" aria-hidden="true" />
+          <p className="max-w-[60ch] text-sm uppercase tracking-[0.3em] text-[color:var(--color-ink)]/70 sm:text-base">
+            {translations.projects.subtitle}
           </p>
         </motion.div>
       </header>

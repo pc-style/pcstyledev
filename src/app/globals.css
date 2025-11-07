@@ -8,7 +8,7 @@
   --pc-magenta: #e6007e;
   --pc-cyan: #00e5ff;
   --pc-yellow: #ffd200;
-  --pc-muted: #f2f2f2;
+  --pc-muted: #f8f8f8;
   --pc-shadow: var(--pc-ink);
   --pc-grid-line: rgba(5, 5, 5, 0.05);
 }
