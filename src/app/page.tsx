@@ -6,6 +6,7 @@ import { Hero } from "@/components/Hero";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { ScrollIndicator } from "@/components/ScrollIndicator";
 import { LanguageToggle } from "@/components/LanguageToggle";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { loadProjects } from "@/lib/projects";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -44,10 +45,32 @@ function findRepo(projectId: string) {
   return null;
 }
 
+function navShellClasses() {
+  // niby drobiazg, ale sticky top w mobile ratuje życie
+  return "sticky top-4 z-50 mx-auto w-full max-w-6xl px-4 sm:top-6 sm:px-6 lg:fixed lg:left-1/2 lg:-translate-x-1/2 lg:px-10";
+}
+
+function navListClasses(isNarrow: boolean) {
+  // no i lepiej niech się nie wysypie kiedy literki są szerokie
+  const base =
+    "flex w-full items-center gap-2 overflow-x-auto rounded-full border-4 border-[var(--color-ink)] bg-[var(--color-paper)]/95 px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--color-ink)] shadow-[6px_6px_0_var(--color-ink)] backdrop-blur-sm sm:gap-3 sm:px-6 sm:py-3 sm:text-xs sm:tracking-[0.25em] lg:overflow-visible";
+  return isNarrow ? `${base} snap-x snap-mandatory` : `${base} justify-end`;
+}
+
+function navLinkClasses() {
+  return "whitespace-nowrap transition-colors hover:text-[var(--color-magenta)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-magenta)]";
+}
+
+function sectionShell() {
+  // helper bo sekcje mają tendencyjki do powtarzania klas // lenistwo? może
+  return "relative flex flex-col gap-6 rounded-[var(--radius-card)] border-4 border-[var(--color-ink)] bg-[var(--color-paper)] p-6 sm:gap-8 sm:p-8 lg:p-10 brutal-shadow";
+}
+
 export default function Home() {
   const { translations } = useLanguage();
   const projects = loadProjects();
   const [latestProject] = projects;
+  const isMobile = useIsMobile(640);
   const spotlightProject =
     latestProject ??
     ({
@@ -120,68 +143,64 @@ export default function Home() {
     },
   ];
 
-  return (
-    <>
-      <h1 className="sr-only">
-        Adam Krupa — Developer z Polski | pcstyle.dev Portfolio | AI Developer & Creative Coder
-      </h1>
-      <main className="relative isolate mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-24 px-6 pb-40 pt-16 sm:px-10 lg:px-16">
-        <SmoothBackground />
-        <nav role="navigation" aria-label="Main navigation" className="fixed top-6 left-1/2 z-50 mb-4 flex w-full max-w-6xl -translate-x-1/2 justify-end px-6 sm:px-10 lg:px-16">
-          <ul className="flex flex-wrap items-center gap-3 rounded-full border-4 border-[var(--color-ink)] bg-[var(--color-paper)]/95 backdrop-blur-sm px-5 py-3 text-xs font-semibold uppercase tracking-[0.35em] shadow-[6px_6px_0_var(--color-ink)] sm:text-sm">
-            <li>
-              <a className="transition-colors hover:text-[var(--color-magenta)]" href="#intro">
-                {translations.nav.intro}
-              </a>
-            </li>
-            <li>
-              <a className="transition-colors hover:text-[var(--color-magenta)]" href="#latest">
-                {translations.nav.latestDrop}
-              </a>
-            </li>
-            <li>
-              <a className="transition-colors hover:text-[var(--color-magenta)]" href="#projects">
-                {translations.nav.projects}
-              </a>
-            </li>
-            <li>
-              <a className="transition-colors hover:text-[var(--color-magenta)]" href="#lab">
-                {translations.nav.labNotes}
-              </a>
-            </li>
-            <li>
-              <a className="transition-colors hover:text-[var(--color-magenta)]" href="#faq">
-                {translations.nav.faq}
-              </a>
-            </li>
-            <li>
-              <LanguageToggle />
-            </li>
-          </ul>
-        </nav>
+    return (
+      <>
+        <h1 className="sr-only">
+          Adam Krupa — Developer z Polski | pcstyle.dev Portfolio | AI Developer & Creative Coder
+        </h1>
+        <main className="relative isolate mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-16 px-4 pb-28 pt-20 sm:gap-20 sm:px-6 sm:pb-32 sm:pt-24 lg:gap-24 lg:px-16 lg:pb-40 lg:pt-28">
+          <SmoothBackground />
+          <nav role="navigation" aria-label="Main navigation" className={navShellClasses()}>
+            <ul className={navListClasses(isMobile)}>
+              <li className="snap-start">
+                <a className={navLinkClasses()} href="#intro">
+                  {translations.nav.intro}
+                </a>
+              </li>
+              <li className="snap-start">
+                <a className={navLinkClasses()} href="#latest">
+                  {translations.nav.latestDrop}
+                </a>
+              </li>
+              <li className="snap-start">
+                <a className={navLinkClasses()} href="#projects">
+                  {translations.nav.projects}
+                </a>
+              </li>
+              <li className="snap-start">
+                <a className={navLinkClasses()} href="#lab">
+                  {translations.nav.labNotes}
+                </a>
+              </li>
+              <li className="snap-start">
+                <a className={navLinkClasses()} href="#faq">
+                  {translations.nav.faq}
+                </a>
+              </li>
+              <li className="snap-end">
+                <LanguageToggle compact />
+              </li>
+            </ul>
+          </nav>
           <ScrollIndicator />
           <Hero />
-          <section
-            id="latest"
-            aria-labelledby="latest-heading"
-            className="relative flex flex-col gap-8 rounded-[var(--radius-card)] border-4 border-[var(--color-ink)] bg-[var(--color-paper)] p-10 brutal-shadow"
-          >
+          <section id="latest" aria-labelledby="latest-heading" className={sectionShell()}>
             <header className="flex flex-col gap-3">
-              <span className="inline-flex w-fit items-center gap-2 rounded-full border-4 border-[var(--color-ink)] bg-[var(--color-yellow)] px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--color-ink)] shadow-[6px_6px_0_var(--color-ink)]">
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border-4 border-[var(--color-ink)] bg-[var(--color-yellow)] px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-[color:var(--color-ink)] shadow-[5px_5px_0_var(--color-ink)] sm:px-4 sm:text-xs sm:tracking-[0.28em]">
                 {translations.latestDrop.label}
               </span>
-              <h2 id="latest-heading" className="text-[clamp(2.4rem,5vw,3.4rem)] font-black uppercase leading-tight text-[color:var(--color-ink)]">
+              <h2 id="latest-heading" className="text-[clamp(2.2rem,5.2vw,3.4rem)] font-black uppercase leading-tight text-[color:var(--color-ink)]">
                 {spotlightProject.title}
               </h2>
             </header>
-            <div className="grid gap-8 md:grid-cols-[1.3fr,1fr]">
-              <p className="text-pretty text-base leading-relaxed text-[color:var(--color-ink)]/90 sm:text-lg">
+            <div className="grid gap-6 md:grid-cols-[1.3fr,1fr] md:gap-8">
+              <p className="text-pretty text-sm leading-relaxed text-[color:var(--color-ink)]/90 sm:text-base">
                 {spotlightProject.description} {translations.latestDrop.descriptionSuffix}
               </p>
-              <div className="flex flex-col gap-4 rounded-[var(--radius-card)] border-4 border-[var(--color-ink)] bg-[var(--color-paper)] p-6 text-sm uppercase tracking-[0.25em] text-[color:var(--color-ink)] shadow-[6px_6px_0_var(--color-ink)]">
+              <div className="flex flex-col gap-4 rounded-[var(--radius-card)] border-4 border-[var(--color-ink)] bg-[var(--color-paper)] p-5 text-xs uppercase tracking-[0.18em] text-[color:var(--color-ink)] shadow-[6px_6px_0_var(--color-ink)] sm:text-sm sm:tracking-[0.24em]">
                 {latestMeta.map((item) => (
                   <div className="flex flex-col gap-2" key={`${spotlightProject.id}-${item.label}`}>
-                    <span className="text-xs opacity-60">{item.label}</span>
+                    <span className="text-[0.7rem] opacity-60 sm:text-xs">{item.label}</span>
                     {item.href ? (
                       <Link
                         href={item.href}
@@ -192,7 +211,7 @@ export default function Home() {
                         {item.value}
                       </Link>
                     ) : (
-                      <span className="font-semibold">{item.value}</span>
+                      <span className="font-semibold text-[color:var(--color-ink)]">{item.value}</span>
                     )}
                   </div>
                 ))}
@@ -202,30 +221,26 @@ export default function Home() {
 
         <ProjectsSection />
 
-        <section
-          id="lab"
-          aria-labelledby="lab-heading"
-          className="relative flex flex-col gap-10 rounded-[var(--radius-card)] border-4 border-[var(--color-ink)] bg-[var(--color-paper)] p-10 brutal-shadow"
-        >
+        <section id="lab" aria-labelledby="lab-heading" className={sectionShell()}>
           <header className="flex flex-col gap-4">
-            <h2 id="lab-heading" className="text-[clamp(2rem,4vw,3rem)] font-black uppercase text-[color:var(--color-ink)]">
+            <h2 id="lab-heading" className="text-[clamp(1.9rem,4vw,3rem)] font-black uppercase text-[color:var(--color-ink)]">
               {translations.explorations.title}
             </h2>
-            <p className="text-pretty text-sm uppercase tracking-[0.3em] text-[color:var(--color-ink)]/70 sm:text-base">
+            <p className="text-pretty text-xs uppercase tracking-[0.22em] text-[color:var(--color-ink)]/70 sm:text-sm sm:tracking-[0.28em]">
               {translations.explorations.subtitle}
             </p>
           </header>
-          <ul className="flex flex-col gap-6">
+          <ul className="flex flex-col gap-5 sm:gap-6">
             {explorations.map((item) => (
               <li
                 key={item.title}
-                className="group flex flex-col gap-4 rounded-[var(--radius-card)] border-4 border-[var(--color-ink)] bg-[var(--color-paper)] p-8 transition-all hover:scale-[1.02] hover:bg-[var(--color-magenta)]/10 hover:shadow-[8px_8px_0_var(--color-magenta)]"
+                className="group flex flex-col gap-3 rounded-[var(--radius-card)] border-4 border-[var(--color-ink)] bg-[var(--color-paper)] p-6 transition-all hover:scale-[1.02] hover:bg-[var(--color-magenta)]/10 hover:shadow-[8px_8px_0_var(--color-magenta)] sm:p-8"
               >
-                <span className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--color-ink)]/70 group-hover:text-[color:var(--color-ink)]">
+                <span className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--color-ink)]/70 group-hover:text-[color:var(--color-ink)] sm:text-xs sm:tracking-[0.3em]">
                   {item.status}
                 </span>
-                <h3 className="text-xl font-black uppercase text-[color:var(--color-ink)] sm:text-2xl">{item.title}</h3>
-                <p className="text-pretty text-base leading-relaxed text-[color:var(--color-ink)]/90">
+                <h3 className="text-lg font-black uppercase text-[color:var(--color-ink)] sm:text-2xl">{item.title}</h3>
+                <p className="text-pretty text-sm leading-relaxed text-[color:var(--color-ink)]/90 sm:text-base">
                   {item.description}
                 </p>
               </li>
@@ -233,32 +248,28 @@ export default function Home() {
           </ul>
         </section>
 
-        <section
-          id="faq"
-          aria-labelledby="faq-heading"
-          className="relative flex flex-col gap-8 rounded-[var(--radius-card)] border-4 border-[var(--color-ink)] bg-[var(--color-paper)] p-10 brutal-shadow"
-        >
+        <section id="faq" aria-labelledby="faq-heading" className={sectionShell()}>
           <header className="flex flex-col gap-3">
-            <h2 id="faq-heading" className="text-[clamp(2.2rem,4.5vw,3.4rem)] font-black uppercase text-[color:var(--color-ink)]">
+            <h2 id="faq-heading" className="text-[clamp(1.9rem,4.5vw,3.3rem)] font-black uppercase text-[color:var(--color-ink)]">
               {translations.faq.title}
             </h2>
             <p className="max-w-[60ch] text-sm text-[color:var(--color-ink)]/80 sm:text-base">
               {translations.faq.subtitle}
             </p>
           </header>
-          <dl className="grid gap-6 md:grid-cols-2">
+          <dl className="grid gap-5 md:grid-cols-2 md:gap-6">
             {faqEntries.map(({ question, answer }, index) => {
               const faqId = `faq-${index}`;
               return (
                 <div
                   key={question}
                   id={faqId}
-                  className="group flex flex-col gap-2 rounded-[var(--radius-card)] border-4 border-[var(--color-ink)] bg-[var(--color-paper)] p-6 transition-colors hover:bg-[var(--color-magenta)]/10"
+                  className="group flex flex-col gap-2 rounded-[var(--radius-card)] border-4 border-[var(--color-ink)] bg-[var(--color-paper)] p-5 transition-colors hover:bg-[var(--color-magenta)]/10 sm:p-6"
                 >
-                  <dt className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--color-ink)]/70">
+                  <dt className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--color-ink)]/70 sm:text-xs sm:tracking-[0.3em]">
                     <a
                       href={`#${faqId}`}
-                      className="hover:text-[var(--color-magenta)] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-magenta)] rounded"
+                      className="rounded transition-colors hover:text-[var(--color-magenta)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-magenta)]"
                       aria-label={`Link to ${question}`}
                     >
                       {question}
