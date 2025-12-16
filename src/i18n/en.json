@@ -76,7 +76,7 @@
       },
       "projects": {
         "question": "What projects do I run?",
-        "answer": "TypeSim, Clock Gallery, AimDrift, PoliCalc, and PixelForge showcase the range: AI typing pipelines, interactive experiences, and tools for students."
+        "answer": "TypeSim, Messenger Desktop, PixelForge, Clock Gallery, Cosmic Cinema, AimDrift, DreamCats, PoliCalc, Math Canvas, and BrosOS — spanning AI tools, desktop apps, creative experiments, and student utilities."
       },
       "stack": {
         "question": "What stack do I use?",
@@ -90,24 +90,44 @@
   },
   "projectsData": {
     "typesim": {
-      "description": "AI-powered Python tool that simulates authentic human typing behaviour with typos, corrections, thinking pauses, and mid-sentence edits to slip past GPTZero-style detectors.",
+      "description": "AI-powered Python tool simulating human typing (typos, pauses, edits) to bypass typing detectors.",
       "tagline": "Human typing simulator — typos, pauses, and edits on command"
     },
-    "clock": {
-      "description": "Creative gallery of animated clocks — doodle, mycelium, particle clouds, neon effects — interactive art timepieces.",
-      "tagline": "Interactive gallery of animated clocks — art in real time"
-    },
-    "driftfield": {
-      "description": "Interactive precision + flow aim trainer testing rhythm, accuracy, reflex — stats, multiple modes, evolving visual styles.",
-      "tagline": "Precision aim trainer — rhythm, accuracy, and reflexes in one"
-    },
-    "kalkulator": {
-      "description": "Grade calculator for Częstochowa University of Technology: PP, ALG, PAM, and more — open source, in Polish.",
-      "tagline": "Grade calculator for CUT students — fast and precise"
+    "messenger-desktop": {
+      "description": "Unofficial desktop client for Facebook Messenger with privacy controls, theming, always-on-top, and UX polish.",
+      "tagline": "Desktop Messenger client — privacy, theming, and polish"
     },
     "pixlab": {
-      "description": "AI-powered image studio: point-and-edit, style transfer, smart retouching, object vanish, pro tools in a modern web interface.",
+      "description": "AI-powered image editing studio: point-and-edit, style transfer, retouching, object removal.",
       "tagline": "AI-powered graphics studio — professional-level photo editing"
+    },
+    "clock": {
+      "description": "Interactive gallery of animated clocks (doodle, mycelium, particle, neon, experimental).",
+      "tagline": "Interactive gallery of animated clocks — art in real time"
+    },
+    "cosmos": {
+      "description": "Procedural documentaries generated in real time using math and code (no video files).",
+      "tagline": "Real-time procedural documentaries — math meets cinema"
+    },
+    "driftfield": {
+      "description": "Precision aim trainer focusing on rhythm, flow, reflex and evolving visuals.",
+      "tagline": "Precision aim trainer — rhythm, accuracy, and reflexes in one"
+    },
+    "dreamcats": {
+      "description": "Real-time multiplayer card game inspired by Rat-a-Tat Cat with UI polish and state sync.",
+      "tagline": "Multiplayer card game — real-time sync and polished UI"
+    },
+    "kalkulator": {
+      "description": "Grade calculators for Politechnika Częstochowska students (PP, ALG, PAM, more planned).",
+      "tagline": "Grade calculator for CUT students — fast and precise"
+    },
+    "math": {
+      "description": "Interactive canvas for solving and visualizing math exercises.",
+      "tagline": "Interactive math canvas — visualize and solve"
+    },
+    "os": {
+      "description": "Browser-based experimental operating system UI.",
+      "tagline": "Experimental OS in your browser — interface playground"
     }
   },
   "contact": {

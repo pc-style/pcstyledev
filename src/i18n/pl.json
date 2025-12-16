@@ -76,7 +76,7 @@
       },
       "projects": {
         "question": "Jakie projekty prowadzę?",
-        "answer": "TypeSim, Clock Gallery, AimDrift, PoliCalc i PixelForge pokazują mój zakres: AI-owe pipeline’y pisania, interaktywne doświadczenia i narzędzia dla studentów."
+        "answer": "TypeSim, Messenger Desktop, PixelForge, Clock Gallery, Cosmic Cinema, AimDrift, DreamCats, PoliCalc, Math Canvas i BrosOS — od narzędzi AI przez desktop apps po kreatywne eksperymenty i utilities dla studentów."
       },
       "stack": {
         "question": "Jakiego stacku używam?",
@@ -93,21 +93,41 @@
       "description": "Pythonowy symulator ludzkiego pisania — literówki, poprawki, pauzy na myślenie i edycje w środku zdania, żeby prześlizgnąć się pod radarem GPTZero.",
       "tagline": "Symulator pisania jak człowiek — literówki i pauzy na zawołanie"
     },
+    "messenger-desktop": {
+      "description": "Nieoficjalny klient desktopowy Facebook Messengera z kontrolami prywatności, themingiem, always-on-top i dopracowanym UX.",
+      "tagline": "Desktopowy klient Messenger — prywatność, theming i poliza"
+    },
+    "pixlab": {
+      "description": "Studio graficzne zasilane AI: point‑and‑edit, transfer stylu, inteligentna retusz, usuwanie obiektów — profesjonalne narzędzia w nowoczesnym interfejsie webowym.",
+      "tagline": "Studio graficzne zasilane AI — profesjonalna edycja zdjęć"
+    },
     "clock": {
-      "description": "Kreatywna galeria animowanych zegarów — doodle, mycelium, chmury cząsteczek, efekty neonowe — interaktywne dzieła sztuki w czasie rzeczywistym.",
+      "description": "Interaktywna galeria animowanych zegarów — doodle, mycelium, chmury cząsteczek, efekty neonowe, eksperymentalne.",
       "tagline": "Interaktywna galeria animowanych zegarów — sztuka w czasie rzeczywistym"
     },
+    "cosmos": {
+      "description": "Proceduralne dokumentary generowane w czasie rzeczywistym używając matematyki i kodu (bez plików wideo).",
+      "tagline": "Dokumentary proceduralne w czasie rzeczywistym — matematyka spotyka kino"
+    },
     "driftfield": {
-      "description": "Interaktywny aim trainer precyzji i flow — testowanie rytmu, celności, refleksu — statystyki, wiele trybów, ewoluujące style wizualne.",
+      "description": "Precyzyjny aim trainer skupiony na rytmie, flow, refleksie i ewoluujących wizualizacjach.",
       "tagline": "Precyzyjny aim trainer — rytm, celność i refleks w jednym"
+    },
+    "dreamcats": {
+      "description": "Karcianka multiplayer w czasie rzeczywistym inspirowana Rat-a-Tat Cat z dopracowanym UI i synchronizacją stanu.",
+      "tagline": "Karcianka multiplayer — synchronizacja w czasie rzeczywistym i dopracowane UI"
     },
     "kalkulator": {
       "description": "Kalkulator ocen dla Politechniki Częstochowskiej: PP, ALG, PAM i więcej — open source, po polsku.",
       "tagline": "Kalkulator ocen dla studentów PCz — szybko i precyzyjnie"
     },
-    "pixlab": {
-      "description": "Studio graficzne zasilane AI: point‑and‑edit, transfer stylu, inteligentna retusz, usuwanie obiektów — profesjonalne narzędzia w nowoczesnym interfejsie webowym.",
-      "tagline": "Studio graficzne zasilane AI — profesjonalna edycja zdjęć"
+    "math": {
+      "description": "Interaktywna płótno do rozwiązywania i wizualizacji zadań matematycznych.",
+      "tagline": "Interaktywne płótno matematyczne — wizualizuj i rozwiązuj"
+    },
+    "os": {
+      "description": "Eksperymentalny interfejs systemu operacyjnego w przeglądarce.",
+      "tagline": "Eksperymentalny OS w przeglądarce — plac zabaw interfejsów"
     }
   },
   "contact": {

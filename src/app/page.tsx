@@ -12,6 +12,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const repoDirectory = {
   typesim: "https://github.com/pc-style/typesim",
+  "messenger-desktop": "https://github.com/pc-style/messenger-desktop",
 } as const;
 
 type LatestMetaItem = {
@@ -27,14 +28,36 @@ function stripProtocol(url: string) {
 
 function pickLatestRole(projectId: string) {
   // zero rocket science, po prostu teksty dopasowane do projektu
-  if (projectId === "typesim") return "AI automation • Python CLI • detection bypass research";
-  return "Creative coding • Motion systems • UX glow-up";
+  const roleMap = {
+    "messenger-desktop": "Desktop development • React Native • Privacy-focused UX",
+    typesim: "AI automation • Python CLI • detection bypass research",
+    pixlab: "AI graphics • Image processing • Web-based creative tools",
+    clock: "Generative art • Animation • Interactive timepieces",
+    cosmos: "Procedural generation • Mathematical visualization • Real-time rendering",
+    driftfield: "Game development • Precision training • Interactive visuals",
+    dreamcats: "Multiplayer gaming • Real-time sync • State management",
+    kalkulator: "Student utilities • Educational tools • Polish localisation",
+    math: "Educational tech • Interactive visualization • Problem solving",
+    os: "Experimental UI • System design • Browser innovation"
+  };
+  return roleMap[projectId as keyof typeof roleMap] || "Creative coding • Motion systems • UX glow-up";
 }
 
 function pickLatestStack(projectId: string) {
   // tak wiem, if else — późna noc, mózg mówi po polsku i english naraz
-  if (projectId === "typesim") return "Python · Typer · Rich TUI · asyncio pipelines · Next.js docs";
-  return "Next.js · Framer Motion · WebGL shader toys · Tailwind v4";
+  const stackMap = {
+    "messenger-desktop": "Electron · React · TypeScript · Native APIs · Modern desktop tooling",
+    typesim: "Python · Typer · Rich TUI · asyncio pipelines · Next.js docs",
+    pixlab: "Next.js · AI APIs · Canvas API · Image processing · WebGL shaders",
+    clock: "React · Framer Motion · Canvas · SVG animations • Creative coding",
+    cosmos: "WebGL · Three.js · Mathematical shaders · Procedural algorithms",
+    driftfield: "React · Canvas · Game physics • Performance optimization",
+    dreamcats: "React · WebSocket · State machines • Real-time sync",
+    kalkulator: "Next.js • Polish localisation • Educational algorithms",
+    math: "Canvas API • Math.js • Interactive algorithms • Visual computing",
+    os: "React • System simulation • UI experimentation • Browser APIs"
+  };
+  return stackMap[projectId as keyof typeof stackMap] || "Next.js · Framer Motion · WebGL shader toys · Tailwind v4";
 }
 
 function findRepo(projectId: string) {
