@@ -1,16 +1,17 @@
 
 import React from 'react';
-import { 
-  Cpu, 
-  Monitor, 
-  Sparkles, 
-  Globe, 
-  Gamepad2, 
-  Zap, 
-  Clock, 
-  Layers, 
-  Calculator, 
-  Box 
+import {
+  Cpu,
+  Monitor,
+  Sparkles,
+  Globe,
+  Gamepad2,
+  Zap,
+  Clock,
+  Layers,
+  Calculator,
+  Box,
+  FileText
 } from 'lucide-react';
 
 export const PROJECTS = [
@@ -26,10 +27,11 @@ export const PROJECTS = [
   },
   {
     id: 'messenger',
-    name: 'Messenger Desktop',
-    desc: 'unofficial desktop client for facebook messenger with advanced privacy and pip mode.',
-    stack: ['Electron', 'React', 'CSS Modules'],
-    github: 'https://github.com/pc-style/messenger-desktop',
+    name: 'Messenger Unleashed',
+    desc: 'supercharged messenger client with read receipt blocking, 17+ themes, and power-user tools.',
+    stack: ['Electron', 'React', 'TypeScript'],
+    link: 'https://unleashed.pcstyle.dev',
+    github: 'https://github.com/pcstyleorg/messenger-desktop',
     status: 'active',
     icon: <Monitor className="w-5 h-5" />
   },
@@ -105,6 +107,15 @@ export const PROJECTS = [
     link: 'https://os.pcstyle.dev',
     status: 'experimental',
     icon: <Box className="w-5 h-5" />
+  },
+  {
+    id: 'paste',
+    name: 'Paste',
+    desc: 'fast pastebin with raw output. visit a url and get raw data instantly.',
+    stack: ['Next.js', 'Convex', 'TypeScript'],
+    link: 'https://paste.pcstyle.dev',
+    status: 'active',
+    icon: <FileText className="w-5 h-5" />
   }
 ];
 
