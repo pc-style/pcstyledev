@@ -1,20 +1,69 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 🎨 Portfolio
 
-# Run and deploy your AI Studio app
+Welcome to my personal portfolio website! Explore my projects, skills, and experience.
 
-This contains everything you need to run your app locally.
+## 🚀 Live Site
 
-View your app in AI Studio: https://ai.studio/apps/drive/1supanh5bKIKBvqEplrMA09fue8Ivo0fk
+Visit the live portfolio: [pcstyledev.vercel.app](https://pcstyledev.vercel.app)
 
-## Run Locally
+## 💻 Tech Stack
 
-**Prerequisites:**  Node.js
+- **Frontend**: React, TypeScript, Next.js, Tailwind CSS
+- - **Backend**: Node.js, Vercel Functions
+  - - **Deployment**: Vercel
+    - - **Design**: Responsive, Modern UI/UX
+     
+      - ## 📋 Features
+     
+      - - ✨ Modern, responsive design
+        - - ⚡ Fast performance optimized for production
+          - - 🎯 Showcase of projects and skills
+            - - 📱 Mobile-friendly interface
+              - - 🔗 Easy navigation and contact options
+               
+                - ## 🛠️ Development
+               
+                - ### Prerequisites
+               
+                - - Node.js 18+
+                  - - npm or yarn
+                   
+                    - ### Installation
+                   
+                    - ```bash
+                      # Install dependencies
+                      npm install
 
+                      # Run development server
+                      npm run dev
+                      ```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+                      The site will be available at `http://localhost:3000`
+
+                      ### Build
+
+                      ```bash
+                      npm run build
+                      npm start
+                      ```
+
+                      ## 📚 Projects Showcased
+
+                      Browse my portfolio to see featured projects including:
+
+                      - **Real-time Multiplayer Games** - Built with React, TypeScript, and Convex
+                      - - **Desktop Applications** - Cross-platform apps with Electron
+                        - - **AI Integration Projects** - Leveraging Gemini API and advanced ML models
+                          - - **CLI Tools** - Practical utilities for developers
+                            - - **Full-stack Applications** - End-to-end web applications
+                             
+                              - ## 🔗 Connect With Me
+                             
+                              - - GitHub: [@pc-style](https://github.com/pc-style)
+                                - - Email: [Contact via portfolio](https://pcstyledev.vercel.app)
+                                  - - Portfolio: [pcstyledev.vercel.app](https://pcstyledev.vercel.app)
+                                   
+                                    - ## 📄 License
+                                   
+                                    - This portfolio project is open source and available under the MIT License.
+                                    - 
