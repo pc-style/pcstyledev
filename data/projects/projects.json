@@ -178,6 +178,7 @@
         "Shiki"
       ],
       "status": "active",
+      "pinned": true,
       "icon": "FileText",
       "github": "https://github.com/pc-style/paste",
       "link": "https://paste.pcstyle.dev",
