@@ -8,6 +8,7 @@ export interface Project {
   link?: string
   github?: string
   status: ProjectStatus
+  pinned?: boolean
   icon: string
   createdAt: string
   updatedAt: string

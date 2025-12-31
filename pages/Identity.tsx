@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Command, Github, Radio, Lock, Unlock } from 'lucide-react';
+import { Command, Github, Lock, Unlock } from 'lucide-react';
 
 export const Identity = () => {
   const [decrypted, setDecrypted] = useState(false);
@@ -66,7 +66,11 @@ export const Identity = () => {
           <div className="absolute -inset-10 border border-[#ff00ff]/10 group-hover:border-[#ff00ff]/30 transition-all group-hover:scale-105 duration-700"></div>
           <div className="bg-[#080808] aspect-square flex items-center justify-center border border-[#ff00ff]/10 shadow-[0_0_100px_rgba(255,0,255,0.05)] relative overflow-hidden group-hover:rotate-1 transition-all">
             <div className="text-center z-10">
-               <Radio size={120} className="text-[#ff00ff] mb-8 mx-auto animate-pulse opacity-80" />
+               <img
+                 src="/pfp.png"
+                 alt="pcstyle profile"
+                 className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 rounded-lg object-cover shadow-[0_0_30px_rgba(255,0,255,0.25)]"
+               />
                <div className="space-y-3">
                  <span className="text-white text-[11px] uppercase font-black tracking-[0.6em] block">uplink_active</span>
                  <span className="text-gray-700 text-[9px] uppercase tracking-widest block font-mono">loc: Czestochowa, PL</span>

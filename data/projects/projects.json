@@ -28,6 +28,7 @@
       "link": "https://unleashed.pcstyle.dev",
       "github": "https://github.com/pcstyleorg/messenger-desktop",
       "status": "active",
+      "pinned": true,
       "icon": "Monitor",
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-01T00:00:00.000Z"
@@ -73,6 +74,7 @@
       ],
       "link": "https://dreamcats.pcstyle.dev",
       "status": "active",
+      "pinned": true,
       "icon": "Gamepad2",
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-01T00:00:00.000Z"
@@ -147,21 +149,6 @@
       "updatedAt": "2025-01-01T00:00:00.000Z"
     },
     {
-      "id": "paste",
-      "name": "Paste",
-      "desc": "fast pastebin with raw output. visit a url and get raw data instantly.",
-      "stack": [
-        "Next.js",
-        "Convex",
-        "TypeScript"
-      ],
-      "link": "https://paste.pcstyle.dev",
-      "status": "active",
-      "icon": "FileText",
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "updatedAt": "2025-01-01T00:00:00.000Z"
-    },
-    {
       "id": "ytcon",
       "name": "YTCon",
       "desc": "a beautiful web application that lets you download youtube audio and split it into separate stems using ai-powered source separation",
@@ -180,5 +167,5 @@
       "updatedAt": "2025-12-31T22:11:57.756Z"
     }
   ],
-  "lastUpdated": "2025-12-31T22:11:57.757Z"
+  "lastUpdated": "2025-12-31T22:34:48.878Z"
 }
