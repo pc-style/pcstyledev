@@ -165,7 +165,25 @@
       "link": null,
       "createdAt": "2025-12-31T22:11:57.756Z",
       "updatedAt": "2025-12-31T22:11:57.756Z"
+    },
+    {
+      "id": "fast-paste",
+      "name": "FastPaste",
+      "desc": "a minimalist, high-performance pastebin",
+      "stack": [
+        "Next.js",
+        "React",
+        "Convex",
+        "Bun",
+        "Shiki"
+      ],
+      "status": "active",
+      "icon": "FileText",
+      "github": "https://github.com/pc-style/paste",
+      "link": "https://paste.pcstyle.dev",
+      "createdAt": "2025-12-31T22:35:08.814Z",
+      "updatedAt": "2025-12-31T22:35:08.814Z"
     }
   ],
-  "lastUpdated": "2025-12-31T22:34:48.878Z"
+  "lastUpdated": "2025-12-31T22:35:08.816Z"
 }
