@@ -3,6 +3,7 @@ import { writeFile, access } from 'fs/promises'
 import { input, confirm, select } from '@inquirer/prompts'
 import { gatherProjectFiles, buildContext, analyzeWithGemini } from '../lib/gemini'
 import { addProject } from '../lib/projects'
+import { autoDeploy } from '../lib/deploy'
 import { ensureGeminiKey } from '../utils/config'
 import type { Project, ProjectStatus, ProjFile } from '../lib/types'
 
@@ -98,11 +99,9 @@ export async function add(dirname: string) {
     try {
       await addProject(project)
       console.log('synced to projects.json!')
-      console.log('\nto deploy, commit and push the changes:')
-      console.log('  cd ~/projects/pcstyledev/pcstyledev')
-      console.log('  git add . && git commit -m "add project: ' + analysis.name + '" && git push')
+      await autoDeploy(`add project: ${analysis.name}`)
     } catch (e) {
-      console.error(`error syncing: ${e}`)
+      console.error(`error: ${e}`)
     }
   }
 }

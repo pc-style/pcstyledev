@@ -1,5 +1,6 @@
 import { select } from '@inquirer/prompts'
 import { loadProjects, getProject, updateProject } from '../lib/projects'
+import { autoDeploy } from '../lib/deploy'
 import type { ProjectStatus } from '../lib/types'
 
 const STATUS_OPTIONS: ProjectStatus[] = ['active', 'maintenance', 'experimental', 'prototype', 'disabled']
@@ -45,5 +46,5 @@ export async function changestatus(name: string) {
 
   await updateProject(project.id, { status: newStatus })
   console.log(`\nchanged ${project.name} status: ${project.status} → ${newStatus}`)
-  console.log('\nto deploy, commit and push the changes')
+  await autoDeploy(`${project.name}: ${project.status} → ${newStatus}`)
 }

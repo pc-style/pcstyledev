@@ -1,5 +1,6 @@
 import { confirm, select } from '@inquirer/prompts'
 import { loadProjects, getProject, deleteProject as deleteProjectData } from '../lib/projects'
+import { autoDeploy } from '../lib/deploy'
 
 interface DeleteOptions {
   yes?: boolean
@@ -44,7 +45,8 @@ export async function deleteProject(name: string, options: DeleteOptions) {
     }
   }
 
+  const projectName = project.name
   await deleteProjectData(project.id)
-  console.log(`\ndeleted ${project.name}`)
-  console.log('\nto deploy, commit and push the changes')
+  console.log(`\ndeleted ${projectName}`)
+  await autoDeploy(`delete project: ${projectName}`)
 }

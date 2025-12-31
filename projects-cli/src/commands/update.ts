@@ -1,5 +1,6 @@
 import { input, select, confirm } from '@inquirer/prompts'
 import { loadProjects, getProject, updateProject as updateProjectData } from '../lib/projects'
+import { autoDeploy } from '../lib/deploy'
 import type { ProjectStatus } from '../lib/types'
 
 const STATUS_OPTIONS: ProjectStatus[] = ['active', 'maintenance', 'experimental', 'prototype', 'disabled']
@@ -65,6 +66,7 @@ export async function update(name: string, options: UpdateOptions) {
 
     const updated = await updateProjectData(project.id, { [field]: newValue })
     console.log(`\nupdated ${field} for ${updated.name}`)
+    await autoDeploy(`update ${updated.name}: ${field}`)
     return
   }
 
@@ -97,7 +99,7 @@ export async function update(name: string, options: UpdateOptions) {
   if (shouldSave) {
     const updated = await updateProjectData(project.id, updates)
     console.log(`\nupdated ${updated.name}!`)
-    console.log('\nto deploy, commit and push the changes')
+    await autoDeploy(`update project: ${updated.name}`)
   } else {
     console.log('cancelled')
   }

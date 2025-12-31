@@ -4,7 +4,11 @@
       "id": "typesim",
       "name": "TypeSim",
       "desc": "ai-powered python tool simulating human typing patterns to bypass typing detectors.",
-      "stack": ["Python", "AI/ML", "Automation"],
+      "stack": [
+        "Python",
+        "AI/ML",
+        "Automation"
+      ],
       "link": "https://typesim.pcstyle.dev",
       "github": "https://github.com/pc-style/typesim",
       "status": "active",
@@ -16,7 +20,11 @@
       "id": "messenger",
       "name": "Messenger Unleashed",
       "desc": "supercharged messenger client with read receipt blocking, 17+ themes, and power-user tools.",
-      "stack": ["Electron", "React", "TypeScript"],
+      "stack": [
+        "Electron",
+        "React",
+        "TypeScript"
+      ],
       "link": "https://unleashed.pcstyle.dev",
       "github": "https://github.com/pcstyleorg/messenger-desktop",
       "status": "active",
@@ -28,7 +36,11 @@
       "id": "pixelforge",
       "name": "PixelForge (PixLab)",
       "desc": "ai-powered image editing studio: point-and-edit, style transfer, and object removal.",
-      "stack": ["PyTorch", "React", "FastAPI"],
+      "stack": [
+        "PyTorch",
+        "React",
+        "FastAPI"
+      ],
       "link": "https://pixlab.pcstyle.dev",
       "status": "maintenance",
       "icon": "Sparkles",
@@ -39,7 +51,11 @@
       "id": "cosmic",
       "name": "Cosmic Cinema",
       "desc": "procedural documentaries generated in real time using pure math and glsl shaders.",
-      "stack": ["Three.js", "GLSL", "Procedural"],
+      "stack": [
+        "Three.js",
+        "GLSL",
+        "Procedural"
+      ],
       "link": "https://cosmos.pcstyle.dev",
       "status": "experimental",
       "icon": "Globe",
@@ -50,7 +66,11 @@
       "id": "sen",
       "name": "Sen – The Card Game",
       "desc": "real-time multiplayer card game focused on high-end ui polish and state sync.",
-      "stack": ["Socket.io", "Node.js", "Canvas"],
+      "stack": [
+        "Socket.io",
+        "Node.js",
+        "Canvas"
+      ],
       "link": "https://dreamcats.pcstyle.dev",
       "status": "active",
       "icon": "Gamepad2",
@@ -61,7 +81,10 @@
       "id": "aimdrift",
       "name": "AimDrift (Driftfield)",
       "desc": "precision aim trainer focusing on rhythm, flow, and evolving generative visuals.",
-      "stack": ["WebGL", "Vanilla JS"],
+      "stack": [
+        "WebGL",
+        "Vanilla JS"
+      ],
       "status": "disabled",
       "icon": "Zap",
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -71,7 +94,10 @@
       "id": "clocks",
       "name": "Clock Gallery",
       "desc": "interactive gallery of animated clocks using mycelium and particle physics models.",
-      "stack": ["p5.js", "Generative Art"],
+      "stack": [
+        "p5.js",
+        "Generative Art"
+      ],
       "link": "https://clock.pcstyle.dev",
       "status": "experimental",
       "icon": "Clock",
@@ -82,7 +108,10 @@
       "id": "math",
       "name": "Math Canvas",
       "desc": "interactive workspace for solving and visualizing complex mathematical exercises.",
-      "stack": ["KaTeX", "React-Canvas"],
+      "stack": [
+        "KaTeX",
+        "React-Canvas"
+      ],
       "link": "https://math.pcstyle.dev",
       "status": "prototype",
       "icon": "Layers",
@@ -93,7 +122,10 @@
       "id": "policalc",
       "name": "PoliCalc (Kalkulator PCz)",
       "desc": "specialized grade calculators for politechnika częstochowska students.",
-      "stack": ["React", "PWA"],
+      "stack": [
+        "React",
+        "PWA"
+      ],
       "link": "https://kalkulator.pcstyle.dev",
       "status": "active",
       "icon": "Calculator",
@@ -104,7 +136,10 @@
       "id": "brosos",
       "name": "BrosOS",
       "desc": "browser-based experimental operating system ui and window management.",
-      "stack": ["Custom Kernel", "UI Kit"],
+      "stack": [
+        "Custom Kernel",
+        "UI Kit"
+      ],
       "link": "https://os.pcstyle.dev",
       "status": "experimental",
       "icon": "Box",
@@ -115,13 +150,35 @@
       "id": "paste",
       "name": "Paste",
       "desc": "fast pastebin with raw output. visit a url and get raw data instantly.",
-      "stack": ["Next.js", "Convex", "TypeScript"],
+      "stack": [
+        "Next.js",
+        "Convex",
+        "TypeScript"
+      ],
       "link": "https://paste.pcstyle.dev",
       "status": "active",
       "icon": "FileText",
       "createdAt": "2025-01-01T00:00:00.000Z",
       "updatedAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "ytcon",
+      "name": "YTCon",
+      "desc": "a beautiful web application that lets you download youtube audio and split it into separate stems using ai-powered source separation",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "Python",
+        "Demucs"
+      ],
+      "status": "active",
+      "icon": "Cpu",
+      "github": "https://github.com/pc-style/ytconapp.git",
+      "link": null,
+      "createdAt": "2025-12-31T22:11:57.756Z",
+      "updatedAt": "2025-12-31T22:11:57.756Z"
     }
   ],
-  "lastUpdated": "2025-01-01T00:00:00.000Z"
+  "lastUpdated": "2025-12-31T22:11:57.757Z"
 }
