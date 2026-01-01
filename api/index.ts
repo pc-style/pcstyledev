@@ -20,6 +20,15 @@ const projects: Project[] = (projectsData as ProjectsData).projects
 
 const app = new Hono()
 
+// Validate environment variables
+const requiredEnvVars = ['WAKATIME_API_KEY', 'GITHUB_TOKEN', 'GITHUB_USERNAME'] as const
+type RequiredEnvVar = typeof requiredEnvVars[number]
+
+function validateEnv(): { valid: boolean; missing: string[] } {
+  const missing = requiredEnvVars.filter(key => !process.env[key])
+  return { valid: missing.length === 0, missing }
+}
+
 // Global logger middleware
 app.use('*', async (c, next) => {
   const requestId = Math.random().toString(36).substring(7)
@@ -100,27 +109,67 @@ async function fetchWithRetry(url: string, options: RequestInit = {}): Promise<R
 // Routes
 const routes = new Hono().basePath('/api')
 
-routes.get('/health', (c) => c.json({ status: 'ok', runtime: 'edge' }))
+routes.get('/health', (c) => {
+  const envStatus = validateEnv()
+  return c.json({
+    status: envStatus.valid ? 'ok' : 'degraded',
+    runtime: 'edge',
+    timestamp: new Date().toISOString(),
+    credentials: {
+      configured: envStatus.valid,
+      missing: envStatus.missing
+    }
+  }, envStatus.valid ? 200 : 503)
+})
 
-routes.get('/projects', (c) => c.json(projects))
+// Middleware to protect stats routes from missing credentials
+routes.use('/wakatime/*', async (c, next) => {
+  if (!process.env.WAKATIME_API_KEY) {
+    console.error('[API] Missing WAKATIME_API_KEY')
+    return c.json({ error: 'System misconfigured: WakaTime API key missing' }, 500)
+  }
+  await next()
+})
+
+routes.use('/github/*', async (c, next) => {
+  if (!process.env.GITHUB_TOKEN || !process.env.GITHUB_USERNAME) {
+    console.error('[API] Missing GitHub credentials')
+    return c.json({ error: 'System misconfigured: GitHub credentials missing' }, 500)
+  }
+  await next()
+})
+
+routes.get('/projects', (c) => {
+  c.header('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
+  return c.json(projects)
+})
 
 routes.get('/projects/:id', (c) => {
   const project = projects.find(p => p.id === c.req.param('id'))
-  return project ? c.json(project) : c.json({ error: 'not found' }, 404)
+  if (project) {
+    c.header('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
+    return c.json(project)
+  }
+  return c.json({ error: 'not found' }, 404)
 })
 
-routes.get('/projects/meta', (c) => c.json({
-  count: projects.length,
-  lastUpdated: (projectsData as ProjectsData).lastUpdated
-}))
+routes.get('/projects/meta', (c) => {
+  c.header('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
+  return c.json({
+    count: projects.length,
+    lastUpdated: (projectsData as ProjectsData).lastUpdated
+  })
+})
 
 // WakaTime
 routes.get('/wakatime/summary', async (c) => {
-  const apiKey = process.env.WAKATIME_API_KEY
-  if (!apiKey) return c.json({ error: 'missing api key' }, 500)
+  const apiKey = process.env.WAKATIME_API_KEY!
 
   const cached = getCached<WakaTimeSummary>('wakatime:summary')
-  if (cached) return c.json(cached)
+  if (cached) {
+    c.header('Cache-Control', `public, s-maxage=${DEFAULT_CACHE_TTL / 1000}, stale-while-revalidate=${DEFAULT_CACHE_TTL / 2000}`)
+    return c.json(cached)
+  }
 
   try {
     const auth = btoa(`${apiKey}:`)
@@ -175,6 +224,7 @@ routes.get('/wakatime/summary', async (c) => {
     }
 
     setCache('wakatime:summary', summary)
+    c.header('Cache-Control', `public, s-maxage=${DEFAULT_CACHE_TTL / 1000}, stale-while-revalidate=${DEFAULT_CACHE_TTL / 2000}`)
     return c.json(summary)
   } catch (err: any) {
     return c.json({ error: err.message }, 500)
@@ -182,11 +232,13 @@ routes.get('/wakatime/summary', async (c) => {
 })
 
 routes.get('/wakatime/status', async (c) => {
-  const apiKey = process.env.WAKATIME_API_KEY
-  if (!apiKey) return c.json({ error: 'missing api key' }, 500)
+  const apiKey = process.env.WAKATIME_API_KEY!
 
   const cached = getCached<WakaTimeStatus>('wakatime:status')
-  if (cached) return c.json(cached)
+  if (cached) {
+    c.header('Cache-Control', `public, s-maxage=${DEFAULT_CACHE_TTL / 1000}, stale-while-revalidate=${DEFAULT_CACHE_TTL / 2000}`)
+    return c.json(cached)
+  }
 
   try {
     const auth = btoa(`${apiKey}:`)
@@ -208,6 +260,7 @@ routes.get('/wakatime/status', async (c) => {
     }
 
     setCache('wakatime:status', status)
+    c.header('Cache-Control', `public, s-maxage=${DEFAULT_CACHE_TTL / 1000}, stale-while-revalidate=${DEFAULT_CACHE_TTL / 2000}`)
     return c.json(status)
   } catch (err: any) {
     return c.json({ error: err.message }, 500)
@@ -216,12 +269,14 @@ routes.get('/wakatime/status', async (c) => {
 
 // GitHub
 routes.get('/github/contributions', async (c) => {
-  const token = process.env.GITHUB_TOKEN
-  const username = process.env.GITHUB_USERNAME
-  if (!token || !username) return c.json({ error: 'missing github credentials' }, 500)
+  const token = process.env.GITHUB_TOKEN!
+  const username = process.env.GITHUB_USERNAME!
 
   const cached = getCached<GitHubContributions>('github:contributions')
-  if (cached) return c.json(cached)
+  if (cached) {
+    c.header('Cache-Control', `public, s-maxage=${GH_CACHE_TTL / 1000}, stale-while-revalidate=${GH_CACHE_TTL / 2000}`)
+    return c.json(cached)
+  }
 
   try {
     const query = `
@@ -269,6 +324,7 @@ routes.get('/github/contributions', async (c) => {
     }
 
     setCache('github:contributions', contributions, GH_CACHE_TTL)
+    c.header('Cache-Control', `public, s-maxage=${GH_CACHE_TTL / 1000}, stale-while-revalidate=${GH_CACHE_TTL / 2000}`)
     return c.json(contributions)
   } catch (err: any) {
     return c.json({ error: err.message }, 500)
@@ -276,12 +332,14 @@ routes.get('/github/contributions', async (c) => {
 })
 
 routes.get('/github/stats', async (c) => {
-  const token = process.env.GITHUB_TOKEN
-  const username = process.env.GITHUB_USERNAME
-  if (!token || !username) return c.json({ error: 'missing github credentials' }, 500)
+  const token = process.env.GITHUB_TOKEN!
+  const username = process.env.GITHUB_USERNAME!
 
   const cached = getCached<GitHubStats>('github:stats')
-  if (cached) return c.json(cached)
+  if (cached) {
+    c.header('Cache-Control', `public, s-maxage=${GH_CACHE_TTL / 1000}, stale-while-revalidate=${GH_CACHE_TTL / 2000}`)
+    return c.json(cached)
+  }
 
   try {
     const userRes = await fetchWithRetry(`https://api.github.com/users/${username}`, {
@@ -367,6 +425,7 @@ routes.get('/github/stats', async (c) => {
     }
 
     setCache('github:stats', stats, GH_CACHE_TTL)
+    c.header('Cache-Control', `public, s-maxage=${GH_CACHE_TTL / 1000}, stale-while-revalidate=${GH_CACHE_TTL / 2000}`)
     return c.json(stats)
   } catch (err: any) {
     return c.json({ error: err.message }, 500)
