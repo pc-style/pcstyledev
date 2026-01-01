@@ -10,11 +10,13 @@ import { BootSequence } from './components/ui/BootSequence';
 import { CRTOverlay } from './components/ui/CRTOverlay';
 import { AudioVisualizer } from './components/ui/AudioVisualizer';
 import { HexClock } from './components/ui/HexClock';
+import { LiveCodingStatus } from './components/ui/LiveCodingStatus';
 import { MatrixBackground } from './components/layout/MatrixBackground';
 
 import { Projects } from './pages/Projects';
 import { Terminal } from './pages/Terminal';
 import { Identity } from './pages/Identity';
+import { Stats } from './pages/Stats';
 
 function Layout({ 
   soundEnabled, 
@@ -53,6 +55,7 @@ function Layout({
                   <div className="flex items-center gap-2 text-[9px] text-[#ff00ff] uppercase font-black tracking-widest">
                     <Database size={10} /> DB: SYNCED
                   </div>
+                  <LiveCodingStatus />
                 </div>
               </div>
             </div>
@@ -61,6 +64,7 @@ function Layout({
               {[
                 { path: '/', label: 'projects' },
                 { path: '/terminal', label: 'terminal' },
+                { path: '/stats', label: 'stats' },
                 { path: '/identity', label: 'identity' }
               ].map(item => {
                 const isActive = (item.path === '/' && activeTab === 'projects') || activeTab === item.label;
@@ -223,6 +227,7 @@ export default function App() {
             }>
               <Route index element={<Projects />} />
               <Route path="terminal" element={<Terminal />} />
+              <Route path="stats" element={<Stats />} />
               <Route path="identity" element={<Identity />} />
             </Route>
           </Routes>

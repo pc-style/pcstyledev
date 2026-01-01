@@ -177,7 +177,7 @@ export const Terminal = () => {
 
     switch(cmd) {
       case 'help':
-        log({ type: 'sys', content: 'commands: ls, cd, cat, pwd, clear, whoami, date, projects, hack, sudo, reboot, id_card' });
+        log({ type: 'sys', content: 'commands: ls, cd, cat, pwd, clear, whoami, date, projects, wakatime, hack, sudo, reboot, id_card' });
         break;
 
       case 'clear':
@@ -267,6 +267,52 @@ export const Terminal = () => {
       case 'projects':
         log({ type: 'sys', content: 'Accessing Project Artifacts...' });
         log({ type: 'success', content: PROJECTS.map(p => `> ${p.name} [${p.status}]`).join('\n') });
+        break;
+
+      case 'wakatime':
+      case 'waka':
+        log({ type: 'sys', content: 'Fetching WakaTime stats...' });
+        fetch('/api/wakatime/summary')
+          .then(res => res.json())
+          .then(data => {
+            if (data.error) {
+              setHistory(h => [...h, { type: 'error', content: `wakatime: ${data.error}` }]);
+              return;
+            }
+
+            const formatTime = (secs: number) => {
+              const h = Math.floor(secs / 3600);
+              const m = Math.floor((secs % 3600) / 60);
+              return h > 0 ? `${h}h ${m}m` : `${m}m`;
+            };
+
+            const makeBar = (pct: number) => {
+              const filled = Math.round(pct / 6.25);
+              return '█'.repeat(filled) + '░'.repeat(16 - filled);
+            };
+
+            const langs = (data.languages || []).slice(0, 5).map((l: { name: string; percent: number }) =>
+              `  ${l.name.padEnd(12)} ${makeBar(l.percent)} ${String(l.percent).padStart(3)}%`
+            ).join('\n');
+
+            const output = `
+WAKATIME_STATS_v1.0
+===================
+TOTAL_TIME: ${formatTime(data.totalSeconds)} (7d)
+DAILY_AVG:  ${formatTime(data.dailyAverage)}
+
+LANGUAGES:
+${langs || '  No data available'}
+
+BEST_DAY: ${data.bestDay ? `${data.bestDay.date} (${formatTime(data.bestDay.seconds)})` : 'N/A'}
+RANGE: ${data.range?.start || '?'} — ${data.range?.end || '?'}
+`.trim();
+
+            setHistory(h => [...h, { type: 'success', content: output }]);
+          })
+          .catch(() => {
+            setHistory(h => [...h, { type: 'error', content: 'wakatime: failed to fetch stats' }]);
+          });
         break;
 
       case 'whoami':

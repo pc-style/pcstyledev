@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Command, Github, Lock, Unlock } from 'lucide-react';
+import { Github, Lock, Unlock } from 'lucide-react';
+import { WakaTimeSummaryCard } from '../components/ui/WakaTimeSummaryCard';
 
 export const Identity = () => {
   const [decrypted, setDecrypted] = useState(false);
@@ -78,6 +79,11 @@ export const Identity = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* coding stats */}
+      <div className="mt-16 lg:mt-24">
+        <WakaTimeSummaryCard />
       </div>
     </div>
   );
