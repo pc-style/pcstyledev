@@ -45,5 +45,5 @@ export const AudioVisualizer = ({ synth, isActive }: { synth: Synth | null, isAc
 
   if (!isActive) return <div className="h-8 w-20 bg-gray-900/50 rounded border border-gray-800 flex items-center justify-center opacity-50"><div className="w-full h-[1px] bg-red-500/50"></div></div>;
 
-  return <canvas ref={canvasRef} width={80} height={32} className="opacity-80 mix-blend-screen" />;
+  return <canvas ref={canvasRef} width={80} height={32} className="opacity-80 mix-blend-screen w-20 h-8" />;
 };

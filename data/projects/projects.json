@@ -23,7 +23,8 @@
       "stack": [
         "Electron",
         "React",
-        "TypeScript"
+        "TypeScript",
+        "Tailwind CSS"
       ],
       "link": "https://unleashed.pcstyle.dev",
       "github": "https://github.com/pcstyleorg/messenger-desktop",
@@ -38,9 +39,10 @@
       "name": "PixelForge (PixLab)",
       "desc": "ai-powered image editing studio: point-and-edit, style transfer, and object removal.",
       "stack": [
-        "PyTorch",
         "React",
-        "FastAPI"
+        "Vite",
+        "TypeScript",
+        "Tailwind CSS"
       ],
       "link": "https://pixlab.pcstyle.dev",
       "status": "maintenance",
@@ -68,9 +70,11 @@
       "name": "Sen – The Card Game",
       "desc": "real-time multiplayer card game focused on high-end ui polish and state sync.",
       "stack": [
-        "Socket.io",
-        "Node.js",
-        "Canvas"
+        "Vite",
+        "React",
+        "Tailwind CSS",
+        "Convex",
+        "TypeScript"
       ],
       "link": "https://dreamcats.pcstyle.dev",
       "status": "active",
@@ -85,7 +89,7 @@
       "desc": "precision aim trainer focusing on rhythm, flow, and evolving generative visuals.",
       "stack": [
         "WebGL",
-        "Vanilla JS"
+        "JavaScript"
       ],
       "status": "disabled",
       "icon": "Zap",
@@ -97,8 +101,11 @@
       "name": "Clock Gallery",
       "desc": "interactive gallery of animated clocks using mycelium and particle physics models.",
       "stack": [
-        "p5.js",
-        "Generative Art"
+        "React",
+        "Vite",
+        "TypeScript",
+        "Generative Art",
+        "Tailwind CSS"
       ],
       "link": "https://clock.pcstyle.dev",
       "status": "experimental",
@@ -111,8 +118,11 @@
       "name": "Math Canvas",
       "desc": "interactive workspace for solving and visualizing complex mathematical exercises.",
       "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
         "KaTeX",
-        "React-Canvas"
+        "TypeScript"
       ],
       "link": "https://math.pcstyle.dev",
       "status": "prototype",
@@ -125,8 +135,10 @@
       "name": "PoliCalc (Kalkulator PCz)",
       "desc": "specialized grade calculators for politechnika częstochowska students.",
       "stack": [
+        "Next.js",
         "React",
-        "PWA"
+        "Tailwind CSS",
+        "TypeScript"
       ],
       "link": "https://kalkulator.pcstyle.dev",
       "status": "active",
@@ -139,8 +151,10 @@
       "name": "BrosOS",
       "desc": "browser-based experimental operating system ui and window management.",
       "stack": [
-        "Custom Kernel",
-        "UI Kit"
+        "React",
+        "Vite",
+        "TypeScript",
+        "Tailwind CSS"
       ],
       "link": "https://os.pcstyle.dev",
       "status": "experimental",
@@ -156,8 +170,10 @@
         "Next.js",
         "React",
         "Tailwind CSS",
+        "Bun",
         "Python",
-        "Demucs"
+        "Demucs",
+        "TypeScript"
       ],
       "status": "active",
       "icon": "Cpu",
@@ -175,7 +191,9 @@
         "React",
         "Convex",
         "Bun",
-        "Shiki"
+        "Shiki",
+        "Tailwind CSS",
+        "TypeScript"
       ],
       "status": "active",
       "pinned": true,
@@ -184,7 +202,25 @@
       "link": "https://paste.pcstyle.dev",
       "createdAt": "2025-12-31T22:35:08.814Z",
       "updatedAt": "2025-12-31T22:35:08.814Z"
+    },
+    {
+      "id": "pcstyledev",
+      "name": "Portfolio",
+      "desc": "a personal portfolio website to showcase projects, skills, and experience",
+      "stack": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Hono"
+      ],
+      "status": "active",
+      "icon": "Monitor",
+      "github": "https://github.com/pc-style/pcstyledev",
+      "link": "https://pcstyle.dev",
+      "createdAt": "2026-01-01T00:28:05.514Z",
+      "updatedAt": "2026-01-01T00:28:05.514Z"
     }
   ],
-  "lastUpdated": "2025-12-31T22:35:08.816Z"
+  "lastUpdated": "2026-01-01T00:28:05.518Z"
 }

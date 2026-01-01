@@ -6,6 +6,7 @@ import { readFileSync, existsSync } from 'fs'
 export const REPO_PATH = process.env.PCSTYLE_REPO_PATH || join(homedir(), 'projects/pcstyledev/pcstyledev')
 
 export const PROJECTS_JSON_PATH = join(REPO_PATH, 'data/projects/projects.json')
+export const STACK_CANONICAL_PATH = join(REPO_PATH, 'data/projects/stack-canonical.json')
 
 // load .env.local from repo root or cli directory
 function loadEnvLocal(): Record<string, string> {

@@ -34,7 +34,7 @@ function Layout({
       <div className={`relative z-10 transition-all duration-1000`}>
         {/* Navigation / Top Bar */}
         <header className="border-b border-[#ff00ff]/20 bg-black/80 backdrop-blur-xl sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6">
             <div className="flex items-center gap-6 group">
               <div 
                 onClick={handleLogoClick}
@@ -57,7 +57,7 @@ function Layout({
               </div>
             </div>
 
-            <nav className="flex items-center gap-2 md:gap-12">
+            <nav className="flex items-center gap-2 sm:gap-3 md:gap-6 lg:gap-10">
               {[
                 { path: '/', label: 'projects' },
                 { path: '/terminal', label: 'terminal' },
@@ -99,19 +99,19 @@ function Layout({
           </div>
         </header>
 
-        <main className="max-w-7xl mx-auto px-6 py-12 md:py-24 relative min-h-[80vh]">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-24 relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh]">
           <Outlet context={{ soundEnabled, synth, addNotification }} />
         </main>
 
-        <footer className="p-20 border-t border-[#ff00ff]/10">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+        <footer className="p-8 sm:p-12 md:p-20 border-t border-[#ff00ff]/10">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8 md:gap-10">
             <div className="flex flex-col items-center md:items-start gap-3">
               <p className="text-[12px] text-[#ff00ff] font-black uppercase tracking-[0.5em] opacity-30">
                 &copy; 2025 pcstyle.dev
               </p>
               <span className="text-[10px] text-gray-800 uppercase tracking-widest font-mono">protocol_reserved: 777-99-ALPHA</span>
             </div>
-            <div className="flex gap-16 text-gray-700">
+            <div className="flex gap-6 sm:gap-10 md:gap-16 text-gray-700">
                {['privacy', 'network', 'source'].map(link => (
                  <span key={link} className="text-[10px] uppercase font-black cursor-none hover:text-[#ff00ff] transition-all tracking-[0.3em]">
                    {link}

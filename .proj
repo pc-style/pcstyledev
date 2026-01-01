@@ -1,0 +1,16 @@
+{
+  "id": "pcstyledev",
+  "name": "Portfolio",
+  "desc": "a personal portfolio website to showcase projects, skills, and experience",
+  "stack": [
+    "React",
+    "TypeScript",
+    "Vite",
+    "Tailwind CSS",
+    "Hono"
+  ],
+  "status": "active",
+  "icon": "Monitor",
+  "github": "https://github.com/pc-style/pcstyledev",
+  "link": "https://pcstyle.dev"
+}

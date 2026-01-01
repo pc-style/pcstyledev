@@ -27,13 +27,13 @@ export const Identity = () => {
 
   return (
     <div className="max-w-6xl mx-auto py-10 md:py-24 animate-fadeIn">
-      <div className="grid lg:grid-cols-2 gap-24 items-center">
+      <div className="grid lg:grid-cols-2 gap-10 md:gap-16 lg:gap-24 items-center">
         <div className="space-y-12">
           <div className="flex items-center gap-6">
             <div className="h-[2px] w-12 bg-[#ff00ff]"></div>
             <span className="text-[#ff00ff] text-[10px] uppercase font-black tracking-[1em]">root_access</span>
           </div>
-          <h2 className="text-7xl md:text-9xl font-black text-white uppercase tracking-tighter leading-[0.8]">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-black text-white uppercase tracking-tighter leading-[0.8]">
             pc<br/><span className="text-[#ff00ff] italic">style</span>
           </h2>
           <p className="text-gray-400 text-xl lowercase leading-relaxed font-light opacity-90 max-w-lg italic">
@@ -69,7 +69,7 @@ export const Identity = () => {
                <img
                  src="/pfp.png"
                  alt="pcstyle profile"
-                 className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 rounded-lg object-cover shadow-[0_0_30px_rgba(255,0,255,0.25)]"
+                 className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-40 lg:h-40 mx-auto mb-8 rounded-lg object-cover shadow-[0_0_30px_rgba(255,0,255,0.25)]"
                />
                <div className="space-y-3">
                  <span className="text-white text-[11px] uppercase font-black tracking-[0.6em] block">uplink_active</span>

@@ -6,6 +6,7 @@ import { view } from './commands/view'
 import { update } from './commands/update'
 import { changestatus } from './commands/changestatus'
 import { deleteProject } from './commands/delete'
+import { normalize } from './commands/normalize'
 
 const program = new Command()
 
@@ -34,6 +35,8 @@ program
   .command('update <name>')
   .description('update project fields')
   .option('-f, --field <field>', 'specific field to update')
+  .option('-a, --auto', 'auto-update fields with gemini analysis')
+  .option('-p, --path <dir>', 'project directory for --auto mode')
   .action(update)
 
 program
@@ -48,5 +51,11 @@ program
   .description('delete a project')
   .option('-y, --yes', 'skip confirmation')
   .action(deleteProject)
+
+program
+  .command('normalize')
+  .description('normalize project stack labels to the canonical list')
+  .option('-f, --fix', 'apply updates to projects.json')
+  .action(normalize)
 
 program.parse()

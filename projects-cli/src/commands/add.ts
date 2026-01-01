@@ -3,6 +3,8 @@ import { writeFile, access } from 'fs/promises'
 import { input, confirm, select } from '@inquirer/prompts'
 import { gatherProjectFiles, buildContext, analyzeWithGemini } from '../lib/gemini'
 import { addProject } from '../lib/projects'
+import { loadStackConfig, normalizeStackList } from '../lib/stack'
+import { maybeExtendStackConfig } from './stack-utils'
 import { autoDeploy } from '../lib/deploy'
 import { ensureGeminiKey } from '../utils/config'
 import type { Project, ProjectStatus, ProjFile } from '../lib/types'
@@ -12,6 +14,7 @@ const STATUS_OPTIONS: ProjectStatus[] = ['active', 'maintenance', 'experimental'
 export async function add(dirname: string) {
   const apiKey = ensureGeminiKey()
   const projectPath = resolve(dirname)
+  let stackConfig = await loadStackConfig()
 
   // verify directory exists
   try {
@@ -45,6 +48,18 @@ export async function add(dirname: string) {
     process.exit(1)
   }
 
+  let initialNormalization = normalizeStackList(analysis.stack, stackConfig)
+  if (initialNormalization.unknown.length > 0) {
+    stackConfig = await maybeExtendStackConfig(stackConfig, initialNormalization.unknown)
+    initialNormalization = normalizeStackList(analysis.stack, stackConfig)
+  }
+  if (initialNormalization.changed) {
+    analysis.stack = initialNormalization.normalized
+  }
+  if (initialNormalization.unknown.length > 0) {
+    console.warn(`warning: unknown stack labels: ${initialNormalization.unknown.join(', ')}`)
+  }
+
   console.log('\ngemini analysis:')
   console.log('─'.repeat(40))
   console.log(`  id:     ${analysis.id}`)
@@ -67,6 +82,18 @@ export async function add(dirname: string) {
 
     const stackStr = await input({ message: 'stack (comma-separated):', default: analysis.stack.join(', ') })
     analysis.stack = stackStr.split(',').map(s => s.trim()).filter(Boolean)
+
+    let normalized = normalizeStackList(analysis.stack, stackConfig)
+    if (normalized.unknown.length > 0) {
+      stackConfig = await maybeExtendStackConfig(stackConfig, normalized.unknown)
+      normalized = normalizeStackList(analysis.stack, stackConfig)
+    }
+    if (normalized.changed) {
+      analysis.stack = normalized.normalized
+    }
+    if (normalized.unknown.length > 0) {
+      console.warn(`warning: unknown stack labels: ${normalized.unknown.join(', ')}`)
+    }
 
     analysis.link = await input({ message: 'link (or empty):', default: analysis.link || '' }) || undefined
     analysis.github = await input({ message: 'github (or empty):', default: analysis.github || '' }) || undefined

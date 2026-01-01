@@ -398,7 +398,7 @@ export const Terminal = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-black/90 backdrop-blur-md border border-[#ff00ff]/30 rounded shadow-[0_0_80px_rgba(255,0,255,0.05)] h-[600px] flex flex-col font-mono relative overflow-hidden animate-slideUp">
+    <div className="max-w-4xl mx-auto bg-black/90 backdrop-blur-md border border-[#ff00ff]/30 rounded shadow-[0_0_80px_rgba(255,0,255,0.05)] h-[420px] sm:h-[480px] md:h-[550px] lg:h-[600px] flex flex-col font-mono relative overflow-hidden animate-slideUp">
       {/* Terminal Header */}
       <div className="flex items-center justify-between px-4 py-2 border-b border-[#ff00ff]/10 bg-white/5">
         <div className="flex items-center gap-2">
