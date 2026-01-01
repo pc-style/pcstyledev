@@ -19,6 +19,14 @@
         background-color: #000;
         cursor: none; /* Custom cursor everywhere */
       }
+      @media (hover: none), (pointer: coarse) {
+        body {
+          cursor: auto;
+        }
+        .cursor-none {
+          cursor: auto !important;
+        }
+      }
       /* Custom Scrollbar */
       ::-webkit-scrollbar {
         width: 6px;

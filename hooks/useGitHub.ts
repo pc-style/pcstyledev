@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import type { GitHubContributions, GitHubStats } from '../lib/types'
 
 interface UseGitHubContributionsResult {
@@ -12,20 +12,36 @@ export function useGitHubContributions(): UseGitHubContributionsResult {
   const [contributions, setContributions] = useState<GitHubContributions | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const mountedRef = useRef(true)
+
+  useEffect(() => {
+    mountedRef.current = true
+    return () => {
+      mountedRef.current = false
+    }
+  }, [])
 
   const fetchContributions = useCallback(async () => {
     try {
-      setLoading(true)
-      setError(null)
+      if (mountedRef.current) {
+        setLoading(true)
+        setError(null)
+      }
       const res = await fetch('/api/github/contributions')
       if (!res.ok) throw new Error('failed to fetch contributions')
       const data = await res.json()
       if (data.error) throw new Error(data.error)
-      setContributions(data)
+      if (mountedRef.current) {
+        setContributions(data)
+      }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'unknown error')
+      if (mountedRef.current) {
+        setError(err instanceof Error ? err.message : 'unknown error')
+      }
     } finally {
-      setLoading(false)
+      if (mountedRef.current) {
+        setLoading(false)
+      }
     }
   }, [])
 
@@ -47,20 +63,36 @@ export function useGitHubStats(): UseGitHubStatsResult {
   const [stats, setStats] = useState<GitHubStats | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const mountedRef = useRef(true)
+
+  useEffect(() => {
+    mountedRef.current = true
+    return () => {
+      mountedRef.current = false
+    }
+  }, [])
 
   const fetchStats = useCallback(async () => {
     try {
-      setLoading(true)
-      setError(null)
+      if (mountedRef.current) {
+        setLoading(true)
+        setError(null)
+      }
       const res = await fetch('/api/github/stats')
       if (!res.ok) throw new Error('failed to fetch github stats')
       const data = await res.json()
       if (data.error) throw new Error(data.error)
-      setStats(data)
+      if (mountedRef.current) {
+        setStats(data)
+      }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'unknown error')
+      if (mountedRef.current) {
+        setError(err instanceof Error ? err.message : 'unknown error')
+      }
     } finally {
-      setLoading(false)
+      if (mountedRef.current) {
+        setLoading(false)
+      }
     }
   }, [])
 

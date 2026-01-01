@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import type { WakaTimeSummary, WakaTimeStatus } from '../lib/types'
 
 interface UseWakaTimeSummaryResult {
@@ -12,20 +12,36 @@ export function useWakaTimeSummary(): UseWakaTimeSummaryResult {
   const [summary, setSummary] = useState<WakaTimeSummary | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const mountedRef = useRef(true)
+
+  useEffect(() => {
+    mountedRef.current = true
+    return () => {
+      mountedRef.current = false
+    }
+  }, [])
 
   const fetchSummary = useCallback(async () => {
     try {
-      setLoading(true)
-      setError(null)
+      if (mountedRef.current) {
+        setLoading(true)
+        setError(null)
+      }
       const res = await fetch('/api/wakatime/summary')
       if (!res.ok) throw new Error('failed to fetch wakatime summary')
       const data = await res.json()
       if (data.error) throw new Error(data.error)
-      setSummary(data)
+      if (mountedRef.current) {
+        setSummary(data)
+      }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'unknown error')
+      if (mountedRef.current) {
+        setError(err instanceof Error ? err.message : 'unknown error')
+      }
     } finally {
-      setLoading(false)
+      if (mountedRef.current) {
+        setLoading(false)
+      }
     }
   }, [])
 

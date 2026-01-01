@@ -38,7 +38,8 @@ app.use('*', cors())
 // cache and inflight tracker
 const cache = new Map<string, { data: unknown; expires: number }>()
 const inflight = new Map<string, Promise<any>>()
-const CACHE_TTL = 60 * 1000
+const DEFAULT_CACHE_TTL = 60 * 1000
+const GH_CACHE_TTL = 5 * 60 * 1000
 const FETCH_TIMEOUT = 10000
 
 function getCached<T>(key: string): T | null {
@@ -50,8 +51,8 @@ function getCached<T>(key: string): T | null {
   return null
 }
 
-function setCache(key: string, data: unknown) {
-  cache.set(key, { data, expires: Date.now() + CACHE_TTL })
+function setCache(key: string, data: unknown, ttl = DEFAULT_CACHE_TTL) {
+  cache.set(key, { data, expires: Date.now() + ttl })
 }
 
 // Robust fetch for Edge Runtime
@@ -267,7 +268,7 @@ routes.get('/github/contributions', async (c) => {
       )
     }
 
-    setCache('github:contributions', contributions)
+    setCache('github:contributions', contributions, GH_CACHE_TTL)
     return c.json(contributions)
   } catch (err: any) {
     return c.json({ error: err.message }, 500)
@@ -365,7 +366,7 @@ routes.get('/github/stats', async (c) => {
       mostActiveRepo
     }
 
-    setCache('github:stats', stats)
+    setCache('github:stats', stats, GH_CACHE_TTL)
     return c.json(stats)
   } catch (err: any) {
     return c.json({ error: err.message }, 500)

@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Calendar } from 'lucide-react'
 import { useGitHubContributions } from '../../hooks/useGitHub'
 
@@ -14,6 +14,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 
 export function ContributionHeatmap() {
   const { contributions, loading, error } = useGitHubContributions()
+  const [hoveredDay, setHoveredDay] = useState<{ date: string; count: number; x: number; y: number } | null>(null)
 
   const displayWeeks = useMemo(() => {
     if (!contributions?.weeks?.length) return []
@@ -72,7 +73,24 @@ export function ContributionHeatmap() {
   }
 
   return (
-    <div className="p-4 bg-white/5 border border-white/10 h-full">
+    <div className="p-4 bg-white/5 border border-white/10 h-full relative">
+      {/* Floating Tooltip */}
+      {hoveredDay && (
+        <div
+          className="fixed z-[100] px-2 py-1 bg-black border border-[#ff00ff] pointer-events-none transform -translate-x-1/2 -translate-y-full mb-4 animate-fadeIn"
+          style={{
+            left: hoveredDay.x,
+            top: hoveredDay.y - 10
+          }}
+        >
+          <div className="text-[9px] font-mono whitespace-nowrap">
+            <span className="text-gray-400">{hoveredDay.date}:</span>
+            <span className="text-[#ff00ff] ml-2">{hoveredDay.count} contribs</span>
+          </div>
+          <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[4px] border-t-[#ff00ff]" />
+        </div>
+      )}
+
       <div className="flex items-center justify-between gap-10 mb-4">
         <div className="flex items-center gap-2 text-[9px] text-gray-500 uppercase font-black tracking-widest">
           <Calendar size={12} className="text-[#ff00ff]" /> ACTIVITY_MAP (120D)
@@ -118,8 +136,30 @@ export function ContributionHeatmap() {
                       {week.map((day, dayIndex) => (
                         <div
                           key={`${weekIndex}-${dayIndex}`}
-                          className={`w-[10px] h-[10px] ${LEVEL_COLORS[day.level] || LEVEL_COLORS[0]} transition-all hover:scale-150 hover:z-20 hover:ring-1 hover:ring-white/50 relative`}
-                          title={`${day.date}: ${day.count} contributions`}
+                          role="img"
+                          tabIndex={0}
+                          aria-label={`${day.date}: ${day.count} contributions`}
+                          className={`w-[10px] h-[10px] ${LEVEL_COLORS[day.level] || LEVEL_COLORS[0]} transition-all hover:scale-150 focus:scale-150 focus:outline-none hover:z-20 focus:z-20 hover:ring-1 focus:ring-1 hover:ring-white/50 focus:ring-[#ff00ff] relative outline-none`}
+                          onMouseEnter={(e) => {
+                            const rect = e.currentTarget.getBoundingClientRect();
+                            setHoveredDay({
+                              date: day.date,
+                              count: day.count,
+                              x: rect.left + rect.width / 2,
+                              y: rect.top
+                            });
+                          }}
+                          onMouseLeave={() => setHoveredDay(null)}
+                          onFocus={(e) => {
+                            const rect = e.currentTarget.getBoundingClientRect();
+                            setHoveredDay({
+                              date: day.date,
+                              count: day.count,
+                              x: rect.left + rect.width / 2,
+                              y: rect.top
+                            });
+                          }}
+                          onBlur={() => setHoveredDay(null)}
                         />
                       ))}
                       {/* Fill in missing days if week is short */}
@@ -148,3 +188,4 @@ export function ContributionHeatmap() {
     </div>
   )
 }
+

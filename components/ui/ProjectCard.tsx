@@ -43,7 +43,7 @@ export const ProjectCard = memo(({ project, soundEnabled, synth, delay }: Props)
   return (
     <div 
       ref={cardRef}
-      className={`relative group border p-10 bg-black/80 backdrop-blur-sm transition-all duration-300 ease-out overflow-hidden shadow-2xl ${
+      className={`relative group border p-6 sm:p-8 lg:p-10 bg-black/80 backdrop-blur-sm transition-all duration-300 ease-out overflow-hidden shadow-2xl ${
         isDisabled ? 'border-red-900/20 opacity-40 grayscale pointer-events-none' : 'border-white/5'
       }`}
       style={{ animationDelay: `${delay}ms` }}
@@ -59,8 +59,8 @@ export const ProjectCard = memo(({ project, soundEnabled, synth, delay }: Props)
         <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-10 transition-opacity bg-gradient-to-br from-[#ff00ff] to-transparent" />
       )}
 
-      <div className="flex justify-between items-start mb-12">
-        <div className={`p-4 shadow-[0_0_20px_rgba(255,0,255,0.2)] ${isDisabled ? 'bg-red-900/20 text-red-500' : 'bg-[#ff00ff] text-black'}`}>
+      <div className="flex justify-between items-start mb-6 sm:mb-10">
+        <div className={`p-3 sm:p-4 shadow-[0_0_20px_rgba(255,0,255,0.2)] ${isDisabled ? 'bg-red-900/20 text-red-500' : 'bg-[#ff00ff] text-black'}`}>
           {isDisabled ? <Lock className="w-5 h-5" /> : React.createElement(getIcon(project.icon), { className: "w-5 h-5" })}
         </div>
         <div className="flex items-center gap-2">
@@ -78,15 +78,15 @@ export const ProjectCard = memo(({ project, soundEnabled, synth, delay }: Props)
         </div>
       </div>
 
-      <h3 className={`text-3xl font-black mb-4 uppercase tracking-tighter transition-colors ${isDisabled ? 'text-gray-700' : 'text-white group-hover:text-[#ff00ff]'}`}>
+      <h3 className={`text-2xl sm:text-3xl font-black mb-4 uppercase tracking-tighter transition-colors ${isDisabled ? 'text-gray-700' : 'text-white group-hover:text-[#ff00ff]'}`}>
         <GlitchText text={project.name} />
       </h3>
       
-      <p className="text-gray-500 text-[13px] mb-10 leading-relaxed lowercase font-mono opacity-70">
+      <p className="text-gray-500 text-[13px] mb-6 sm:mb-10 leading-relaxed lowercase font-mono opacity-70">
         {isDisabled ? '[MODULE_RESTRICTED] this node has been manually disabled by the architect.' : project.desc}
       </p>
 
-      <div className="flex flex-wrap gap-2 mb-10">
+      <div className="flex flex-wrap gap-2 mb-6 sm:mb-10">
         {project.stack.map((s: string) => (
           <span key={s} className="text-[10px] text-gray-600 font-black border border-gray-900 px-3 py-1 uppercase group-hover:border-[#ff00ff]/20">
             {s}
@@ -94,14 +94,14 @@ export const ProjectCard = memo(({ project, soundEnabled, synth, delay }: Props)
         ))}
       </div>
 
-      <div className="flex items-center gap-10 mt-auto pt-8 border-t border-white/5">
+      <div className="flex flex-wrap items-center gap-6 sm:gap-10 mt-auto pt-6 sm:pt-8 border-t border-white/5">
         {!isDisabled && project.link && (
-          <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#ff00ff] text-[10px] font-black uppercase tracking-[0.2em] hover:brightness-125 transition-all cursor-none">
+          <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[#ff00ff] text-[10px] font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] hover:brightness-125 transition-all cursor-none">
             <ExternalLink size={14} /> access
           </a>
         )}
         {!isDisabled && project.github && (
-          <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-700 text-[10px] font-black uppercase tracking-[0.2em] hover:text-white transition-all cursor-none">
+          <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-gray-700 text-[10px] font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] hover:text-white transition-all cursor-none">
             <Github size={14} /> source
           </a>
         )}

@@ -444,12 +444,12 @@ RANGE: ${data.range?.start || '?'} — ${data.range?.end || '?'}
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-black/90 backdrop-blur-md border border-[#ff00ff]/30 rounded shadow-[0_0_80px_rgba(255,0,255,0.05)] h-[420px] sm:h-[480px] md:h-[550px] lg:h-[600px] flex flex-col font-mono relative overflow-hidden animate-slideUp">
+    <div className="max-w-4xl mx-auto bg-black/90 backdrop-blur-md border border-[#ff00ff]/30 rounded shadow-[0_0_80px_rgba(255,0,255,0.05)] h-[70vh] sm:h-[480px] md:h-[550px] lg:h-[600px] flex flex-col font-mono relative overflow-hidden animate-slideUp">
       {/* Terminal Header */}
-      <div className="flex items-center justify-between px-4 py-2 border-b border-[#ff00ff]/10 bg-white/5">
+      <div className="flex items-center justify-between px-3 sm:px-4 py-2 border-b border-[#ff00ff]/10 bg-white/5">
         <div className="flex items-center gap-2">
           {isRoot ? <ShieldAlert size={14} className="text-red-500" /> : <TerminalIcon size={14} className="text-[#ff00ff]" />}
-          <span className="text-xs text-gray-400 font-bold uppercase tracking-widest">
+          <span className="text-[10px] sm:text-xs text-gray-400 font-bold uppercase tracking-widest">
             {isRoot ? 'root@pcstyle:~#' : 'guest@pcstyle:~'}
           </span>
         </div>
@@ -463,7 +463,7 @@ RANGE: ${data.range?.start || '?'} — ${data.range?.end || '?'}
       {/* Terminal Output */}
       <div 
         ref={scrollContainerRef}
-        className="flex-1 overflow-y-auto p-4 space-y-2 scrollbar-custom text-sm font-medium" 
+        className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-2 scrollbar-custom text-xs sm:text-sm font-medium" 
         onClick={() => document.getElementById('term-input')?.focus()}
       >
         {history.map((line, i) => (
@@ -493,14 +493,14 @@ RANGE: ${data.range?.start || '?'} — ${data.range?.end || '?'}
       </div>
 
       {/* Input Area */}
-      <form onSubmit={handleSubmit} className="flex gap-2 items-center bg-black/50 p-3 border-t border-white/10">
+      <form onSubmit={handleSubmit} className="flex gap-2 items-center bg-black/50 p-2.5 sm:p-3 border-t border-white/10">
         {!passwordMode && (
-          <span className={`${isRoot ? 'text-red-500' : 'text-green-400'} font-bold text-sm shrink-0`}>
+          <span className={`${isRoot ? 'text-red-500' : 'text-green-400'} font-bold text-xs sm:text-sm shrink-0`}>
             {isRoot ? 'root@pcstyle' : 'guest@pcstyle'}:{currentPath.join('/').replace('~', '~')}{isRoot ? '#' : '$'}
           </span>
         )}
         {passwordMode && (
-            <span className="text-white font-bold text-sm shrink-0">Password:</span>
+            <span className="text-white font-bold text-xs sm:text-sm shrink-0">Password:</span>
         )}
         <input 
           id="term-input"
@@ -509,7 +509,7 @@ RANGE: ${data.range?.start || '?'} — ${data.range?.end || '?'}
           value={input}
           onKeyDown={handleKeyDown}
           onChange={(e) => setInput(e.target.value)}
-          className="bg-transparent border-none outline-none flex-1 text-white text-sm caret-[#ff00ff]"
+          className="bg-transparent border-none outline-none flex-1 text-white text-xs sm:text-sm caret-[#ff00ff]"
           autoComplete="off"
         />
       </form>
