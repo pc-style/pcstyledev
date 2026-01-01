@@ -1,9 +1,11 @@
 import { Hono } from 'hono'
 import { handle } from 'hono/vercel'
 import { cors } from 'hono/cors'
-import projectsData from '../data/projects/projects.json'
+import { readFileSync } from 'fs'
+import { join } from 'path'
 import type {
   Project,
+  ProjectsData,
   WakaTimeSummary,
   WakaTimeStatus,
   GitHubContributions,
@@ -14,11 +16,49 @@ export const config = { runtime: 'nodejs' }
 
 const app = new Hono().basePath('/api')
 
-const projects = projectsData.projects as Project[]
+// lazy load projects data
+let projects: Project[] = []
+let projectsData: ProjectsData | null = null
+
+function getProjectsData(): ProjectsData {
+  if (!projectsData) {
+    const projectsPath = join(process.cwd(), 'data/projects/projects.json')
+    projectsData = JSON.parse(readFileSync(projectsPath, 'utf-8')) as ProjectsData
+    projects = projectsData.projects
+  }
+  return projectsData
+}
+
+function getProjects(): Project[] {
+  getProjectsData()
+  return projects
+}
 
 // simple in-memory cache to avoid hammering external APIs
 const cache = new Map<string, { data: unknown; expires: number }>()
 const CACHE_TTL = 60 * 1000 // 1 minute
+const FETCH_TIMEOUT = 5000 // 5 seconds
+
+// fetch with timeout
+async function fetchWithTimeout(url: string, options: RequestInit = {}): Promise<Response> {
+  const controller = new AbortController()
+  const timeout = setTimeout(() => {
+    console.log(`[API] Timeout for ${url}`)
+    controller.abort()
+  }, FETCH_TIMEOUT)
+
+  try {
+    console.log(`[API] Fetching ${url}`)
+    const res = await fetch(url, { ...options, signal: controller.signal })
+    console.log(`[API] Got response from ${url}: ${res.status}`)
+    return res
+  } catch (err) {
+    console.log(`[API] Error fetching ${url}:`, err)
+    throw err
+  } finally {
+    clearTimeout(timeout)
+  }
+}
 
 function getCached<T>(key: string): T | null {
   const entry = cache.get(key)
@@ -35,15 +75,21 @@ function setCache(key: string, data: unknown) {
 
 app.use('*', cors())
 
+// health check
+app.get('/health', (c) => {
+  console.log('[API] Health check hit')
+  return c.json({ status: 'ok', time: new Date().toISOString() })
+})
+
 // list all projects
 app.get('/projects', (c) => {
-  return c.json(projects)
+  return c.json(getProjects())
 })
 
 // get single project by id
 app.get('/projects/:id', (c) => {
   const id = c.req.param('id')
-  const project = projects.find((p) => p.id === id)
+  const project = getProjects().find((p) => p.id === id)
 
   if (!project) {
     return c.json({ error: 'project not found' }, 404)
@@ -54,25 +100,32 @@ app.get('/projects/:id', (c) => {
 
 // get projects metadata
 app.get('/projects/meta', (c) => {
+  const data = getProjectsData()
   return c.json({
-    count: projectsData.projects.length,
-    lastUpdated: projectsData.lastUpdated
+    count: data.projects.length,
+    lastUpdated: data.lastUpdated
   })
 })
 
 // wakatime: get 7-day summary
 app.get('/wakatime/summary', async (c) => {
+  console.log('[API] wakatime/summary called')
   const apiKey = process.env.WAKATIME_API_KEY
   if (!apiKey) {
+    console.log('[API] No WAKATIME_API_KEY')
     return c.json({ error: 'wakatime api key not configured' }, 500)
   }
 
   const cached = getCached<WakaTimeSummary>('wakatime:summary')
-  if (cached) return c.json(cached)
+  if (cached) {
+    console.log('[API] Returning cached wakatime summary')
+    return c.json(cached)
+  }
 
   try {
-    const auth = Buffer.from(apiKey).toString('base64')
-    const res = await fetch(
+    // wakatime uses api key as username with empty password
+    const auth = Buffer.from(`${apiKey}:`).toString('base64')
+    const res = await fetchWithTimeout(
       'https://wakatime.com/api/v1/users/current/summaries?range=last_7_days',
       { headers: { Authorization: `Basic ${auth}` } }
     )
@@ -144,6 +197,7 @@ app.get('/wakatime/summary', async (c) => {
 
 // wakatime: get current status/heartbeat
 app.get('/wakatime/status', async (c) => {
+  console.log('[API] wakatime/status called')
   const apiKey = process.env.WAKATIME_API_KEY
   if (!apiKey) {
     return c.json({ error: 'wakatime api key not configured' }, 500)
@@ -153,8 +207,8 @@ app.get('/wakatime/status', async (c) => {
   if (cached) return c.json(cached)
 
   try {
-    const auth = Buffer.from(apiKey).toString('base64')
-    const res = await fetch(
+    const auth = Buffer.from(`${apiKey}:`).toString('base64')
+    const res = await fetchWithTimeout(
       'https://wakatime.com/api/v1/users/current/statusbar/today',
       { headers: { Authorization: `Basic ${auth}` } }
     )
@@ -220,7 +274,7 @@ app.get('/github/contributions', async (c) => {
       }
     `
 
-    const res = await fetch('https://api.github.com/graphql', {
+    const res = await fetchWithTimeout('https://api.github.com/graphql', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -280,7 +334,7 @@ app.get('/github/stats', async (c) => {
 
   try {
     // fetch user profile
-    const userRes = await fetch(`https://api.github.com/users/${username}`, {
+    const userRes = await fetchWithTimeout(`https://api.github.com/users/${username}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
 
@@ -291,7 +345,7 @@ app.get('/github/stats', async (c) => {
     const user = await userRes.json()
 
     // fetch repos to calculate total stars
-    const reposRes = await fetch(
+    const reposRes = await fetchWithTimeout(
       `https://api.github.com/users/${username}/repos?per_page=100&sort=updated`,
       { headers: { Authorization: `Bearer ${token}` } }
     )
