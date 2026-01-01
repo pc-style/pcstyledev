@@ -10,6 +10,7 @@
     "projects": "bun run projects-cli/src/index.ts"
   },
   "dependencies": {
+    "framer-motion": "^12.23.26",
     "hono": "^4.11.3",
     "lucide-react": "^0.561.0",
     "react": "^19.2.3",

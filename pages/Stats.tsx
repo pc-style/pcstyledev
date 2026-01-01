@@ -1,6 +1,7 @@
 import { BarChart3, Github, Star, Users, GitFork, Activity, Terminal as TerminalIcon } from 'lucide-react'
 import { WakaTimeDashboard } from '../components/ui/WakaTimeDashboard'
 import { ContributionHeatmap } from '../components/ui/ContributionHeatmap'
+import { VisualContributionHeatmap } from '../components/ui/VisualContributionHeatmap'
 import { useGitHubStats } from '../hooks/useGitHub'
 
 function GitHubMainStats() {
@@ -102,15 +103,15 @@ function GitHubExtraStats() {
 
 export function Stats() {
   return (
-    <div className="space-y-8 md:space-y-12 pb-20 px-4 md:px-0">
+    <div className="space-y-8 md:space-y-12 pb-20 px-4 md:px-0 font-sans">
       {/* header */}
       <div className="flex items-center gap-4">
         <BarChart3 size={24} className="text-[#ff00ff]" />
         <div>
-          <h1 className="text-xl md:text-2xl font-bold text-white uppercase tracking-tight">
+          <h1 className="text-xl md:text-2xl font-bold text-white uppercase tracking-tight font-black">
             SYSTEM_METRICS
           </h1>
-          <p className="text-[8px] md:text-[10px] text-gray-500 uppercase tracking-widest mt-1">
+          <p className="text-[8px] md:text-[10px] text-gray-500 uppercase tracking-widest mt-1 font-bold">
             REAL-TIME CODING ACTIVITY & CONTRIBUTION DATA
           </p>
         </div>
@@ -121,19 +122,19 @@ export function Stats() {
         <div className="flex items-center gap-2 text-[10px] md:text-[11px] text-[#ff00ff] uppercase font-black tracking-widest">
           <Github size={14} /> GITHUB_PROFILE
         </div>
-        <div className="flex flex-col xl:flex-row gap-4 items-stretch justify-center">
-          {/* Column 1: Core Stats */}
-          <div className="w-full xl:w-[400px] flex-shrink-0">
+
+        {/* Main Stats Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div className="md:col-span-1">
             <GitHubMainStats />
           </div>
-
-          {/* Column 2: Activity Map */}
-          <div className="w-full xl:w-fit flex-shrink-0 overflow-hidden">
+          <div className="md:col-span-1 xl:col-span-1">
             <ContributionHeatmap />
           </div>
-
-          {/* Column 3: Impact Stats */}
-          <div className="w-full xl:flex-1 xl:min-w-[300px]">
+          <div className="md:col-span-1 xl:col-span-1">
+            <VisualContributionHeatmap />
+          </div>
+          <div className="md:col-span-1 xl:col-span-1">
             <GitHubExtraStats />
           </div>
         </div>
