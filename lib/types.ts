@@ -74,6 +74,18 @@ export interface GitHubStats {
   followers: number
   following: number
   totalStars: number
+  totalCommits?: number
+  lastCommit?: {
+    message: string
+    repo: string
+    date: string
+    url: string
+  }
+  mostActiveRepo?: {
+    name: string
+    url: string
+    commits: number
+  }
 }
 
 // combined live status for navbar
