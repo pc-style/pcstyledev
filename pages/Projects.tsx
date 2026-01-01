@@ -75,6 +75,16 @@ export const Projects = () => {
     selectedStatuses.length === 0 || selectedStatuses.includes(project.status);
 
   const filteredProjects = useMemo(() => {
+    const matchesQuery = (project: Project) => {
+      if (!normalizedQuery) return true;
+      const haystack = `${project.name} ${project.desc} ${project.stack.join(' ')}`.toLowerCase();
+      return haystack.includes(normalizedQuery);
+    };
+    const matchesStackFilter = (project: Project) =>
+      selectedStacks.length === 0 || project.stack.some((stack) => selectedStacks.includes(stack));
+    const matchesStatusFilter = (project: Project) =>
+      selectedStatuses.length === 0 || selectedStatuses.includes(project.status);
+    
     return PROJECTS.filter(
       (project) => matchesQuery(project) && matchesStackFilter(project) && matchesStatusFilter(project)
     );
