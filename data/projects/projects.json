@@ -236,7 +236,7 @@
       "status": "active",
       "icon": "ClipboardList",
       "github": "https://github.com/pc-style/friends-tierlist.git",
-      "link": null,
+      "link": "https://friends-tierlist.vercel.app/",
       "createdAt": "2026-01-02T03:55:09.246Z",
       "updatedAt": "2026-01-02T03:55:09.246Z"
     }
