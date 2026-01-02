@@ -220,7 +220,26 @@
       "link": "https://pcstyle.dev",
       "createdAt": "2026-01-01T00:28:05.514Z",
       "updatedAt": "2026-01-01T00:28:05.514Z"
+    },
+    {
+      "id": "friends-tierlist",
+      "name": "Friends Tier List",
+      "desc": "rank your friends in the classic tier list style",
+      "stack": [
+        "Next.js",
+        "React",
+        "Convex",
+        "Tailwind CSS",
+        "@dnd-kit",
+        "@auth/core"
+      ],
+      "status": "active",
+      "icon": "ClipboardList",
+      "github": "https://github.com/pc-style/friends-tierlist.git",
+      "link": null,
+      "createdAt": "2026-01-02T03:55:09.246Z",
+      "updatedAt": "2026-01-02T03:55:09.246Z"
     }
   ],
-  "lastUpdated": "2026-01-01T00:28:05.518Z"
+  "lastUpdated": "2026-01-02T03:55:09.248Z"
 }
