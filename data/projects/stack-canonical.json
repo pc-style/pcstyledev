@@ -30,7 +30,9 @@
     "TypeScript",
     "UI Kit",
     "Vite",
-    "WebGL"
+    "WebGL",
+    "UploadThing",
+    "Framer Motion"
   ],
   "aliases": {
     "AI": "AI/ML",
@@ -48,36 +50,137 @@
     "VanillaJS": "JavaScript"
   },
   "glossary": [
-    { "label": "AI/ML", "desc": "machine learning systems" },
-    { "label": "Automation", "desc": "task automation tooling" },
-    { "label": "Bun", "desc": "JS runtime + tooling" },
-    { "label": "Canvas", "desc": "2D rendering API" },
-    { "label": "Convex", "desc": "backend platform" },
-    { "label": "Custom Kernel", "desc": "custom OS core" },
-    { "label": "Demucs", "desc": "audio stem separation" },
-    { "label": "Electron", "desc": "desktop app shell" },
-    { "label": "FastAPI", "desc": "Python API framework" },
-    { "label": "Generative Art", "desc": "algorithmic art systems" },
-    { "label": "GLSL", "desc": "shader language" },
-    { "label": "Hono", "desc": "edge web framework" },
-    { "label": "JavaScript", "desc": "core web language" },
-    { "label": "KaTeX", "desc": "math typesetting" },
-    { "label": "Next.js", "desc": "React framework" },
-    { "label": "Node.js", "desc": "JS server runtime" },
-    { "label": "p5.js", "desc": "creative coding library" },
-    { "label": "Procedural", "desc": "procedural generation" },
-    { "label": "PWA", "desc": "progressive web app" },
-    { "label": "Python", "desc": "backend + scripting" },
-    { "label": "PyTorch", "desc": "ML framework" },
-    { "label": "React", "desc": "UI library" },
-    { "label": "React Canvas", "desc": "canvas renderer for React" },
-    { "label": "Shiki", "desc": "code syntax highlighting" },
-    { "label": "Socket.IO", "desc": "realtime websockets" },
-    { "label": "Tailwind CSS", "desc": "utility-first CSS" },
-    { "label": "Three.js", "desc": "3D graphics library" },
-    { "label": "TypeScript", "desc": "typed JavaScript" },
-    { "label": "UI Kit", "desc": "component system" },
-    { "label": "Vite", "desc": "frontend build tool" },
-    { "label": "WebGL", "desc": "GPU graphics API" }
+    {
+      "label": "AI/ML",
+      "desc": "machine learning systems"
+    },
+    {
+      "label": "Automation",
+      "desc": "task automation tooling"
+    },
+    {
+      "label": "Bun",
+      "desc": "JS runtime + tooling"
+    },
+    {
+      "label": "Canvas",
+      "desc": "2D rendering API"
+    },
+    {
+      "label": "Convex",
+      "desc": "backend platform"
+    },
+    {
+      "label": "Custom Kernel",
+      "desc": "custom OS core"
+    },
+    {
+      "label": "Demucs",
+      "desc": "audio stem separation"
+    },
+    {
+      "label": "Electron",
+      "desc": "desktop app shell"
+    },
+    {
+      "label": "FastAPI",
+      "desc": "Python API framework"
+    },
+    {
+      "label": "Generative Art",
+      "desc": "algorithmic art systems"
+    },
+    {
+      "label": "GLSL",
+      "desc": "shader language"
+    },
+    {
+      "label": "Hono",
+      "desc": "edge web framework"
+    },
+    {
+      "label": "JavaScript",
+      "desc": "core web language"
+    },
+    {
+      "label": "KaTeX",
+      "desc": "math typesetting"
+    },
+    {
+      "label": "Next.js",
+      "desc": "React framework"
+    },
+    {
+      "label": "Node.js",
+      "desc": "JS server runtime"
+    },
+    {
+      "label": "p5.js",
+      "desc": "creative coding library"
+    },
+    {
+      "label": "Procedural",
+      "desc": "procedural generation"
+    },
+    {
+      "label": "PWA",
+      "desc": "progressive web app"
+    },
+    {
+      "label": "Python",
+      "desc": "backend + scripting"
+    },
+    {
+      "label": "PyTorch",
+      "desc": "ML framework"
+    },
+    {
+      "label": "React",
+      "desc": "UI library"
+    },
+    {
+      "label": "React Canvas",
+      "desc": "canvas renderer for React"
+    },
+    {
+      "label": "Shiki",
+      "desc": "code syntax highlighting"
+    },
+    {
+      "label": "Socket.IO",
+      "desc": "realtime websockets"
+    },
+    {
+      "label": "Tailwind CSS",
+      "desc": "utility-first CSS"
+    },
+    {
+      "label": "Three.js",
+      "desc": "3D graphics library"
+    },
+    {
+      "label": "TypeScript",
+      "desc": "typed JavaScript"
+    },
+    {
+      "label": "UI Kit",
+      "desc": "component system"
+    },
+    {
+      "label": "Vite",
+      "desc": "frontend build tool"
+    },
+    {
+      "label": "WebGL",
+      "desc": "GPU graphics API"
+    },
+    {
+      "label": "UploadThing",
+      "desc": "custom stack"
+    },
+    {
+      "label": "Framer Motion",
+      "desc": "custom stack"
+    }
   ]
 }

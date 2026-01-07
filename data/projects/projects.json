@@ -239,7 +239,43 @@
       "link": "https://friends-tierlist.vercel.app/",
       "createdAt": "2026-01-02T03:55:09.246Z",
       "updatedAt": "2026-01-02T03:55:09.246Z"
+    },
+    {
+      "id": "short",
+      "name": "PCSTYLE Shortener",
+      "desc": "transform long urls into compact, shareable links with a high-performance url compression protocol",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "Convex",
+        "Framer Motion"
+      ],
+      "status": "active",
+      "icon": "Link",
+      "github": "https://github.com/pc-style/short.git",
+      "link": "https://s.pcstyle.dev",
+      "createdAt": "2026-01-07T16:22:30.653Z",
+      "updatedAt": "2026-01-07T16:22:30.653Z"
+    },
+    {
+      "id": "uploader",
+      "name": "Uploader",
+      "desc": "a high-performance cybernetic file upload protocol powered by uploadthing",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind CSS",
+        "UploadThing",
+        "TypeScript"
+      ],
+      "status": "active",
+      "icon": "Upload",
+      "github": "https://github.com/pc-style/upload",
+      "link": "https://upload.pcstyle/dev",
+      "createdAt": "2026-01-07T16:23:25.031Z",
+      "updatedAt": "2026-01-07T16:23:25.031Z"
     }
   ],
-  "lastUpdated": "2026-01-02T03:55:09.248Z"
+  "lastUpdated": "2026-01-07T16:23:25.033Z"
 }
