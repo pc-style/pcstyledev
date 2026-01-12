@@ -331,7 +331,25 @@
       "link": null,
       "createdAt": "2026-01-12T10:09:40.766Z",
       "updatedAt": "2026-01-12T10:09:40.766Z"
+    },
+    {
+      "id": "plan-automator",
+      "name": "Plan Automator",
+      "desc": "a web application for generating school timetables using genetic algorithms and greedy solvers",
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Convex"
+      ],
+      "status": "active",
+      "icon": "Clock",
+      "github": "https://github.com/pc-style/plan-automator.git",
+      "link": null,
+      "createdAt": "2026-01-12T10:46:06.789Z",
+      "updatedAt": "2026-01-12T10:46:06.789Z"
     }
   ],
-  "lastUpdated": "2026-01-12T10:09:40.769Z"
+  "lastUpdated": "2026-01-12T10:46:06.792Z"
 }
