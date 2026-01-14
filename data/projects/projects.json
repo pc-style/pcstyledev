@@ -349,7 +349,24 @@
       "link": null,
       "createdAt": "2026-01-12T10:46:06.789Z",
       "updatedAt": "2026-01-12T10:46:06.789Z"
+    },
+    {
+      "id": "kolosy-terminarz",
+      "name": "Terminarz Kolosów",
+      "desc": "interactive exam and test schedule for university groups with calendar sync and theme support",
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion"
+      ],
+      "link": "https://kolosy.vercel.app",
+      "status": "active",
+      "icon": "Calendar",
+      "createdAt": "2026-01-14T19:25:00.000Z",
+      "updatedAt": "2026-01-14T19:25:00.000Z"
     }
   ],
-  "lastUpdated": "2026-01-12T10:46:06.792Z"
+  "lastUpdated": "2026-01-14T19:25:00.000Z"
 }
