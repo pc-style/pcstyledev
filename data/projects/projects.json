@@ -370,21 +370,21 @@
     {
       "id": "stock-management",
       "name": "Stock Management",
-      "desc": "custom stock management system for a local vape shop.",
+      "desc": "specialized inventory system for zielarz vape shop with real-time sync and dynamic pricing.",
       "stack": [
-        "Electron",
+        "Next.js",
         "React",
-        "TypeScript",
+        "Convex",
         "Tailwind CSS",
-        "SQLite"
+        "TypeScript"
       ],
       "status": "active",
       "icon": "Package",
       "createdAt": "2026-01-14T19:50:00.000Z",
       "updatedAt": "2026-01-14T19:50:00.000Z",
       "modal": {
-        "title": "zielarz_stock_system",
-        "content": "built a custom stock management solution for zielarz, a local vape shop in częstochowa. they needed something fast and offline-first to handle inventory, sales tracking, and low-stock alerts without the bloat of generic pos systems.\n\nit's running on electron + sqlite for reliability. simple, dark-mode ui because staring at bright screens all day sucks. features barcode scanning hooks and auto-generated monthly reports. honestly just happy it's helping them stay organized."
+        "title": "zielarz_inventory_core",
+        "content": "custom-built inventory management for zielarz, a local vape shop in częstochowa. designed to handle specific domain requirements like liquid strengths (6/12/18mg), longfills, and salts that generic pos systems couldn't support.\n\npowered by convex for real-time updates across multiple screens. features a drag-and-drop admin interface for organizing brands, qr code generation for shelf labels, and a complete audit log for tracking stock changes. it's not just a database; it's the nervous system of the shop."
       }
     }
   ],
