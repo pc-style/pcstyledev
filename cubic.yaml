@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://cubic.dev/schema/cubic-repository-config.schema.json
+
+version: 1
+
+reviews:
+  enabled: true
+  sensitivity: high
+  incremental_commits: true
+  architecture_diagrams: false
+  resolve_threads_when_addressed: true
+  custom_instructions: |
+    This is the PCSTYLE Portfolio, a high-fidelity "Cybernetic Minimalist" digital workspace.
+    Maintain the following brand tenets:
+    - "Style is the protocol of identity."
+    - Aesthetics: Black background, Neon Pink (#ff00ff), Glassmorphism, Monospaced type.
+    - Immersive: Apps feel like a secure terminal.
+    - Interactive: Heavy use of Framer Motion for high-quality motion.
+    - Tech: Vite, React 19, Tailwind CSS v4.
+
+  ignore:
+    files:
+      - node_modules/**
+      - dist/**
+      - .vercel/**
+
+  custom_rules:
+    - name: Cybernetic Minimalism Compliance
+      description: Flag any UI changes that deviate from the neon/dark/glassmorphism aesthetic.
+      include:
+        - "**/*.tsx"
+        - "**/*.css"
+    - name: Motion Optimization
+      description: Ensure Framer Motion components respect 'reduced-motion'.
+      include:
+        - components/**/*.tsx
+
+pr_descriptions:
+  generate: true
+  instructions: |
+    Describe the aesthetic impact of the changes. Focus on visual fidelity and interaction design.
+
+issues:
+  fix_with_cubic_buttons: true
