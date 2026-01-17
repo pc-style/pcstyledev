@@ -1,42 +1,27 @@
-
 version: 1
-
 reviews:
   enabled: true
   sensitivity: high
   incremental_commits: true
-  architecture_diagrams: false
+  check_drafts: false
+  architecture_diagrams: true
+  show_ai_feedback_buttons: true
   resolve_threads_when_addressed: true
-  custom_instructions: |
-    This is the PCSTYLE Portfolio, a high-fidelity "Cybernetic Minimalist" digital workspace.
-    Maintain the following brand tenets:
-    - "Style is the protocol of identity."
-    - Aesthetics: Black background, Neon Pink (#ff00ff), Glassmorphism, Monospaced type.
-    - Immersive: Apps feel like a secure terminal.
-    - Interactive: Heavy use of Framer Motion for high-quality motion.
-    - Tech: Vite, React 19, Tailwind CSS v4.
-
+  custom_instructions: "The Portfolio is the flagship. Prioritize visual perfection, 'WOW' factor motion, and premium accessibility."
   ignore:
     files:
-      - node_modules/**
-      - dist/**
-      - .vercel/**
-
+      - "**/node_modules/**"
+      - "**/dist/**"
+      - "**/*.lock*"
   custom_rules:
-    - name: Cybernetic Minimalism Compliance
-      description: Flag any UI changes that deviate from the neon/dark/glassmorphism aesthetic.
-      include:
-        - "**/*.tsx"
-        - "**/*.css"
-    - name: Motion Optimization
-      description: Ensure Framer Motion components respect 'reduced-motion'.
-      include:
-        - components/**/*.tsx
-
+    - name: "Visuals: Pixel Perfection"
+      description: "Every pixel counts. Flag any misalignment, broken glassmorphism, or suboptimal color choices."
+    - name: "UX: Immersive Motion"
+      description: "Animations must feel liquid and futuristic. Enforce use of @pcstyle/motion's premium presets."
+    - name: "SEO: Metadata"
+      description: "Ensure every page has optimized OG imagery and descriptive metadata."
 pr_descriptions:
   generate: true
-  instructions: |
-    Describe the aesthetic impact of the changes. Focus on visual fidelity and interaction design.
-
+  instructions: "Summaries should read like a changelog for a high-end digital artifact."
 issues:
   fix_with_cubic_buttons: true
