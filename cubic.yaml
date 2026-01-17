@@ -1,27 +1,33 @@
+# yaml-language-server: $schema=https://cubic.dev/schema/cubic-repository-config.schema.json
+
 version: 1
+
 reviews:
   enabled: true
   sensitivity: high
   incremental_commits: true
   check_drafts: false
   architecture_diagrams: true
-  show_ai_feedback_buttons: true
   resolve_threads_when_addressed: true
-  custom_instructions: "The Portfolio is the flagship. Prioritize visual perfection, 'WOW' factor motion, and premium accessibility."
+  custom_instructions: |
+    Flagship Portfolio: Extreme focus on high-fidelity motion, visual perfection, and the 'WOW' factor.
+
   ignore:
     files:
       - "**/node_modules/**"
       - "**/dist/**"
       - "**/*.lock*"
+
   custom_rules:
-    - name: "Visuals: Pixel Perfection"
-      description: "Every pixel counts. Flag any misalignment, broken glassmorphism, or suboptimal color choices."
-    - name: "UX: Immersive Motion"
-      description: "Animations must feel liquid and futuristic. Enforce use of @pcstyle/motion's premium presets."
-    - name: "SEO: Metadata"
-      description: "Ensure every page has optimized OG imagery and descriptive metadata."
+    - name: "VISUAL_EXCELLENCE"
+      description: "Ensure every UI element feels premium. Smooth gradients, glassmorphism, and CRT-style effects are prioritized."
+    - name: "MOTION_FIDELITY"
+      description: "Framer Motion usage should be optimized. Prefer @pcstyle/motion primitives for consistency."
+
 pr_descriptions:
   generate: true
-  instructions: "Summaries should read like a changelog for a high-end digital artifact."
+  instructions: |
+    Highlight UI/UX enhancements and visual polish.
+
 issues:
   fix_with_cubic_buttons: true
